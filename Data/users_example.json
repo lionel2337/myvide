@@ -1,0 +1,12 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "test@example.com",
+      "password": "mot_de_passe_hache_ici",
+      "nom": "Utilisateur Test",
+      "preferences": ["action", "calme"],
+      "date_inscription": "2026-04-10"
+    }
+  ]
+}
