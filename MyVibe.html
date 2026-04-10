@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>MyVibe — Découvreur d'Expériences</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg-deep:#050810;--bg-card:rgba(255,255,255,0.04);--bg-card-hover:rgba(255,255,255,0.08);
+  --border-glass:rgba(255,255,255,0.10);--border-glow:rgba(110,86,255,0.45);
+  --neon-purple:#6e56ff;--neon-blue:#00c2ff;--neon-pink:#ff4fca;--neon-green:#0fffa3;
+  --text-primary:#f0eeff;--text-secondary:#9a93c4;--text-dim:#5a5480;
+  --font-display:'Syne',sans-serif;--font-body:'DM Sans',sans-serif;
+  --radius-card:20px;--radius-btn:50px;--blur-glass:16px;
+  --transition:0.35s cubic-bezier(.25,.8,.25,1);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg-deep);color:var(--text-primary);font-family:var(--font-body);font-size:16px;line-height:1.6;min-height:100vh;overflow-x:hidden}
+.aurora-bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+.aurora{position:absolute;border-radius:50%;filter:blur(120px);opacity:.18;animation:drift 18s ease-in-out infinite alternate}
+.aurora-1{width:700px;height:700px;background:radial-gradient(circle,var(--neon-purple),transparent 70%);top:-200px;left:-150px;animation-duration:20s}
+.aurora-2{width:500px;height:500px;background:radial-gradient(circle,var(--neon-blue),transparent 70%);top:30%;right:-100px;animation-duration:15s;animation-delay:-5s}
+.aurora-3{width:400px;height:400px;background:radial-gradient(circle,var(--neon-pink),transparent 70%);bottom:0;left:30%;animation-duration:22s;animation-delay:-10s}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(40px,60px) scale(1.1)}}
+.grid-overlay{position:absolute;inset:0;background-image:linear-gradient(rgba(110,86,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(110,86,255,.04) 1px,transparent 1px);background-size:60px 60px}
+.glass-card{background:var(--bg-card);backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass));border:1px solid var(--border-glass);border-radius:var(--radius-card);transition:border-color var(--transition),box-shadow var(--transition)}
+.glass-card:hover{border-color:var(--border-glow);box-shadow:0 0 30px rgba(110,86,255,.12),0 8px 40px rgba(0,0,0,.4)}
+.site-header,.hero,.results-section,.site-footer{position:relative;z-index:1}
+.site-header{display:flex;align-items:center;justify-content:space-between;padding:24px 48px;border-bottom:1px solid var(--border-glass);backdrop-filter:blur(8px)}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-size:1.5rem;font-weight:800;letter-spacing:-.5px}
+.logo-icon{color:var(--neon-purple);font-size:1.6rem;filter:drop-shadow(0 0 8px var(--neon-purple))}
+.accent{color:var(--neon-purple)}
+.nav-pills{display:flex;gap:8px}
+.pill{padding:8px 20px;border-radius:var(--radius-btn);font-size:.85rem;font-weight:500;cursor:pointer;border:1px solid var(--border-glass);color:var(--text-secondary);transition:var(--transition)}
+.pill.active,.pill:hover{background:rgba(110,86,255,.15);border-color:var(--neon-purple);color:var(--neon-purple)}
+.hero{max-width:860px;margin:0 auto;padding:80px 24px 60px;text-align:center}
+.hero-eyebrow{font-size:.82rem;letter-spacing:2px;text-transform:uppercase;color:var(--neon-blue);margin-bottom:20px;opacity:0;animation:fadeUp .6s ease forwards .1s}
+.hero-title{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;line-height:1.1;letter-spacing:-2px;margin-bottom:20px;opacity:0;animation:fadeUp .7s ease forwards .25s}
+.gradient-text{background:linear-gradient(90deg,var(--neon-purple),var(--neon-blue),var(--neon-pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:1.1rem;color:var(--text-secondary);margin-bottom:48px;opacity:0;animation:fadeUp .7s ease forwards .4s}
+.input-zone{padding:20px;opacity:0;animation:fadeUp .7s ease forwards .55s}
+.input-wrapper{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.03);border:1px solid var(--border-glass);border-radius:60px;padding:8px 8px 8px 20px;transition:border-color var(--transition),box-shadow var(--transition)}
+.input-wrapper:focus-within{border-color:var(--neon-purple);box-shadow:0 0 0 3px rgba(110,86,255,.15),0 0 30px rgba(110,86,255,.1)}
+.input-icon{font-size:1.2rem;flex-shrink:0}
+.vibe-input{flex:1;background:transparent;border:none;outline:none;color:var(--text-primary);font-family:var(--font-body);font-size:1rem;caret-color:var(--neon-purple)}
+.vibe-input::placeholder{color:var(--text-dim)}
+.btn-discover{display:flex;align-items:center;gap:8px;padding:14px 28px;background:linear-gradient(135deg,var(--neon-purple),var(--neon-blue));border:none;border-radius:var(--radius-btn);color:#fff;font-family:var(--font-display);font-size:.95rem;font-weight:700;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease;white-space:nowrap}
+.btn-discover:hover{transform:scale(1.04);box-shadow:0 0 20px rgba(110,86,255,.5),0 0 40px rgba(0,194,255,.2)}
+.btn-discover:active{transform:scale(.98)}
+.btn-arrow{transition:transform .2s ease}
+.btn-discover:hover .btn-arrow{transform:translateX(4px)}
+.tag-suggestions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border-glass);min-height:0}
+.tag-chip{padding:5px 14px;border-radius:50px;font-size:.78rem;font-weight:500;cursor:pointer;border:1px solid rgba(255,255,255,.1);color:var(--text-secondary);transition:var(--transition)}
+.tag-chip:hover{background:rgba(110,86,255,.15);border-color:var(--neon-purple);color:var(--text-primary)}
+.loader-wrapper{margin-top:40px;display:flex;flex-direction:column;align-items:center;gap:16px}
+.loader-ring{width:48px;height:48px;border:3px solid rgba(110,86,255,.2);border-top-color:var(--neon-purple);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loader-text{color:var(--text-secondary);font-size:.9rem;letter-spacing:1px}
+.results-section{max-width:1100px;margin:0 auto;padding:0 24px 80px}
+.results-header{text-align:center;margin-bottom:32px}
+.results-title{font-family:var(--font-display);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;letter-spacing:-1px}
+.results-sub{color:var(--text-secondary);margin-top:8px}
+.detected-tags-wrapper{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:40px}
+.detected-tag{display:flex;align-items:center;gap:6px;padding:6px 16px;border-radius:50px;font-size:.82rem;font-weight:600;animation:popIn .4s ease}
+.detected-tag.cat-book{background:rgba(110,86,255,.15);border:1px solid rgba(110,86,255,.4);color:#a899ff}
+.detected-tag.cat-music{background:rgba(0,194,255,.12);border:1px solid rgba(0,194,255,.35);color:#70d9ff}
+.detected-tag.cat-place{background:rgba(15,255,163,.10);border:1px solid rgba(15,255,163,.3);color:#5fffc5}
+.detected-tag.cat-film{background:rgba(255,79,202,.10);border:1px solid rgba(255,79,202,.3);color:#ff90d8}
+.detected-tag.cat-other{background:rgba(255,255,255,.06);border:1px solid var(--border-glass);color:var(--text-secondary)}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.rec-card{position:relative;padding:28px;display:flex;flex-direction:column;gap:16px;overflow:hidden;opacity:0;transform:translateY(24px);animation:cardIn .5s ease forwards}
+.rec-card::before{content:'';position:absolute;inset:0;border-radius:var(--radius-card);background:var(--card-accent,transparent);opacity:.06;pointer-events:none}
+.rec-card.type-book{--card-accent:var(--neon-purple)}
+.rec-card.type-music{--card-accent:var(--neon-blue)}
+.rec-card.type-place{--card-accent:var(--neon-green)}
+.rec-card.type-film{--card-accent:var(--neon-pink)}
+.rec-card::after{content:'';position:absolute;top:0;left:20px;right:20px;height:1px;background:linear-gradient(90deg,transparent,var(--card-accent,var(--neon-purple)),transparent);opacity:.5}
+.card-header{display:flex;align-items:flex-start;gap:16px}
+.card-icon-wrap{width:54px;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0}
+.type-book .card-icon-wrap{background:rgba(110,86,255,.18)}
+.type-music .card-icon-wrap{background:rgba(0,194,255,.15)}
+.type-place .card-icon-wrap{background:rgba(15,255,163,.12)}
+.type-film .card-icon-wrap{background:rgba(255,79,202,.12)}
+.card-meta{flex:1}
+.card-category{font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+.type-book .card-category{color:var(--neon-purple)}
+.type-music .card-category{color:var(--neon-blue)}
+.type-place .card-category{color:var(--neon-green)}
+.type-film .card-category{color:var(--neon-pink)}
+.card-title{font-family:var(--font-display);font-size:1.1rem;font-weight:700;line-height:1.3;color:var(--text-primary)}
+.card-author{font-size:.82rem;color:var(--text-secondary);margin-top:2px}
+.card-desc{font-size:.88rem;color:var(--text-secondary);line-height:1.6;flex:1}
+.card-score{display:flex;align-items:center;gap:8px}
+.score-bar-bg{flex:1;height:4px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden}
+.score-bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--neon-purple),var(--neon-blue));transition:width 1s ease}
+.score-label{font-size:.75rem;font-weight:700;color:var(--text-secondary);white-space:nowrap}
+.card-tags{display:flex;flex-wrap:wrap;gap:6px}
+.card-tag{padding:3px 10px;border-radius:50px;font-size:.72rem;background:rgba(255,255,255,.06);border:1px solid var(--border-glass);color:var(--text-dim)}
+.btn-voir-plus{align-self:flex-start;padding:10px 22px;border-radius:var(--radius-btn);border:1px solid var(--border-glass);background:rgba(255,255,255,.04);color:var(--text-primary);font-family:var(--font-body);font-size:.85rem;font-weight:500;cursor:pointer;transition:var(--transition)}
+.type-book .btn-voir-plus:hover{border-color:var(--neon-purple);color:var(--neon-purple);background:rgba(110,86,255,.1)}
+.type-music .btn-voir-plus:hover{border-color:var(--neon-blue);color:var(--neon-blue);background:rgba(0,194,255,.1)}
+.type-place .btn-voir-plus:hover{border-color:var(--neon-green);color:var(--neon-green);background:rgba(15,255,163,.08)}
+.type-film .btn-voir-plus:hover{border-color:var(--neon-pink);color:var(--neon-pink);background:rgba(255,79,202,.08)}
+.reset-zone{text-align:center;margin-top:48px}
+.btn-reset{padding:12px 32px;border-radius:var(--radius-btn);background:transparent;border:1px solid var(--border-glass);color:var(--text-secondary);font-family:var(--font-body);font-size:.9rem;cursor:pointer;transition:var(--transition)}
+.btn-reset:hover{border-color:var(--neon-purple);color:var(--text-primary)}
+.modal-overlay{position:fixed;inset:0;background:rgba(5,8,16,.85);backdrop-filter:blur(6px);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;animation:fadeIn .25s ease}
+.modal{max-width:560px;width:100%;padding:36px;position:relative;animation:popIn .35s ease}
+.modal-close{position:absolute;top:16px;right:20px;background:transparent;border:none;color:var(--text-secondary);font-size:1.1rem;cursor:pointer;transition:color .2s}
+.modal-close:hover{color:var(--text-primary)}
+.modal-title{font-family:var(--font-display);font-size:1.5rem;font-weight:800;margin-bottom:12px}
+.modal-detail{color:var(--text-secondary);font-size:.92rem;line-height:1.7}
+.modal-location{display:flex;align-items:center;gap:8px;margin-top:16px;padding:12px 16px;border-radius:12px;background:rgba(15,255,163,.08);border:1px solid rgba(15,255,163,.2);font-size:.88rem;color:var(--neon-green)}
+.site-footer{text-align:center;padding:24px;border-top:1px solid var(--border-glass);color:var(--text-dim);font-size:.82rem;position:relative;z-index:1}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes popIn{from{opacity:0;transform:scale(.92) translateY(16px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes cardIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+@media(max-width:768px){.site-header{padding:16px 20px}.hero{padding:50px 16px 40px}.input-wrapper{flex-wrap:wrap;border-radius:20px;padding:14px}.btn-discover{width:100%;justify-content:center}.cards-grid{grid-template-columns:1fr}.results-section{padding:0 16px 60px}}
+</style>
+</head>
+<body>
+
+<div class="aurora-bg">
+  <div class="aurora aurora-1"></div>
+  <div class="aurora aurora-2"></div>
+  <div class="aurora aurora-3"></div>
+  <div class="grid-overlay"></div>
+</div>
+
+<header class="site-header">
+  <div class="logo">
+    <span class="logo-icon">◈</span>
+    <span class="logo-text">My<span class="accent">Vibe</span></span>
+  </div>
+  <nav class="nav-pills">
+    <span class="pill active">Découvrir</span>
+    <span class="pill">Yaoundé 🇨🇲</span>
+  </nav>
+</header>
+
+<section class="hero">
+  <p class="hero-eyebrow">✦ Moteur de recommandations personnalisées — Yaoundé</p>
+  <h1 class="hero-title">
+    Dis-moi ce que<br/>
+    tu <span class="gradient-text">ressens</span>,<br/>
+    je te surprends.
+  </h1>
+  <p class="hero-sub">Films, livres, musique & lieux à Yaoundé — filtrés selon <em>ton</em> mood.</p>
+
+  <div class="input-zone glass-card">
+    <div class="input-wrapper">
+      <span class="input-icon">🎯</span>
+      <input type="text" id="userInput" class="vibe-input"
+        placeholder="Ex : j'aime la science-fiction, le R&B et la natation…"
+        autocomplete="off"/>
+      <button id="discoverBtn" class="btn-discover">
+        <span class="btn-text">Découvrir</span>
+        <span class="btn-arrow">→</span>
+      </button>
+    </div>
+    <div class="tag-suggestions" id="tagSuggestions"></div>
+  </div>
+
+  <div class="loader-wrapper" id="loader" style="display:none">
+    <div class="loader-ring"></div>
+    <p class="loader-text">Analyse de ton vibe en cours…</p>
+  </div>
+</section>
+
+<section class="results-section" id="resultsSection" style="display:none">
+  <div class="results-header">
+    <h2 class="results-title">Recommandations pour toi ✦</h2>
+    <p class="results-sub" id="resultsMood"></p>
+  </div>
+  <div class="detected-tags-wrapper" id="detectedTagsWrapper"></div>
+  <div class="cards-grid" id="cardsGrid"></div>
+  <div class="reset-zone">
+    <button class="btn-reset" id="resetBtn">↩ Changer mon vibe</button>
+  </div>
+</section>
+
+<div class="modal-overlay" id="modalOverlay" style="display:none">
+  <div class="modal glass-card" id="modalContent">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <p>MyVibe © 2025 — Expériences sur mesure à Yaoundé 🇨🇲 &nbsp;|&nbsp; HTML · CSS · JS · PHP · MySQL</p>
+</footer>
+
+<script>
+/* ================================================================
+   DATABASE.JS — Membre 4 : Données (Films, Livres, Lieux Yaoundé)
+================================================================ */
+const DB = {
+  media:[
+    {id:'b01',type:'book',titre:'Fondation',auteur:'Isaac Asimov',description:'Une saga épique où un mathématicien tente de préserver la civilisation galactique à travers les âges sombres.',tags:['science-fiction','espace','futur','technologie','galaxie'],emoji:'📚',detail:'Premier tome de la série Fondation. Prix Hugo du meilleur roman de tous les temps. Un chef-d\'œuvre SF incontournable.'},
+    {id:'b02',type:'book',titre:'Dune',auteur:'Frank Herbert',description:'Sur une planète désertique, un jeune homme devient le messie d\'un peuple nomade au destin cosmique.',tags:['science-fiction','aventure','politique','désert','futur'],emoji:'📚',detail:'Roman culte adapté au cinéma. Une œuvre monumentale sur le pouvoir, l\'écologie et la destinée humaine.'},
+    {id:'b03',type:'book',titre:'Americanah',auteur:'Chimamanda Ngozi Adichie',description:'Le parcours émouvant d\'une femme nigériane entre Lagos, Londres et New York, naviguant identité et amour.',tags:['romance','afrique','identité','société','diaspora'],emoji:'📚',detail:'Primé au National Book Critics Circle. Un roman puissant sur la race, l\'amour et l\'identité africaine dans le monde.'},
+    {id:'b04',type:'book',titre:'Le Soleil des Indépendances',auteur:'Ahmadou Kourouma',description:'La désillusion d\'un prince africain face aux indépendances postcoloniales, entre tradition et modernité.',tags:['afrique','histoire','société','politique','culture'],emoji:'📚',detail:'Œuvre fondatrice de la littérature africaine francophone. Kourouma révolutionne le français avec les rythmes du malinké.'},
+    {id:'b05',type:'book',titre:'Atomic Habits',auteur:'James Clear',description:'Comment de minuscules habitudes transforment radicalement votre vie — la science derrière les comportements.',tags:['développement personnel','productivité','habitudes','psychologie','motivation'],emoji:'📚',detail:'Best-seller mondial traduit en 50 langues. Guide pratique et scientifique pour construire de bonnes habitudes.'},
+    {id:'b06',type:'book',titre:'Thinking, Fast and Slow',auteur:'Daniel Kahneman',description:'Le Prix Nobel explore nos deux systèmes de pensée : l\'un rapide et intuitif, l\'autre lent et rationnel.',tags:['psychologie','science','philosophie','cerveau','décision'],emoji:'📚',detail:'Révélation sur le fonctionnement de l\'esprit humain. Indispensable pour comprendre nos décisions.'},
+    {id:'b07',type:'book',titre:'Purple Hibiscus',auteur:'Chimamanda Ngozi Adichie',description:'Dans une famille nigériane sous emprise d\'un père tyrannique, une adolescente découvre la liberté.',tags:['afrique','famille','liberté','romance','société'],emoji:'📚',detail:'Premier roman bouleversant d\'Adichie sur la violence domestique et l\'émancipation féminine.'},
+    {id:'b08',type:'book',titre:'The Hitchhiker\'s Guide',auteur:'Douglas Adams',description:'Après la destruction de la Terre pour une autoroute galactique, un humain dérive dans le cosmos.',tags:['science-fiction','humour','aventure','espace','comédie'],emoji:'📚',detail:'Comédie SF culte. La réponse à la grande question de la vie est : 42.'},
+    {id:'m01',type:'music',titre:'SOS',auteur:'SZA',description:'Un album R&B introspectif où SZA explore l\'amour, la trahison et la renaissance avec une voix cristalline.',tags:['r&b','soul','pop','romance','émotions'],emoji:'🎵',detail:'Album de l\'année 2023 selon plusieurs médias. 23 titres d\'une beauté brute. Écoute "Kill Bill" et "Snooze".'},
+    {id:'m02',type:'music',titre:'After Hours',auteur:'The Weeknd',description:'Une plongée nocturne dans la mélancolie et l\'excès — synthpop dark et voix envoûtante.',tags:['r&b','pop','électronique','nuit','mélancolie'],emoji:'🎵',detail:'Inclut "Blinding Lights", l\'un des singles les plus streamés de l\'histoire. Ambiance cinématographique.'},
+    {id:'m03',type:'music',titre:'Apollo',auteur:'Salatiel',description:'Le génie camerounais mêle afrobeats, R&B et sons du monde pour une signature musicale unique.',tags:['afrobeats','cameroun','r&b','afrique','danse'],emoji:'🎵',detail:'Producteur de Yaoundé, collaborateur de Beyoncé sur "Lion King: The Gift". Fierté camerounaise.'},
+    {id:'m04',type:'music',titre:'Made in Lagos',auteur:'Wizkid',description:'Afrobeats doux et envoûtant — Wizkid pose une ambiance sensuelle et solaire depuis Lagos vers le monde.',tags:['afrobeats','afrique','danse','romance','fête'],emoji:'🎵',detail:'"Essence" feat. Tems est devenu un hymne planétaire. L\'album qui a propulsé l\'afrobeats mondialement.'},
+    {id:'m05',type:'music',titre:'To Pimp a Butterfly',auteur:'Kendrick Lamar',description:'Manifeste jazz-funk-rap sur la race, l\'identité et la condition noire en Amérique.',tags:['rap','hip-hop','jazz','société','engagé'],emoji:'🎵',detail:'Considéré comme l\'un des meilleurs albums de tous les temps. Une expérience musicale et intellectuelle.'},
+    {id:'m06',type:'music',titre:'Folklore',auteur:'Taylor Swift',description:'Album indie-folk contemplatif, rempli d\'histoires fictives et de nostalgie douce.',tags:['pop','folk','romance','émotions','indie'],emoji:'🎵',detail:'Album de l\'année aux Grammy 2021. "august" et "exile" sont des bijoux musicaux.'},
+    {id:'f01',type:'film',titre:'Interstellar',auteur:'Christopher Nolan',description:'Des astronautes traversent un trou de ver pour sauver l\'humanité — entre physique et amour paternel.',tags:['science-fiction','espace','aventure','futur','émotion'],emoji:'🎬',detail:'Chef-d\'œuvre de Nolan avec Hans Zimmer. Les théories sur la relativité y sont scientifiquement exactes.'},
+    {id:'f02',type:'film',titre:'Black Panther',auteur:'Ryan Coogler',description:'Le roi du Wakanda affronte les menaces sur son trône technologique — ode à l\'Afrique.',tags:['afrique','aventure','action','société','super-héros'],emoji:'🎬',detail:'Premier film de super-héros nominé à l\'Oscar du meilleur film. Révolution culturelle cinématographique.'},
+    {id:'f03',type:'film',titre:'Soul',auteur:'Pete Docter / Pixar',description:'Un musicien de jazz décède avant son grand concert et explore le sens de la vie dans l\'au-delà.',tags:['animation','musique','philosophie','jazz','émotion'],emoji:'🎬',detail:'Oscar du meilleur film d\'animation 2021. Une méditation profonde sur ce qui donne sens à notre existence.'},
+    {id:'f04',type:'film',titre:'Get Out',auteur:'Jordan Peele',description:'Un jeune homme noir rencontre la famille blanche de sa petite amie — tension insidieuse et horreur sociale.',tags:['thriller','horreur','société','psychologie','suspense'],emoji:'🎬',detail:'Budget 4,5M$, recettes 255M$. Commentaire brillant sur le racisme systémique américain.'},
+    {id:'f05',type:'film',titre:'La La Land',auteur:'Damien Chazelle',description:'Deux artistes à Los Angeles s\'aiment le temps d\'un rêve entre jazz, danse et ambitions contrariées.',tags:['romance','musique','danse','jazz','émotion'],emoji:'🎬',detail:'6 Oscars. Un musical mélancolique sur le prix des rêves. Emma Stone est sublime.'},
+    {id:'f06',type:'film',titre:'The Matrix',auteur:'Wachowski',description:'Un hacker découvre que la réalité est une simulation et se lève pour libérer l\'humanité.',tags:['science-fiction','action','philosophie','technologie','futur'],emoji:'🎬',detail:'Film fondateur du cyberpunk cinématographique. La pilule rouge ou bleue ?'},
+  ],
+  lieux:[
+    {id:'l01',nom:'Piscine Omnisports de Yaoundé',categorie:'Sport aquatique',quartier:'Mfandena',adresse:'Complexe Sportif Omnisports, Mfandena, Yaoundé',description:'Piscine semi-olympique idéale pour nager, s\'entraîner ou se détendre.',detail:'Horaires : 7h-19h. Tarif : 1 000 - 2 000 FCFA. Idéal pour nageurs réguliers.',tags:['natation','eau','sport','fitness','santé']},
+    {id:'l02',nom:'Bibliothèque Nationale du Cameroun',categorie:'Culture & Lecture',quartier:'Nlongkak',adresse:'Avenue de l\'Indépendance, Nlongkak, Yaoundé',description:'Des milliers d\'ouvrages africains et internationaux dans un espace studieux.',detail:'Accès gratuit avec inscription. Salle de lecture calme et climatisée.',tags:['lecture','livres','culture','étude','afrique']},
+    {id:'l03',nom:'Canal Olympia Yaoundé',categorie:'Cinéma',quartier:'Bastos',adresse:'Quartier Bastos, Yaoundé',description:'Salle de cinéma moderne diffusant les derniers films africains et internationaux.',detail:'Écran géant, son Dolby. Séances 14h, 17h, 20h. Tarif : 3 500 FCFA.',tags:['cinéma','film','culture','divertissement','sortie']},
+    {id:'l04',nom:'Salle de Fitness Le Olympe',categorie:'Sport & Fitness',quartier:'Bastos',adresse:'Rue Nachtigal, Bastos, Yaoundé',description:'Salle de sport haut de gamme avec équipements modernes et coaches certifiés.',detail:'Cours yoga, zumba, kickboxing. Abonnement : 15 000 - 25 000 FCFA/mois.',tags:['fitness','musculation','sport','santé','yoga']},
+    {id:'l05',nom:'Le Hilton Yaoundé — Lounge',categorie:'Musique Live',quartier:'Centre-ville',adresse:'Boulevard du 20 Mai, Centre-ville, Yaoundé',description:'Bar panoramique avec musique live, cocktails raffinés et vue sur Yaoundé.',detail:'Soirées musicales vendredi et samedi. Cocktails dès 4 000 FCFA.',tags:['musique','jazz','détente','sortie','lounge','r&b']},
+    {id:'l06',nom:'Musée National du Cameroun',categorie:'Culture & Histoire',quartier:'Quartier du Lac',adresse:'Quartier du Lac, Yaoundé',description:'Ancien palais présidentiel — art, histoire et traditions des 280 ethnies du Cameroun.',detail:'Ouvert mar-dim 10h-17h. Entrée : 2 000 FCFA. Guide disponible.',tags:['culture','histoire','afrique','art','musée']},
+    {id:'l07',nom:'Parc Mvog-Betsi — Running',categorie:'Sport Outdoor',quartier:'Mvog-Betsi',adresse:'Parc Zoologique de Mvog-Betsi, Yaoundé',description:'Pistes de jogging boisées — courir, vélo ou méditation en plein air.',detail:'Accès gratuit. Piste 3km. Très fréquenté 6h-8h.',tags:['running','sport','nature','plein air','santé','fitness']},
+    {id:'l08',nom:'Institut Français du Cameroun',categorie:'Culture & Spectacles',quartier:'Hippodrome',adresse:'Avenue du Dr Jamot, Hippodrome, Yaoundé',description:'Concerts, expositions, projections de films et ateliers artistiques.',detail:'Médiathèque gratuite, soirées jazz, cours de français.',tags:['culture','musique','cinéma','art','concert','exposition']},
+    {id:'l09',nom:'Stade Omnisports — Athlétisme',categorie:'Athlétisme',quartier:'Mfandena',adresse:'Stade Omnisports de Yaoundé, Mfandena',description:'Piste d\'athlétisme homologuée pour sprint, course de fond et sauts.',detail:'Ouvert matin et fin d\'après-midi. Accès clubs Fécaathlé.',tags:['sport','running','athlétisme','fitness','santé']},
+    {id:'l10',nom:'Café de l\'Arbre à Palabres',categorie:'Café & Lecture',quartier:'Odza',adresse:'Quartier Odza, Yaoundé',description:'Café littéraire avec bibliothèque, discussions culturelles et ambiance décontractée.',detail:'Wi-Fi gratuit. Club de lecture chaque dimanche 15h.',tags:['lecture','café','culture','détente','discussion']},
+  ]
+};
+
+/* ================================================================
+   ENGINE.JS — Membre 3 : Algorithme de recommandation
+================================================================ */
+const RecommendationEngine=(()=>{
+  const MAP={
+    'science-fiction':['science-fiction','espace','futur','technologie'],
+    'sf':['science-fiction','espace','futur'],'scifi':['science-fiction','espace','futur'],
+    'espace':['science-fiction','espace','aventure'],'futur':['science-fiction','futur','technologie'],
+    'technologie':['technologie','science-fiction','futur'],'robot':['science-fiction','technologie'],
+    'r&b':['r&b','soul','pop','romance'],'rnb':['r&b','soul','romance'],
+    'musique':['musique','jazz','pop','concert'],'jazz':['jazz','musique','classique'],
+    'rap':['rap','hip-hop','société'],'hip-hop':['hip-hop','rap'],
+    'afrobeats':['afrobeats','afrique','danse'],'pop':['pop','danse','fête'],
+    'classique':['classique','symphonie','instrumental'],
+    'natation':['natation','eau','sport','fitness'],'nager':['natation','eau','sport'],
+    'piscine':['natation','eau','sport'],'sport':['sport','fitness','santé'],
+    'fitness':['fitness','musculation','sport','santé'],'running':['running','sport','plein air'],
+    'courir':['running','sport','plein air'],'yoga':['yoga','fitness','santé'],
+    'gym':['fitness','musculation','sport'],'athlétisme':['athlétisme','sport','running'],
+    'lecture':['lecture','livres','culture'],'lire':['lecture','livres','culture'],
+    'livre':['lecture','livres','culture'],'film':['film','cinéma','divertissement'],
+    'cinéma':['cinéma','film','divertissement'],'cinema':['cinéma','film'],
+    'art':['art','culture','musée'],'musée':['musée','culture','histoire'],
+    'histoire':['histoire','culture','afrique'],'voyage':['aventure','culture','nature'],
+    'nature':['nature','plein air','randonnée'],
+    'romantique':['romance','émotion','musique'],'romance':['romance','émotion'],
+    'mélancolie':['mélancolie','émotion','musique'],'détente':['détente','lounge','musique'],
+    'fête':['fête','danse','musique'],'danse':['danse','fête','afrobeats'],
+    'calme':['détente','lecture','nature'],'aventure':['aventure','action','science-fiction'],
+    'horreur':['horreur','thriller','suspense'],'suspense':['suspense','thriller','horreur'],
+    'thriller':['thriller','horreur','suspense'],
+    'afrique':['afrique','culture','histoire'],'cameroun':['afrique','afrobeats','culture'],
+    'philosophie':['philosophie','science','psychologie'],'psychologie':['psychologie','science','cerveau'],
+    'société':['société','politique','engagé'],'engagé':['engagé','société','philosophie'],
+    'animation':['animation','film','enfants'],'humour':['humour','comédie'],
+  };
+  const STOP=new Set(['je','j','aime','adore','aussi','et','le','la','les','un','une','des','de','du','au','en','sur','pour','avec','sans','mais','ou','si','que','qui','ce','suis','tres','vraiment','beaucoup','passion','fan','me','ma','mon','mes','grand','petit','nouveau','vieux']);
+  function parse(raw){
+    let t=raw.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9\s\-&]/g,' ');
+    const tokens=[...new Set(t.split(/[\s,;.!?()+]+/).map(x=>x.trim()).filter(x=>x.length>1&&!STOP.has(x)))];
+    const tags=new Set(),kw=[];
+    tokens.forEach(tok=>{
+      if(MAP[tok]){MAP[tok].forEach(g=>tags.add(g));kw.push(tok);}
+      else{
+        Object.keys(MAP).forEach(k=>{
+          if(k.includes(tok)||tok.includes(k)){MAP[k].forEach(g=>tags.add(g));if(!kw.includes(tok))kw.push(tok);}
+        });
+        tags.add(tok);
+      }
+    });
+    return{tags:[...tags],keywords:[...new Set(kw)]};
+  }
+  function score(item,uTags){
+    if(!uTags.length||!item.tags.length)return 0;
+    let m=0;
+    uTags.forEach(u=>item.tags.forEach(i=>{if(i===u)m+=2;else if(i.includes(u)||u.includes(i))m+=1;}));
+    return Math.min(100,Math.round((m/(uTags.length*2))*100));
+  }
+  function recommend(input){
+    const{tags,keywords}=parse(input);
+    if(!tags.length)return{tags:[],keywords:[],results:[]};
+    const all=[
+      ...DB.media.map(x=>({...x,displayType:x.type,name:x.titre,sub:x.auteur})),
+      ...DB.lieux.map(x=>({...x,displayType:'place',name:x.nom,sub:`${x.categorie} — ${x.quartier}`}))
+    ];
+    const scored=all.map(x=>({...x,score:score(x,tags)})).filter(x=>x.score>0).sort((a,b)=>b.score-a.score);
+    const cats={book:null,music:null,film:null,place:null},results=[],used=new Set();
+    scored.forEach(x=>{if(cats[x.displayType]===null&&!used.has(x.id)){cats[x.displayType]=x;results.push(x);used.add(x.id);}});
+    scored.forEach(x=>{if(results.length>=6)return;if(!used.has(x.id)&&x.score>=10){results.push(x);used.add(x.id);}});
+    if(results.length<3)all.forEach(x=>{if(results.length>=4)return;if(!used.has(x.id)){results.push({...x,score:5});used.add(x.id);}});
+    return{tags,keywords,results:results.slice(0,6)};
+  }
+  return{recommend,parse};
+})();
+
+/* ================================================================
+   UI.JS — Membre 2 : Rendu dynamique et interactivité
+================================================================ */
+const UI=(()=>{
+  const CFG={book:{label:'📚 Livre',css:'type-book',emoji:'📚'},music:{label:'🎵 Musique',css:'type-music',emoji:'🎵'},film:{label:'🎬 Film',css:'type-film',emoji:'🎬'},place:{label:'📍 Lieu',css:'type-place',emoji:'📍'}};
+  function esc(s){const d=document.createElement('div');d.textContent=s||'';return d.innerHTML;}
+  function catCls(t){t=t.toLowerCase();if(['science-fiction','livre','lecture','philosophie','psychologie'].some(k=>t.includes(k)))return'cat-book';if(['r&b','musique','jazz','rap','afrobeats','pop','soul'].some(k=>t.includes(k)))return'cat-music';if(['film','cinéma','thriller','animation','horreur'].some(k=>t.includes(k)))return'cat-film';if(['natation','sport','fitness','running','yoga','lieu','nature'].some(k=>t.includes(k)))return'cat-place';return'cat-other';}
+  function tagEmoji(t){t=t.toLowerCase();if(t.includes('musique')||t.includes('r&b')||t.includes('jazz'))return'🎵';if(t.includes('sport')||t.includes('fitness')||t.includes('running'))return'🏃';if(t.includes('natation')||t.includes('piscine'))return'🏊';if(t.includes('film')||t.includes('cinéma'))return'🎬';if(t.includes('livre')||t.includes('lecture'))return'📚';if(t.includes('science')||t.includes('futur'))return'🚀';if(t.includes('afrique')||t.includes('cameroun'))return'🌍';if(t.includes('amour')||t.includes('romance'))return'💜';if(t.includes('nature'))return'🌿';return'✦';}
+  function renderCards(results){
+    const g=document.getElementById('cardsGrid');g.innerHTML='';
+    results.forEach((item,i)=>{
+      const c=CFG[item.displayType]||CFG.book,sc=item.score||0;
+      const el=document.createElement('div');
+      el.className=`rec-card glass-card ${c.css}`;
+      el.style.animationDelay=`${i*0.1}s`;
+      el.innerHTML=`<div class="card-header"><div class="card-icon-wrap">${c.emoji}</div><div class="card-meta"><div class="card-category">${c.label}</div><div class="card-title">${esc(item.name||item.titre||item.nom)}</div>${item.sub?`<div class="card-author">${esc(item.sub)}</div>`:''}</div></div><p class="card-desc">${esc(item.description||'')}</p><div class="card-score"><div class="score-bar-bg"><div class="score-bar-fill" style="width:0%" data-target="${Math.max(sc,12)}%"></div></div><span class="score-label">Match ${sc}%</span></div><div class="card-tags">${(item.tags||[]).slice(0,4).map(t=>`<span class="card-tag">${esc(t)}</span>`).join('')}</div><button class="btn-voir-plus" data-idx="${i}">Voir plus →</button>`;
+      g.appendChild(el);
+      setTimeout(()=>{const f=el.querySelector('.score-bar-fill');f.style.width=f.dataset.target;},200+i*100);
+      el.querySelector('.btn-voir-plus').addEventListener('click',()=>openModal(item));
+    });
+  }
+  function renderDetectedTags(tags,kw){
+    const w=document.getElementById('detectedTagsWrapper');w.innerHTML='';
+    const disp=kw.length?kw:tags.slice(0,8);
+    disp.slice(0,10).forEach((t,i)=>{
+      const s=document.createElement('span');
+      s.className=`detected-tag ${catCls(t)}`;s.style.animationDelay=`${i*0.06}s`;
+      s.innerHTML=`<span>${tagEmoji(t)}</span> ${esc(t)}`;w.appendChild(s);
+    });
+    const m=document.getElementById('resultsMood');
+    m.textContent=kw.length?`Basé sur ton intérêt pour : ${kw.slice(0,3).join(', ')}`:`${tags.length} intérêts détectés`;
+  }
+  function renderSuggestions(q){
+    const c=document.getElementById('tagSuggestions');
+    if(!q||q.length<2){c.innerHTML='';return;}
+    const sugg=['science-fiction','R&B','natation','jazz','afrobeats','lecture','cinéma','running','romance','yoga','hip-hop','aventure','technologie','philosophie'].filter(s=>!q.toLowerCase().includes(s.toLowerCase())).slice(0,6);
+    c.innerHTML=sugg.map(s=>`<span class="tag-chip" data-v="${s}">${s}</span>`).join('');
+    c.querySelectorAll('.tag-chip').forEach(ch=>ch.addEventListener('click',()=>{
+      const inp=document.getElementById('userInput');
+      inp.value=inp.value?inp.value.trim()+', '+ch.dataset.v:ch.dataset.v;
+      inp.focus();renderSuggestions('');
+    }));
+  }
+  function openModal(item){
+    const o=document.getElementById('modalOverlay'),b=document.getElementById('modalBody');
+    const c=CFG[item.displayType]||CFG.book,isPlace=item.displayType==='place';
+    b.innerHTML=`<div class="card-category" style="margin-bottom:10px">${c.label}</div><h2 class="modal-title">${esc(item.name||item.titre||item.nom)}</h2>${item.sub?`<p style="color:var(--text-secondary);margin-bottom:16px">${esc(item.sub)}</p>`:''}<p class="modal-detail">${esc(item.detail||item.description||'')}</p>${isPlace&&item.adresse?`<div class="modal-location">📍 <strong>${esc(item.adresse)}</strong></div>`:''}<div style="margin-top:20px;display:flex;flex-wrap:wrap;gap:8px">${(item.tags||[]).map(t=>`<span class="card-tag">${esc(t)}</span>`).join('')}</div>`;
+    o.style.display='flex';document.body.style.overflow='hidden';
+  }
+  function closeModal(){document.getElementById('modalOverlay').style.display='none';document.body.style.overflow='';}
+  return{renderCards,renderDetectedTags,renderSuggestions,openModal,closeModal,showLoader:()=>document.getElementById('loader').style.display='flex',hideLoader:()=>document.getElementById('loader').style.display='none',showResults:()=>{const s=document.getElementById('resultsSection');s.style.display='block';s.scrollIntoView({behavior:'smooth',block:'start'});},hideResults:()=>{document.getElementById('resultsSection').style.display='none';document.getElementById('cardsGrid').innerHTML='';document.getElementById('detectedTagsWrapper').innerHTML='';}};
+})();
+
+/* ================================================================
+   APP.JS — Membre 2/5 : Orchestrateur principal
+================================================================ */
+document.addEventListener('DOMContentLoaded',()=>{
+  const inp=document.getElementById('userInput');
+  let dt;
+  inp.addEventListener('input',()=>{clearTimeout(dt);dt=setTimeout(()=>UI.renderSuggestions(inp.value),300);});
+  inp.addEventListener('keydown',e=>{if(e.key==='Enter')handle();});
+  document.getElementById('discoverBtn').addEventListener('click',handle);
+  document.getElementById('resetBtn').addEventListener('click',()=>{UI.hideResults();inp.value='';inp.focus();document.getElementById('tagSuggestions').innerHTML='';window.scrollTo({top:0,behavior:'smooth'});});
+  document.getElementById('modalClose').addEventListener('click',UI.closeModal);
+  document.getElementById('modalOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('modalOverlay'))UI.closeModal();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')UI.closeModal();});
+
+  async function handle(){
+    const v=inp.value.trim();
+    if(!v||v.length<3){shake();return;}
+    UI.hideResults();UI.showLoader();
+    await new Promise(r=>setTimeout(r,900+Math.random()*600));
+    UI.hideLoader();
+    const data=RecommendationEngine.recommend(v);
+    if(!data.results.length){showEmpty();return;}
+    UI.renderDetectedTags(data.tags,data.keywords);
+    UI.renderCards(data.results);
+    UI.showResults();
+  }
+  function shake(){const w=document.querySelector('.input-wrapper');w.style.borderColor='var(--neon-pink)';w.style.animation='shake .4s ease';setTimeout(()=>{w.style.animation='';w.style.borderColor='';},500);}
+  function showEmpty(){const s=document.getElementById('resultsSection');document.getElementById('cardsGrid').innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:48px 0;color:var(--text-secondary)"><div style="font-size:3rem;margin-bottom:16px">🤔</div><h3 style="font-family:var(--font-display);margin-bottom:8px">Hmm, vibe inconnu !</h3><p>Essaie : <em>science-fiction, R&B, natation, jazz, afrobeats…</em></p></div>`;document.getElementById('detectedTagsWrapper').innerHTML='';document.getElementById('resultsMood').textContent='';s.style.display='block';}
+  inp.focus();
+});
+</script>
+</body>
+</html>
