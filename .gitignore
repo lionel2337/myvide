@@ -1,0 +1,26 @@
+# Fichiers système
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+*.tmp
+*.bak
+
+# Fichiers sensibles
+config.php
+.env
+*.key
+*.pem
+
+# Dossiers temporaires
+/cache/
+/tmp/
+/logs/
+
+# Fichiers IDE
+.vscode/settings.json
+.idea/
+
+# Dépendances (si jamais utilisées)
+node_modules/
+vendor/
