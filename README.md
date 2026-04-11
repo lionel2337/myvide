@@ -1,6 +1,6 @@
 # MyVibe - Découvreur d'Expériences à Yaoundé
 
-MyVibe est une plateforme web qui recommande des films, livres et lieux à Yaoundé selon les goûts de l'utilisateur.
+MyVide est une plateforme web qui recommande des films, livres et lieux à Yaoundé selon les goûts de l'utilisateur.
 
 ## Équipe
 
