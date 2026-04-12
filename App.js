@@ -2,24 +2,36 @@
  * app.js — MyVibe
  * Membre 2 : Front-End (Interactivité) + Membre 5 : QA & DevOps
  * Rôle : Orchestrateur principal. Connecte l'UI, le moteur et la DB.
- * Simule les appels AJAX vers recommend.php.
- *
- * En production PHP :
- *   fetch('recommend.php', { method:'POST', body: formData })
- *   .then(res => res.json())
- *   .then(data => UI.renderCards(data.results))
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* =============================================
-     RÉFÉRENCES DOM
-  ============================================= */
   const inputEl     = document.getElementById('userInput');
   const discoverBtn = document.getElementById('discoverBtn');
   const resetBtn    = document.getElementById('resetBtn');
   const modalClose  = document.getElementById('modalClose');
   const modalOverlay= document.getElementById('modalOverlay');
+
+  /* =============================================
+     GÉOLOCALISATION : Détection automatique ville
+  ============================================= */
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`)
+        .then(res => res.json())
+        .then(data => {
+          const ville = data.address.city || data.address.town || data.address.village || '';
+          if (ville) {
+            inputEl.placeholder = `Tu es à ${ville} — que veux-tu découvrir ?`;
+          }
+        })
+        .catch(() => {
+          console.log('[MyVibe] Géolocalisation non disponible');
+        });
+    });
+  }
 
   /* =============================================
      INPUT : Suggestions live
@@ -38,14 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* =============================================
      DISCOVER : Lancement de la recommandation
-     Simule un appel AJAX à recommend.php
   ============================================= */
   discoverBtn.addEventListener('click', handleDiscover);
 
   async function handleDiscover() {
     const userInput = inputEl.value.trim();
 
-    // Validation (QA : Membre 5)
     if (!userInput || userInput.length < 3) {
       shakeInput();
       showInputHint('Dis-moi un peu ce que tu aimes 😊');
@@ -56,21 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
     UI.hideResults();
     UI.showLoader();
 
-    // Simule latence réseau (comme un vrai appel PHP)
     await simulateNetworkDelay(900 + Math.random() * 600);
 
     try {
-      /**
-       * EN PRODUCTION PHP :
-       * const formData = new FormData();
-       * formData.append('query', userInput);
-       * const res = await fetch('recommend.php', { method: 'POST', body: formData });
-       * const data = await res.json();  // { tags, keywords, results }
-       */
-
-      // Appel du moteur de recommandation (JavaScript simulant PHP)
       const data = RecommendationEngine.recommend(userInput);
-
       UI.hideLoader();
 
       if (!data.results || data.results.length === 0) {
@@ -78,13 +77,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Rendu des résultats
       UI.renderDetectedTags(data.tags, data.keywords);
       UI.renderCards(data.results);
       UI.showResults();
 
     } catch (err) {
-      // Membre 5 : gestion d'erreur robuste
       console.error('[MyVibe] Erreur de recommandation :', err);
       UI.hideLoader();
       showErrorMessage();
@@ -115,15 +112,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* =============================================
-     UTILITAIRES (QA : Membre 5)
+     UTILITAIRES
   ============================================= */
-
-  // Simule la latence PHP/MySQL
   function simulateNetworkDelay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  // Animation de l'input en cas d'erreur
   function shakeInput() {
     const wrapper = document.querySelector('.input-wrapper');
     wrapper.style.borderColor = '#ff4fca';
@@ -134,7 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 500);
   }
 
-  // Hint sous l'input
   function showInputHint(msg) {
     let hint = document.getElementById('inputHint');
     if (!hint) {
@@ -183,9 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
   }
 
-  /* =============================================
-     ANIMATION shake (injection CSS dynamique)
-  ============================================= */
   const styleSheet = document.createElement('style');
   styleSheet.textContent = `
     @keyframes shake {
@@ -198,6 +188,5 @@ document.addEventListener('DOMContentLoaded', () => {
   `;
   document.head.appendChild(styleSheet);
 
-  // Focus auto sur l'input
   inputEl.focus();
 });
