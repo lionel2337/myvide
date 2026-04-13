@@ -6,7 +6,6 @@
 <title>MyVibe – Discover Your Next Experience</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
-/* ══ TOKENS ══ */
 :root{
   --np:#b041ff;--nb:#00cfff;--nk:#ff2d87;--ng:#00ff9d;--na:#ffb020;
   --bg:#050810;--bg2:#0c1120;--bg3:#151e32;
@@ -26,8 +25,6 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:var(--fb);background:var(--bg);color:var(--tp);min-height:100vh;overflow-x:hidden;transition:background var(--tr),color var(--tr)}
-
-/* ── ORBS ── */
 .orbs{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 [data-theme="light"] .orbs{opacity:.28}
 .orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:.13;animation:drift 26s ease-in-out infinite}
@@ -36,8 +33,6 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tp);min-height:100vh
 .o3{width:360px;height:360px;background:#ff2d87;top:40%;left:38%;animation-delay:-20s}
 @keyframes drift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(55px,-45px) scale(1.07)}66%{transform:translate(-35px,55px) scale(.93)}}
 .app{position:relative;z-index:2}
-
-/* ══ NAV ══ */
 nav{position:sticky;top:0;z-index:300;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;background:color-mix(in srgb,var(--bg) 72%,transparent);backdrop-filter:blur(26px);border-bottom:.5px solid var(--gl);transition:background var(--tr)}
 .logo{font-family:var(--fh);font-size:1.42rem;font-weight:800;letter-spacing:-.03em;cursor:pointer;background:linear-gradient(90deg,var(--np),var(--nb));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .logo em{-webkit-text-fill-color:var(--nk);font-style:normal}
@@ -48,12 +43,8 @@ nav{position:sticky;top:0;z-index:300;height:62px;display:flex;align-items:cente
 .ib:hover{background:var(--bch);border-color:var(--gl2)}
 .nav-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--np),var(--nb));display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:.82rem;font-weight:700;color:#fff;cursor:pointer;flex-shrink:0;transition:box-shadow var(--tr)}
 .nav-av:hover{box-shadow:0 0 0 3px rgba(176,65,255,.35)}
-
-/* ══ PAGES ══ */
 .page{display:none}.page.on{display:block;animation:fu .35s ease}
 @keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-
-/* ══ AUTH ══ */
 .auth-ov{position:fixed;inset:0;z-index:500;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(26px);display:flex;align-items:center;justify-content:center;padding:1rem}
 .auth-box{background:var(--bg2);border:.5px solid var(--gl2);border-radius:26px;padding:2.6rem;width:100%;max-width:430px;position:relative;overflow:hidden}
 .auth-box::before{content:'';position:absolute;top:-100px;right:-80px;width:260px;height:260px;background:var(--np);border-radius:50%;filter:blur(100px);opacity:.13;pointer-events:none}
@@ -76,8 +67,6 @@ nav{position:sticky;top:0;z-index:300;height:62px;display:flex;align-items:cente
 .a-sep p{font-size:.75rem;color:var(--td)}
 .gb{width:100%;padding:11px;border-radius:10px;background:var(--bc);border:.5px solid var(--gl);color:var(--tm);font-family:var(--fb);font-size:.85rem;cursor:pointer;transition:all var(--tr)}
 .gb:hover{background:var(--bch);color:var(--tp)}
-
-/* ══ HERO ══ */
 .hero{min-height:calc(100vh - 62px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 1.5rem 3rem}
 .ey{display:inline-flex;align-items:center;gap:8px;padding:5px 16px;border-radius:var(--rp);background:rgba(0,207,255,.07);border:.5px solid rgba(0,207,255,.22);color:var(--nb);font-size:.74rem;letter-spacing:.12em;margin-bottom:2rem;animation:gp 3s ease infinite}
 @keyframes gp{0%,100%{box-shadow:0 0 0 0 rgba(0,207,255,.2)}50%{box-shadow:0 0 20px 3px rgba(0,207,255,.1)}}
@@ -100,21 +89,15 @@ h1{font-family:var(--fh);font-size:clamp(2.4rem,6.5vw,5rem);font-weight:800;line
 .dbtn{padding:11px 22px;border-radius:13px;background:linear-gradient(135deg,var(--np),#7200cc);border:none;color:#fff;font-family:var(--fh);font-size:.85rem;font-weight:700;cursor:pointer;flex-shrink:0;transition:all var(--tr)}
 .dbtn:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(176,65,255,.4)}
 .dbtn:active{transform:none}
-
-/* chips */
 .chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-bottom:3rem}
 .chip{padding:6px 14px;border-radius:var(--rp);background:var(--bc);border:.5px solid var(--gl);font-size:.79rem;color:var(--tm);cursor:pointer;transition:all var(--tr)}
 .chip:hover{background:rgba(176,65,255,.12);border-color:rgba(176,65,255,.3);color:var(--tp)}
-
-/* feat grid */
 .fg2{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:.9rem;width:100%;max-width:860px}
 .fc{padding:1.3rem;border-radius:var(--r);background:var(--bc);border:.5px solid var(--gl);text-align:center;transition:all var(--tr)}
 .fc:hover{background:var(--bch);transform:translateY(-2px)}
 .fic{font-size:1.4rem;margin-bottom:7px}
 .ftt{font-family:var(--fh);font-size:.88rem;font-weight:700;margin-bottom:4px}
 .fdd{font-size:.76rem;color:var(--tm);line-height:1.6;font-weight:300}
-
-/* ══ RESULTS ══ */
 .rsp{padding:2rem;max-width:1200px;margin:0 auto}
 .bk{display:inline-flex;align-items:center;gap:7px;padding:7px 15px;border-radius:var(--rp);background:var(--bc);border:.5px solid var(--gl);font-size:.82rem;color:var(--tm);cursor:pointer;transition:all var(--tr);margin-bottom:1.5rem}
 .bk:hover{background:var(--bch);color:var(--tp)}
@@ -131,20 +114,14 @@ h1{font-family:var(--fh);font-size:clamp(2.4rem,6.5vw,5rem);font-weight:800;line
 .ttabs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:1.6rem}
 .tt{padding:6px 14px;border-radius:var(--rp);font-size:.79rem;background:var(--bc);border:.5px solid var(--gl);color:var(--tm);cursor:pointer;transition:all var(--tr)}
 .tt.on{background:rgba(176,65,255,.16);border-color:rgba(176,65,255,.42);color:var(--tp)}
-
-/* scope tabs */
 .scope-tabs{display:flex;gap:5px;margin-bottom:1.4rem}
 .stb{padding:7px 16px;border-radius:var(--rp);font-size:.8rem;background:var(--bc);border:.5px solid var(--gl);color:var(--tm);cursor:pointer;transition:all var(--tr);display:flex;align-items:center;gap:6px}
 .stb.on{background:rgba(0,207,255,.12);border-color:rgba(0,207,255,.35);color:var(--tp)}
-
-/* loading */
 .ldbox{text-align:center;padding:4rem 2rem}
 .lr{width:54px;height:54px;border-radius:50%;border:2px solid rgba(176,65,255,.15);border-top-color:var(--np);animation:sp 1s linear infinite;margin:0 auto 1.3rem}
 @keyframes sp{to{transform:rotate(360deg)}}
 .ldbox p{color:var(--tm);font-size:.9rem;font-weight:300}
 .ldbox small{color:var(--td);font-size:.77rem;display:block;margin-top:4px}
-
-/* card grid */
 .cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.3rem}
 .rc{background:var(--bc);border:.5px solid var(--gl);border-radius:20px;padding:1.3rem;transition:all var(--tr);position:relative;overflow:hidden}
 .rc::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(176,65,255,.05),transparent 60%);opacity:0;transition:opacity var(--tr)}
@@ -153,10 +130,7 @@ h1{font-family:var(--fh);font-size:clamp(2.4rem,6.5vw,5rem);font-weight:800;line
 .rc.local-card{border-color:rgba(0,255,157,.2)}
 .rc.local-card:hover{border-color:rgba(0,255,157,.4)}
 .rc.local-card::before{background:linear-gradient(135deg,rgba(0,255,157,.04),transparent 60%)}
-
-/* local badge on card */
 .local-dot{display:inline-block;width:5px;height:5px;background:var(--ng);border-radius:50%;margin-left:5px;vertical-align:middle;opacity:.7}
-
 .bdg{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:var(--rp);font-size:.67rem;font-weight:600;letter-spacing:.07em;margin-bottom:.9rem;text-transform:uppercase}
 .d1{background:rgba(176,65,255,.14);color:var(--np);border:.5px solid rgba(176,65,255,.3)}
 .d2{background:rgba(255,45,135,.1);color:var(--nk);border:.5px solid rgba(255,45,135,.3)}
@@ -175,8 +149,6 @@ h1{font-family:var(--fh);font-size:clamp(2.4rem,6.5vw,5rem);font-weight:800;line
 .ei{font-size:2.5rem;opacity:.3;margin-bottom:.8rem}
 .et{font-family:var(--fh);font-size:1.05rem;color:var(--tm);margin-bottom:.35rem}
 .es{font-size:.8rem;color:var(--td)}
-
-/* ══ PROFILE ══ */
 .pp{padding:2.5rem 2rem;max-width:1000px;margin:0 auto}
 .ph{display:flex;align-items:center;gap:2rem;padding:2rem;border-radius:22px;background:var(--bc);border:.5px solid var(--gl);margin-bottom:2.5rem;position:relative;overflow:hidden}
 .ph::after{content:'';position:absolute;top:0;right:0;width:300px;height:100%;background:linear-gradient(135deg,transparent,rgba(176,65,255,.06));pointer-events:none}
@@ -203,8 +175,6 @@ h1{font-family:var(--fh);font-size:clamp(2.4rem,6.5vw,5rem);font-weight:800;line
 .hq{color:var(--tm);flex:1;font-weight:300;font-style:italic;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .ht2{font-size:.69rem;color:var(--td);flex-shrink:0}
 .hpl{font-size:.73rem;color:var(--np);flex-shrink:0}
-
-/* ══ SETTINGS ══ */
 .sp{padding:2.5rem 2rem;max-width:720px;margin:0 auto}
 .scard{background:var(--bc);border:.5px solid var(--gl);border-radius:20px;overflow:hidden;margin-bottom:1.5rem}
 .scard-t{padding:1rem 1.4rem;border-bottom:.5px solid var(--gl);font-family:var(--fh);font-size:.88rem;font-weight:700}
@@ -228,21 +198,15 @@ option{background:var(--bg2)}
 .dgb{padding:10px 22px;border-radius:10px;background:rgba(255,60,60,.1);border:.5px solid rgba(255,60,60,.28);color:#ff5555;font-family:var(--fb);font-size:.84rem;cursor:pointer;transition:all var(--tr)}
 .dgb:hover{background:rgba(255,60,60,.2)}
 .sact{display:flex;gap:9px;flex-wrap:wrap}
-
-/* ══ KEY MODAL ══ */
 .modal-ov{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.6);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:1rem}
 .modal-ov.on{display:flex}
 .modal{background:var(--bg2);border:.5px solid var(--gl2);border-radius:22px;padding:2rem;width:100%;max-width:480px}
 .modal h3{font-family:var(--fh);font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
 .modal p{font-size:.83rem;color:var(--tm);line-height:1.6;margin-bottom:1rem}
-.modal-warn{background:rgba(255,176,32,.08);border:.5px solid rgba(255,176,32,.25);border-radius:10px;padding:.8rem 1rem;font-size:.78rem;color:var(--na);margin-bottom:1.1rem;line-height:1.5}
+.modal-warn{border-radius:10px;padding:.8rem 1rem;font-size:.78rem;margin-bottom:1.1rem;line-height:1.5}
 .modal-actions{display:flex;gap:8px;flex-wrap:wrap}
-
-/* ══ TOAST ══ */
 .toast{position:fixed;bottom:1.5rem;right:1.5rem;z-index:999;padding:12px 20px;border-radius:var(--r);background:var(--bg3);border:.5px solid var(--gl2);font-size:.84rem;color:var(--tp);box-shadow:0 4px 24px rgba(0,0,0,.5);animation:ti .3s ease;pointer-events:none}
 @keyframes ti{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-
-/* ══ RESPONSIVE ══ */
 @media(max-width:640px){
   nav{padding:0 1rem}h1{font-size:2.2rem}
   .rsp,.pp,.sp{padding:1.2rem}.cg{grid-template-columns:1fr}
@@ -255,17 +219,31 @@ option{background:var(--bg2)}
 <body>
 <div class="orbs"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
 
-<!-- KEY MODAL -->
+<!-- MODAL CLÉ API GROQ -->
 <div class="modal-ov" id="key-modal">
   <div class="modal">
-    <h3 id="mk-t">🔑 Clé API OpenRouter</h3>
-    <p id="mk-d">Entrez votre clé OpenRouter pour activer les recommandations IA. Elle est stockée localement dans votre navigateur.</p>
-    <div class="modal-warn" id="mk-w">⚠️ Ne partagez jamais votre clé. Obtenez-en une gratuitement sur openrouter.ai/keys</div>
-    <div class="fg" style="margin-bottom:1rem"><div class="fl" id="mk-l">CLÉ API</div><input class="fi2" type="password" id="key-inp" placeholder="sk-or-v1-…"></div>
+    <h3>⚡ Clé API Groq</h3>
+    <p>Entrez votre clé API Groq pour activer les recommandations IA. Obtenez-en une gratuitement sur <strong>console.groq.com</strong></p>
+    <div class="modal-warn" style="background:rgba(255,176,32,.08);border:.5px solid rgba(255,176,32,.25);color:var(--na)">
+      ⚠️ La clé est stockée uniquement dans votre navigateur (localStorage). Elle n'est jamais envoyée ailleurs que vers api.groq.com
+    </div>
+    <div class="fg" style="margin-bottom:.6rem">
+      <div class="fl">CLÉ API</div>
+      <input class="fi2" type="password" id="key-inp" placeholder="gsk_…" autocomplete="off">
+    </div>
+    <div class="fg" style="margin-bottom:1rem">
+      <div class="fl">MODÈLE</div>
+      <select class="fi2" id="model-modal-sel">
+        <option value="llama-3.3-70b-versatile">Llama 3.3 70B ⚡ (recommandé)</option>
+        <option value="llama-3.1-8b-instant">Llama 3.1 8B 🚀 (ultra rapide)</option>
+        <option value="mixtral-8x7b-32768">Mixtral 8x7B</option>
+        <option value="gemma2-9b-it">Gemma 2 9B</option>
+      </select>
+    </div>
     <div class="a-err" id="mk-err"></div>
     <div class="modal-actions">
-      <button class="svb" onclick="saveKey()" id="mk-sv">Enregistrer</button>
-      <button class="dgb" onclick="closeKeyModal()" id="mk-ca">Annuler</button>
+      <button class="svb" onclick="saveGroqKey()">Enregistrer</button>
+      <button class="dgb" onclick="closeKeyModal()">Annuler</button>
     </div>
   </div>
 </div>
@@ -274,7 +252,7 @@ option{background:var(--bg2)}
 <div class="auth-ov" id="auth-ov">
   <div class="auth-box">
     <div class="auth-logo">MyVibe</div>
-    <p class="auth-tag" id="auth-tag">Ouvrez la porte à vos nouvelles histoires.</p>
+    <p class="auth-tag">Ouvrez la porte à vos nouvelles histoires.</p>
     <div class="auth-tabs">
       <div class="atab on" id="t-li" onclick="swAuth('li')">Connexion</div>
       <div class="atab" id="t-re" onclick="swAuth('re')">Inscription</div>
@@ -289,7 +267,7 @@ option{background:var(--bg2)}
       <div class="fg"><div class="fl" id="a-ln">PRÉNOM</div><input class="fi2" id="re-n" type="text" placeholder="Votre prénom"></div>
       <div class="fg"><div class="fl" id="a-lre">EMAIL</div><input class="fi2" id="re-e" type="email" placeholder="vous@email.com"></div>
       <div class="fg"><div class="fl" id="a-lrp">MOT DE PASSE</div><input class="fi2" id="re-p" type="password" placeholder="Min. 6 caractères"></div>
-      <div class="fg"><div class="fl" id="a-lrc">VILLE</div><input class="fi2" id="re-c" type="text" placeholder="Paris, Douala, London…"></div>
+      <div class="fg"><div class="fl" id="a-lrc">VILLE</div><input class="fi2" id="re-c" type="text" placeholder="Yaoundé, Douala, London…"></div>
       <div class="a-err" id="re-err"></div>
       <button class="ab" onclick="doRegister()" id="btn-re">Créer mon compte</button>
     </div>
@@ -307,15 +285,14 @@ option{background:var(--bg2)}
     <span class="nl" id="n-pr" onclick="goToPage('profile')">Profil</span>
     <span class="nl" id="n-se" onclick="goToPage('settings')">⚙</span>
     <div class="ib" onclick="toggleTheme()" id="theme-ib" title="Thème">🌙</div>
-    <div class="ib" onclick="openKeyModal()" title="Clé API">🔑</div>
+    <div class="ib" onclick="openKeyModal()" title="Clé API Groq">🔑</div>
     <div class="nav-av" id="nav-av" onclick="goToPage('profile')">?</div>
   </div>
 </nav>
 
-<!-- HOME PAGE -->
 <div id="page-home" class="page on">
   <section class="hero" id="hero-sec">
-    <div class="ey"><span class="ld"></span><span id="ey-t">DÉCOUVERTE MONDIALE · IA</span></div>
+    <div class="ey"><span class="ld"></span><span id="ey-t">DÉCOUVERTE MONDIALE · GROQ AI</span></div>
     <h1 id="h1-t">Votre prochaine expérience<br><span class="gr">vous attend quelque part.</span></h1>
     <p class="hsub" id="h-sub">Dites-nous ce que vous aimez. Livres, musique, films, séries, lieux — des recommandations mondiales et des pépites locales près de chez vous.</p>
     <div class="city-b">📍<input type="text" id="ci" placeholder="Votre ville…" onchange="updateCity(this.value)"><span style="opacity:.4;font-size:.76rem" id="m-lbl">modifier</span></div>
@@ -337,26 +314,16 @@ option{background:var(--bg2)}
 
   <section class="rsp" id="res-sec" style="display:none">
     <div class="bk" onclick="goHome()">← <span id="bk-t">Nouvelle recherche</span></div>
-
-    <!-- dual context banners -->
     <div class="ctx-wrap">
-      <div class="ctx-a ctx-global" id="ctx-global">
-        <span style="font-size:1.1rem">🌍</span><span id="ctx-gm"></span>
-      </div>
-      <div class="ctx-a ctx-local" id="ctx-local">
-        <span style="font-size:1.1rem">📍</span><span id="ctx-lm"></span>
-      </div>
+      <div class="ctx-a ctx-global" id="ctx-global"><span style="font-size:1.1rem">🌍</span><span id="ctx-gm"></span></div>
+      <div class="ctx-a ctx-local" id="ctx-local"><span style="font-size:1.1rem">📍</span><span id="ctx-lm"></span></div>
     </div>
-
     <div class="rh"><h2 id="r-title">Vos recommandations</h2><small id="r-count"></small></div>
-
-    <!-- scope filter -->
-    <div class="scope-tabs" id="scope-tabs">
+    <div class="scope-tabs">
       <div class="stb on" id="stb-all" onclick="setScopeFilter('all',this)">✦ <span id="stb-all-lbl">Tout</span></div>
       <div class="stb" id="stb-global" onclick="setScopeFilter('global',this)">🌍 <span id="stb-global-lbl">Mondial</span></div>
       <div class="stb" id="stb-local" onclick="setScopeFilter('local',this)">📍 <span id="stb-local-lbl">Local</span></div>
     </div>
-
     <div class="ttabs" id="ttabs"></div>
     <div class="ldbox" id="ldbox" style="display:none">
       <div class="lr"></div><p id="ld-p">Analyse en cours…</p><small id="ld-s"></small>
@@ -365,15 +332,12 @@ option{background:var(--bg2)}
   </section>
 </div>
 
-<!-- PROFILE PAGE -->
 <div id="page-profile" class="page">
   <div class="pp">
     <div class="ph">
       <div class="bav" id="bav">?<div class="av-ed">✏️</div></div>
       <div class="pi">
-        <h2 id="pr-name">—</h2>
-        <p id="pr-email">—</p>
-        <p class="pbio" id="pr-bio"></p>
+        <h2 id="pr-name">—</h2><p id="pr-email">—</p><p class="pbio" id="pr-bio"></p>
         <div class="pst">
           <div><div class="sn" id="st-lk">0</div><div class="sl2" id="lb-lk">Coups de cœur</div></div>
           <div><div class="sn" id="st-sr">0</div><div class="sl2" id="lb-sr">Recherches</div></div>
@@ -391,61 +355,56 @@ option{background:var(--bg2)}
   </div>
 </div>
 
-<!-- SETTINGS PAGE -->
 <div id="page-settings" class="page">
   <div class="sp">
-    <div style="font-family:var(--fh);font-size:1.4rem;font-weight:800;margin-bottom:1.8rem" id="s-title">Paramètres</div>
-
+    <div style="font-family:var(--fh);font-size:1.4rem;font-weight:800;margin-bottom:1.8rem">Paramètres</div>
     <div class="scard">
-      <div class="scard-t" id="sc-prof">✏️ Modifier le profil</div>
+      <div class="scard-t">✏️ Modifier le profil</div>
       <div class="edf">
         <div class="fg" style="margin:0"><div class="fl" id="s-ln">PRÉNOM</div><input class="fi2" id="s-name" type="text"></div>
         <div class="fg" style="margin:0"><div class="fl" id="s-lc">VILLE</div><input class="fi2" id="s-city" type="text"></div>
         <div class="fg" style="margin:0"><div class="fl" id="s-lb">BIO</div><textarea class="fi2" id="s-bio" rows="2" style="resize:vertical"></textarea></div>
-        <div><button class="svb" onclick="saveProfile()" id="s-saveb">Enregistrer</button></div>
+        <div><button class="svb" onclick="saveProfile()">Enregistrer</button></div>
       </div>
     </div>
-
     <div class="scard">
-      <div class="scard-t" id="sc-app">🎨 Apparence</div>
+      <div class="scard-t">🎨 Apparence</div>
       <div class="srow">
-        <div><div class="slbl" id="s-dk-l">Mode sombre</div><div class="sdsc" id="s-dk-d">Fond noir / accents néon</div></div>
+        <div><div class="slbl">Mode sombre</div><div class="sdsc">Fond noir / accents néon</div></div>
         <label class="tgl"><input type="checkbox" id="dk-tog" onchange="setTheme(this.checked?'dark':'light')" checked><div class="ttrack"></div><div class="tthumb"></div></label>
       </div>
       <div class="srow">
-        <div><div class="slbl" id="s-lg-l">Langue</div><div class="sdsc" id="s-lg-d">Interface et recommandations</div></div>
+        <div><div class="slbl">Langue</div><div class="sdsc">Interface et recommandations</div></div>
         <select class="sselect" id="lang-sel" onchange="setLang(this.value)">
           <option value="fr">🇫🇷 Français</option>
           <option value="en">🇬🇧 English</option>
         </select>
       </div>
     </div>
-
     <div class="scard">
-      <div class="scard-t" id="sc-api">🔑 API &amp; Modèle IA</div>
+      <div class="scard-t">⚡ API Groq</div>
       <div class="srow">
-        <div><div class="slbl" id="s-kl">Clé OpenRouter</div><div class="sdsc" id="s-ks">Non configurée</div></div>
-        <button class="svb" style="padding:7px 14px;font-size:.78rem" onclick="openKeyModal()" id="s-kb">Modifier</button>
+        <div><div class="slbl">Clé API</div><div class="sdsc" id="s-ks">⚠️ Non configurée</div></div>
+        <button class="svb" style="padding:7px 14px;font-size:.78rem" onclick="openKeyModal()">Configurer</button>
       </div>
       <div class="srow">
-        <div><div class="slbl" id="s-ml">Modèle IA</div><div class="sdsc" id="s-md">Modèle utilisé pour les recommandations</div></div>
-        <select class="sselect" id="model-sel" onchange="S.model=this.value;saveData()">
-          <option value="google/gemini-2.0-flash-001">Gemini 2.0 Flash ⚡</option>
-          <option value="openai/gpt-4o-mini">GPT-4o Mini</option>
-          <option value="anthropic/claude-3-5-haiku">Claude 3.5 Haiku</option>
-          <option value="meta-llama/llama-3.3-70b-instruct">Llama 3.3 70B</option>
+        <div><div class="slbl">Modèle actif</div><div class="sdsc" id="s-model-display">llama-3.3-70b-versatile</div></div>
+        <select class="sselect" id="model-sel" onchange="S.model=this.value;updateModelDisplay();saveData()">
+          <option value="llama-3.3-70b-versatile">Llama 3.3 70B ⚡</option>
+          <option value="llama-3.1-8b-instant">Llama 3.1 8B 🚀</option>
+          <option value="mixtral-8x7b-32768">Mixtral 8x7B</option>
+          <option value="gemma2-9b-it">Gemma 2 9B</option>
         </select>
       </div>
     </div>
-
     <div class="scard">
-      <div class="scard-t" id="sc-acc">🔐 Compte</div>
-      <div class="srow"><div><div class="slbl" id="s-el">Email</div><div class="sdsc" id="s-ev">—</div></div></div>
-      <div class="srow"><div><div class="slbl" id="s-tl">Type</div><div class="sdsc" id="s-tv">—</div></div></div>
+      <div class="scard-t">🔐 Compte</div>
+      <div class="srow"><div><div class="slbl">Email</div><div class="sdsc" id="s-ev">—</div></div></div>
+      <div class="srow"><div><div class="slbl">Type</div><div class="sdsc" id="s-tv">—</div></div></div>
       <div class="edf" style="padding-top:.5rem">
         <div class="sact">
-          <button class="svb" style="background:rgba(255,176,32,.18);color:var(--na);border:.5px solid rgba(255,176,32,.3)" onclick="clearData()" id="s-cl">🗑 Effacer mes données</button>
-          <button class="dgb" onclick="logout()" id="s-lo">Déconnexion</button>
+          <button class="svb" style="background:rgba(255,176,32,.18);color:var(--na);border:.5px solid rgba(255,176,32,.3)" onclick="clearData()">🗑 Effacer mes données</button>
+          <button class="dgb" onclick="logout()">Déconnexion</button>
         </div>
       </div>
     </div>
@@ -454,13 +413,18 @@ option{background:var(--bg2)}
 </div>
 
 <script>
-/* ══════════════ i18n ══════════════ */
+/* ══ CONFIG — aucune clé dans le code ══ */
+const API   = 'https://api.groq.com/openai/v1/chat/completions';
+const BADGE = {book:'d1',music:'d2',film:'d3',place:'d4',activity:'d5'};
+const $     = id => document.getElementById(id);
+const x     = s  => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+/* ══ i18n ══ */
 const I18N={
 fr:{
   login:'Connexion',register:'Inscription',guestBtn:"Continuer en tant qu'invité",orLbl:'ou continuer sans compte',
   lblE:'EMAIL',lblP:'MOT DE PASSE',lblN:'PRÉNOM',lblC:'VILLE',btnLi:'Se connecter',btnRe:'Créer mon compte',
   discover:'Découvrir',profile:'Profil',
-  eyeT:'DÉCOUVERTE MONDIALE · IA',
   h1:'Votre prochaine expérience<br><span class="gr">vous attend quelque part.</span>',
   hsub:'Dites-nous ce que vous aimez. Livres, musique, films, séries, lieux — des recommandations mondiales et des pépites locales près de chez vous.',
   modLbl:'modifier',discBtn:'Découvrir →',bkLbl:'Nouvelle recherche',
@@ -472,69 +436,28 @@ fr:{
   f3t:'Toute la musique',f3d:'K-pop, afrobeats, jazz, métal, classique, électro, folk — sans limites.',
   f4t:'Lieux & Sorties',f4d:'Concerts, restaurants, musées, parcs — adaptés à votre ville.',
   lblLk:'Coups de cœur',lblSr:'Recherches',lblPr:'Préférences',
-  lblPrSec:'Préférences détectées',lblFavs:'Tous mes favoris ❤️',lblHist:'Historique',
   tBook:'📚 Livre',tMusic:'🎵 Musique',tFilm:'🎬 Film / Série',tPlace:'📍 Lieu',tActivity:'🏃 Activité',
   tlBook:'📚 Livres',tlMusic:'🎵 Musique',tlFilm:'🎬 Films & Séries',tlPlace:'📍 Lieux',tlActivity:'🏃 Activités',
   tabAll:'✦ Tout',ldMsg:'Exploration en cours…',
   scopeAll:'Tout',scopeGlobal:'Mondial',scopeLocal:'Local',
   vibesFor:'Résultats pour',recs:'recommandations',
-  noFav:'Aucun favori pour l\'instant',noFavS:'Likez des recommandations pour les retrouver ici.',
+  noFav:"Aucun favori pour l'instant",noFavS:'Likez des recommandations pour les retrouver ici.',
   noPref:'Aucune préférence — explorez !',noHist:'Aucune recherche encore.',emptyT:'Aucune recommandation ici',
-  agoSec:'à l\'instant',agoMin:'il y a',min:'min',replay:'↩ Relancer',
+  agoSec:"à l'instant",agoMin:'il y a',min:'min',replay:'↩ Relancer',
   guest:'Invité',guestAcc:'Compte invité',regAcc:'Compte enregistré',
-  stit:'Paramètres',scProf:'✏️ Modifier le profil',sLblN:'PRÉNOM',sLblC:'VILLE',sLblB:'BIO',sBioPh:'Vos passions…',sav:'Enregistrer',
-  scApp:'🎨 Apparence',sDkL:'Mode sombre',sDkD:'Fond noir / accents néon',sLgL:'Langue',sLgD:'Interface et recommandations',
-  scApi:'🔑 API & Modèle IA',sKL:'Clé OpenRouter',sMdL:'Modèle IA',sMdD:'Modèle utilisé pour les recommandations',
-  scAcc:'🔐 Compte',sEL:'Email',sTL:'Type',sCL:'🗑 Effacer mes données',sLO:'Déconnexion',
-  tSaved:'✅ Enregistré !',tCleared:'🗑 Données effacées',tLogout:'À bientôt !',tKeySaved:'🔑 Clé API sauvegardée !',
-  mkT:'🔑 Clé API OpenRouter',mkD:'Entrez votre clé pour activer les recommandations IA. Stockée localement.',
-  mkW:'⚠️ Ne partagez jamais votre clé. Obtenez-en une sur openrouter.ai/keys',mkL:'CLÉ API',mkSv:'Enregistrer',mkCa:'Annuler',
-  errNoKey:'Aucune clé API. Cliquez sur 🔑 pour en configurer une.',errParse:'Erreur de réponse. Réessayez.',
-  noKeySet:'Non configurée',keySet:'Configurée ✓',
-  /* ── THE SMART PROMPT ── */
+  errParse:'Erreur de réponse IA. Réessayez.',
   sys:(city,country)=>`Tu es MyVibe, une IA de recommandation culturelle mondiale.
-
-RÈGLE PRINCIPALE : Tu recommandes du contenu MONDIAL en priorité, adapté aux goûts exprimés.
-- Si l'utilisateur dit "pop" → artistes pop mondiaux (Taylor Swift, BTS, Dua Lipa, etc.)
-- Si l'utilisateur dit "jazz" → Miles Davis, Coltrane, jazz clubs célèbres, etc.
-- Si l'utilisateur dit "sci-fi" → Isaac Asimov, Philip K. Dick, Dune, etc.
-- Si l'utilisateur dit "thriller" → Gillian Flynn, Stieg Larsson, etc.
-- Ne force JAMAIS du contenu local si ce n'est pas pertinent avec les goûts exprimés.
-
-RÈGLE SECONDAIRE — LOCAL CONTEXTUEL :
-- Ville de l'utilisateur : ${city} (${country})
-- Ajoute 2 à 3 recommandations locales UNIQUEMENT pour les types "place" et "activity", quand c'est naturel.
-- Exemple : si l'utilisateur aime la natation → mentionne une piscine ou plage locale.
-- Exemple : si l'utilisateur aime les concerts → mentionne une salle de concert locale.
-- Pour les livres et musique, ne force PAS le local sauf si l'utilisateur mentionne explicitement son pays/région.
-
-CHAMP "scope" : chaque recommandation doit avoir scope="global" ou scope="local".
-
-Réponds UNIQUEMENT en JSON valide sans backticks :
-{
-  "global_message": "Message court sur les recommandations mondiales (max 90 chars)",
-  "local_message": "Message court sur les pépites locales à ${city} (max 90 chars, null si aucune)",
-  "recommendations": [
-    {
-      "id": "uid_unique",
-      "type": "book|music|film|place|activity",
-      "scope": "global|local",
-      "title": "Titre",
-      "subtitle": "Auteur / Artiste / Lieu",
-      "description": "Description engageante (max 200 chars)",
-      "tag": "Genre · Origine"
-    }
-  ]
-}
-
-Génère 9 à 12 recommandations variées. Privilégie la qualité et la pertinence par rapport aux goûts exprimés.`,
+RÈGLE PRINCIPALE : Recommande du contenu MONDIAL en priorité, adapté aux goûts exprimés.
+RÈGLE SECONDAIRE — LOCAL : Ville de l'utilisateur : ${city} (${country}). Ajoute 2-3 recommandations locales UNIQUEMENT pour les types "place" et "activity".
+Réponds UNIQUEMENT en JSON valide sans backticks ni markdown :
+{"global_message":"Message court (max 90 chars)","local_message":"Pépites locales à ${city} (max 90 chars, null si aucune)","recommendations":[{"id":"uid1","type":"book|music|film|place|activity","scope":"global|local","title":"Titre","subtitle":"Auteur ou Artiste","description":"Description engageante max 200 chars","tag":"Genre · Origine"}]}
+Génère 9 à 12 recommandations variées et pertinentes.`,
   usr:(q)=>`Mes goûts : ${q}`
 },
 en:{
   login:'Sign In',register:'Register',guestBtn:'Continue as guest',orLbl:'or continue without account',
   lblE:'EMAIL',lblP:'PASSWORD',lblN:'FIRST NAME',lblC:'CITY',btnLi:'Sign In',btnRe:'Create account',
   discover:'Discover',profile:'Profile',
-  eyeT:'WORLDWIDE DISCOVERY · AI',
   h1:'Your next experience<br><span class="gr">is waiting somewhere.</span>',
   hsub:'Tell us what you love. Books, music, films, series, places — worldwide picks and local gems near you.',
   modLbl:'change',discBtn:'Discover →',bkLbl:'New search',
@@ -546,7 +469,6 @@ en:{
   f3t:'All music',f3d:'K-pop, afrobeats, jazz, metal, classical, electronic, folk — no limits.',
   f4t:'Places & Events',f4d:'Concerts, restaurants, museums, parks — tailored to your city.',
   lblLk:'Favourites',lblSr:'Searches',lblPr:'Preferences',
-  lblPrSec:'Detected preferences',lblFavs:'All my favourites ❤️',lblHist:'History',
   tBook:'📚 Book',tMusic:'🎵 Music',tFilm:'🎬 Film / Series',tPlace:'📍 Place',tActivity:'🏃 Activity',
   tlBook:'📚 Books',tlMusic:'🎵 Music',tlFilm:'🎬 Films & Series',tlPlace:'📍 Places',tlActivity:'🏃 Activities',
   tabAll:'✦ All',ldMsg:'Exploring…',
@@ -556,80 +478,62 @@ en:{
   noPref:'No preferences yet — start exploring!',noHist:'No searches yet.',emptyT:'No recommendations here',
   agoSec:'just now',agoMin:'ago',min:'min',replay:'↩ Replay',
   guest:'Guest',guestAcc:'Guest account',regAcc:'Registered account',
-  stit:'Settings',scProf:'✏️ Edit Profile',sLblN:'FIRST NAME',sLblC:'CITY',sLblB:'BIO',sBioPh:'Your passions…',sav:'Save',
-  scApp:'🎨 Appearance',sDkL:'Dark mode',sDkD:'Black background / neon accents',sLgL:'Language',sLgD:'Interface and recommendations',
-  scApi:'🔑 API & AI Model',sKL:'OpenRouter Key',sMdL:'AI Model',sMdD:'Model used for recommendations',
-  scAcc:'🔐 Account',sEL:'Email',sTL:'Type',sCL:'🗑 Clear my data',sLO:'Sign Out',
-  tSaved:'✅ Saved!',tCleared:'🗑 Data cleared',tLogout:'See you soon!',tKeySaved:'🔑 API Key saved!',
-  mkT:'🔑 OpenRouter API Key',mkD:'Enter your key to enable AI recommendations. Stored locally in your browser.',
-  mkW:'⚠️ Never share your API key. Get one free at openrouter.ai/keys',mkL:'API KEY',mkSv:'Save',mkCa:'Cancel',
-  errNoKey:'No API key configured. Click 🔑 to add one.',errParse:'Parse error. Please try again.',
-  noKeySet:'Not configured',keySet:'Configured ✓',
+  errParse:'AI response error. Please try again.',
   sys:(city,country)=>`You are MyVibe, a worldwide cultural recommendation AI.
-
-PRIMARY RULE: Recommend GLOBAL content first, matched to the user's expressed tastes.
-- If user says "pop" → global pop artists (Taylor Swift, BTS, Dua Lipa, etc.)
-- If user says "jazz" → Miles Davis, Coltrane, famous jazz clubs, etc.
-- If user says "sci-fi" → Isaac Asimov, Philip K. Dick, Dune, etc.
-- If user says "thriller" → Gillian Flynn, Stieg Larsson, etc.
-- NEVER force local content if it's not relevant to the expressed tastes.
-
-SECONDARY RULE — CONTEXTUAL LOCAL:
-- User's city: ${city} (${country})
-- Add 2 to 3 local recommendations ONLY for "place" and "activity" types, when it's natural.
-- Example: user likes swimming → mention a local pool or beach.
-- Example: user likes concerts → mention a local venue.
-- For books and music, do NOT force local unless the user explicitly mentions their country/region.
-
-"scope" field: each recommendation must have scope="global" or scope="local".
-
-Reply ONLY in valid JSON without backticks:
-{
-  "global_message": "Short message about worldwide picks (max 90 chars)",
-  "local_message": "Short message about local gems in ${city} (max 90 chars, null if none)",
-  "recommendations": [
-    {
-      "id": "unique_uid",
-      "type": "book|music|film|place|activity",
-      "scope": "global|local",
-      "title": "Title",
-      "subtitle": "Author / Artist / Venue",
-      "description": "Engaging description (max 200 chars)",
-      "tag": "Genre · Origin"
-    }
-  ]
-}
-
-Generate 9 to 12 varied recommendations. Prioritise quality and relevance to the expressed tastes.`,
+PRIMARY RULE: Recommend GLOBAL content first, matched to the user's tastes.
+SECONDARY RULE — LOCAL: User city: ${city} (${country}). Add 2-3 local picks ONLY for "place" and "activity".
+Reply ONLY in valid JSON without backticks or markdown:
+{"global_message":"Short message (max 90 chars)","local_message":"Local gems in ${city} (max 90 chars, null if none)","recommendations":[{"id":"uid1","type":"book|music|film|place|activity","scope":"global|local","title":"Title","subtitle":"Author or Artist","description":"Engaging description max 200 chars","tag":"Genre · Origin"}]}
+Generate 9 to 12 varied and relevant recommendations.`,
   usr:(q)=>`My tastes: ${q}`
 }};
 
-/* ══════════════ STATE ══════════════ */
-const S={user:null,theme:'dark',lang:'fr',model:'google/gemini-2.0-flash-001',apiKey:'',
-  likes:new Map(),searches:[],prefs:new Set(),cards:[],
-  typeFilter:'all',scopeFilter:'all',favFilter:'all'};
-const T=()=>I18N[S.lang];
-const API='https://openrouter.ai/api/v1/chat/completions';
-const BADGE={book:'d1',music:'d2',film:'d3',place:'d4',activity:'d5'};
-const $=id=>document.getElementById(id);
-const x=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+/* ══ STATE — clé chargée uniquement depuis localStorage ══ */
+const S={
+  user:null, theme:'dark', lang:'fr',
+  model:'llama-3.3-70b-versatile',
+  apiKey: localStorage.getItem('mv_groq_key') || '',
+  likes:new Map(), searches:[], prefs:new Set(), cards:[],
+  typeFilter:'all', scopeFilter:'all', favFilter:'all'
+};
+const T = () => I18N[S.lang];
 
+/* ══ TOAST ══ */
 let toastT;
 function toast(msg){clearTimeout(toastT);let el=document.querySelector('.toast');if(el)el.remove();el=document.createElement('div');el.className='toast';el.textContent=msg;document.body.appendChild(el);toastT=setTimeout(()=>el.remove(),3200)}
 
-/* ── KEY MODAL ── */
+/* ══ MODAL CLÉ API ══ */
 function openKeyModal(){
-  const t=T();$('key-modal').classList.add('on');
-  $('mk-t').textContent=t.mkT;$('mk-d').textContent=t.mkD;$('mk-w').innerHTML='⚠️ '+t.mkW;
-  $('mk-l').textContent=t.mkL;$('mk-sv').textContent=t.mkSv;$('mk-ca').textContent=t.mkCa;
-  $('key-inp').value=S.apiKey||'';$('mk-err').textContent='';
+  $('key-inp').value = S.apiKey || '';
+  $('model-modal-sel').value = S.model;
+  $('mk-err').textContent = '';
+  $('key-modal').classList.add('on');
 }
-function closeKeyModal(){$('key-modal').classList.remove('on')}
-function saveKey(){const k=$('key-inp').value.trim();if(!k){$('mk-err').textContent='Clé vide.';return}S.apiKey=k;localStorage.setItem('mv_api_key',k);closeKeyModal();toast(T().tKeySaved);updateKeyStatus()}
-function updateKeyStatus(){const t=T();const s=$('s-ks');if(s)s.textContent=S.apiKey?t.keySet:t.noKeySet}
+function closeKeyModal(){ $('key-modal').classList.remove('on') }
+function saveGroqKey(){
+  const k = $('key-inp').value.trim();
+  if(!k){ $('mk-err').textContent = 'Clé vide.'; return }
+  if(!k.startsWith('gsk_')){ $('mk-err').textContent = 'La clé doit commencer par gsk_'; return }
+  S.apiKey = k;
+  S.model  = $('model-modal-sel').value;
+  localStorage.setItem('mv_groq_key', k);
+  if($('model-sel')) $('model-sel').value = S.model;
+  updateModelDisplay();
+  saveData();
+  closeKeyModal();
+  toast('🔑 Clé Groq sauvegardée !');
+  updateKeyStatus();
+}
+function updateKeyStatus(){
+  const s = $('s-ks');
+  if(s) s.textContent = S.apiKey ? '✅ Configurée' : '⚠️ Non configurée — cliquez sur Configurer';
+}
+function updateModelDisplay(){
+  if($('s-model-display')) $('s-model-display').textContent = S.model;
+}
 
-/* ── AUTH ── */
-let aMode='li';
+/* ══ AUTH ══ */
+let aMode = 'li';
 function swAuth(m){aMode=m;$('f-li').style.display=m==='li'?'':'none';$('f-re').style.display=m==='re'?'':'none';$('t-li').classList.toggle('on',m==='li');$('t-re').classList.toggle('on',m==='re')}
 function doLogin(){
   const e=$('li-e').value.trim(),p=$('li-p').value,err=$('li-err');
@@ -637,10 +541,10 @@ function doLogin(){
   const users=JSON.parse(localStorage.getItem('mv_users')||'{}');
   const u=users[e];
   if(!u||u.pw!==btoa(p)){err.textContent=S.lang==='fr'?'Email ou mot de passe incorrect.':'Incorrect email or password.';return}
-  bootUser({name:u.name,email:e,city:u.city||'Paris',country:u.country||'France',bio:u.bio||'',type:'registered'})
+  bootUser({name:u.name,email:e,city:u.city||'Yaoundé',country:u.country||'Cameroun',bio:u.bio||'',type:'registered'})
 }
 function doRegister(){
-  const n=$('re-n').value.trim(),e=$('re-e').value.trim(),p=$('re-p').value,c=$('re-c').value.trim()||'Paris',err=$('re-err');
+  const n=$('re-n').value.trim(),e=$('re-e').value.trim(),p=$('re-p').value,c=$('re-c').value.trim()||'Yaoundé',err=$('re-err');
   if(!n||!e||!p){err.textContent='Remplissez tous les champs.';return}
   if(p.length<6){err.textContent=S.lang==='fr'?'Mot de passe trop court (min 6).':'Password too short.';return}
   const users=JSON.parse(localStorage.getItem('mv_users')||'{}');
@@ -649,171 +553,184 @@ function doRegister(){
   localStorage.setItem('mv_users',JSON.stringify(users));
   bootUser({name:n,email:e,city:c,country:'',bio:'',type:'registered'})
 }
-function guestLogin(){bootUser({name:T().guest,email:'',city:'Paris',country:'France',bio:'',type:'guest'})}
+function guestLogin(){ bootUser({name:T().guest,email:'',city:'Yaoundé',country:'Cameroun',bio:'',type:'guest'}) }
 
 function bootUser(u){
-  S.user=u;
+  S.user = u;
   if(u.type==='registered'){
     const d=JSON.parse(localStorage.getItem('mv_d_'+u.email)||'{}');
-    if(d.likes)S.likes=new Map(d.likes);
-    if(d.searches)S.searches=d.searches;
-    if(d.prefs)S.prefs=new Set(d.prefs);
-    if(d.theme){S.theme=d.theme;applyTheme(d.theme)}
-    if(d.lang){S.lang=d.lang;$('lang-sel').value=d.lang}
-    if(d.model){S.model=d.model;$('model-sel').value=d.model}
+    if(d.likes)    S.likes   =new Map(d.likes);
+    if(d.searches) S.searches=d.searches;
+    if(d.prefs)    S.prefs   =new Set(d.prefs);
+    if(d.theme){   S.theme   =d.theme; applyTheme(d.theme)}
+    if(d.lang){    S.lang    =d.lang;  $('lang-sel').value=d.lang}
+    if(d.model){   S.model   =d.model; if($('model-sel'))$('model-sel').value=d.model}
   }
-  const savedKey=localStorage.getItem('mv_api_key')||'';
-  if(savedKey)S.apiKey=savedKey;
-  $('auth-ov').style.display='none';$('main-app').style.display='';
+  // Toujours recharger la clé depuis localStorage
+  const k = localStorage.getItem('mv_groq_key');
+  if(k) S.apiKey = k;
+  $('auth-ov').style.display='none';
+  $('main-app').style.display='';
   initApp()
 }
 
 function saveData(){
-  if(!S.user||S.user.type!=='registered')return;
+  if(!S.user||S.user.type!=='registered') return;
   localStorage.setItem('mv_d_'+S.user.email,JSON.stringify({
     likes:[...S.likes.entries()],searches:S.searches.slice(-80),
     prefs:[...S.prefs],theme:S.theme,lang:S.lang,model:S.model
   }));
   const users=JSON.parse(localStorage.getItem('mv_users')||'{}');
-  if(users[S.user.email])Object.assign(users[S.user.email],{city:S.user.city,bio:S.user.bio,name:S.user.name,country:S.user.country||''});
+  if(users[S.user.email]) Object.assign(users[S.user.email],{city:S.user.city,bio:S.user.bio,name:S.user.name,country:S.user.country||''});
   localStorage.setItem('mv_users',JSON.stringify(users))
 }
 
-function logout(){saveData();Object.assign(S,{user:null,likes:new Map(),searches:[],prefs:new Set(),cards:[]});$('main-app').style.display='none';$('auth-ov').style.display='';toast(T().tLogout);$('li-e').value='';$('li-p').value='';$('li-err').textContent='';swAuth('li');goHome()}
-function clearData(){S.likes=new Map();S.searches=[];S.prefs=new Set();saveData();toast(T().tCleared);updateStats()}
+function logout(){saveData();Object.assign(S,{user:null,likes:new Map(),searches:[],prefs:new Set(),cards:[]});$('main-app').style.display='none';$('auth-ov').style.display='';toast('À bientôt !');$('li-e').value='';$('li-p').value='';$('li-err').textContent='';swAuth('li');goHome()}
+function clearData(){S.likes=new Map();S.searches=[];S.prefs=new Set();saveData();toast('🗑 Données effacées');updateStats()}
 
-/* ── INIT ── */
-function initApp(){updateNavAv();applyLang();$('ci').value=S.user.city||'Paris';$('s-name').value=S.user.name;$('s-city').value=S.user.city;$('s-bio').value=S.user.bio||'';$('s-ev').textContent=S.user.email||'—';$('s-tv').textContent=S.user.type==='registered'?T().regAcc:T().guestAcc;$('dk-tog').checked=S.theme==='dark';$('model-sel').value=S.model;updateStats();updateKeyStatus()}
-function updateStats(){$('st-lk').textContent=S.likes.size;$('st-sr').textContent=S.searches.length;$('st-pr').textContent=S.prefs.size}
-function updateNavAv(){if(!S.user)return;const i=(S.user.name||'?').slice(0,2).toUpperCase();$('nav-av').textContent=i;$('bav').innerHTML=i+'<div class="av-ed">✏️</div>';$('pr-name').textContent=S.user.name||'—';$('pr-email').textContent=S.user.email||T().guestAcc;$('pr-bio').textContent=S.user.bio||''}
+/* ══ INIT ══ */
+function initApp(){
+  updateNavAv(); applyLang();
+  $('ci').value        = S.user.city||'Yaoundé';
+  $('s-name').value    = S.user.name;
+  $('s-city').value    = S.user.city;
+  $('s-bio').value     = S.user.bio||'';
+  $('s-ev').textContent= S.user.email||'—';
+  $('s-tv').textContent= S.user.type==='registered'?'Compte enregistré':'Compte invité';
+  $('dk-tog').checked  = S.theme==='dark';
+  if($('model-sel')) $('model-sel').value=S.model;
+  updateModelDisplay(); updateStats(); updateKeyStatus();
+}
+function updateStats(){ $('st-lk').textContent=S.likes.size; $('st-sr').textContent=S.searches.length; $('st-pr').textContent=S.prefs.size }
+function updateNavAv(){ if(!S.user)return; const i=(S.user.name||'?').slice(0,2).toUpperCase(); $('nav-av').textContent=i; $('bav').innerHTML=i+'<div class="av-ed">✏️</div>'; $('pr-name').textContent=S.user.name||'—'; $('pr-email').textContent=S.user.email||'Compte invité'; $('pr-bio').textContent=S.user.bio||'' }
 
-/* ── THEME / LANG ── */
-function toggleTheme(){setTheme(S.theme==='dark'?'light':'dark')}
-function setTheme(t){S.theme=t;document.documentElement.setAttribute('data-theme',t);$('theme-ib').textContent=t==='dark'?'🌙':'☀️';$('dk-tog').checked=t==='dark';saveData()}
-function applyTheme(t){setTheme(t)}
-function setLang(l){S.lang=l;applyLang();saveData()}
+/* ══ THEME / LANG ══ */
+function toggleTheme(){ setTheme(S.theme==='dark'?'light':'dark') }
+function setTheme(t){ S.theme=t; document.documentElement.setAttribute('data-theme',t); $('theme-ib').textContent=t==='dark'?'🌙':'☀️'; $('dk-tog').checked=t==='dark'; saveData() }
+function applyTheme(t){ setTheme(t) }
+function setLang(l){ S.lang=l; applyLang(); saveData() }
 function applyLang(){
-  const t=T();document.documentElement.lang=S.lang;
-  $('t-li').textContent=t.login;$('t-re').textContent=t.register;$('btn-gu').textContent=t.guestBtn;$('a-or').textContent=t.orLbl;
-  $('a-le').textContent=t.lblE;$('a-lp').textContent=t.lblP;$('a-ln').textContent=t.lblN;$('a-lre').textContent=t.lblE;$('a-lrp').textContent=t.lblP;$('a-lrc').textContent=t.lblC;
-  $('btn-li').textContent=t.btnLi;$('btn-re').textContent=t.btnRe;
-  $('n-ho').textContent=t.discover;$('n-pr').textContent=t.profile;
-  $('ey-t').textContent=t.eyeT;$('h1-t').innerHTML=t.h1;$('h-sub').textContent=t.hsub;
-  $('m-lbl').textContent=t.modLbl;$('disc-b').textContent=t.discBtn;$('ms').placeholder=t.ph;
+  const t=T(); document.documentElement.lang=S.lang;
+  $('t-li').textContent=t.login; $('t-re').textContent=t.register;
+  $('btn-gu').textContent=t.guestBtn; $('a-or').textContent=t.orLbl;
+  $('a-le').textContent=t.lblE; $('a-lp').textContent=t.lblP;
+  $('a-ln').textContent=t.lblN; $('a-lre').textContent=t.lblE;
+  $('a-lrp').textContent=t.lblP; $('a-lrc').textContent=t.lblC;
+  $('btn-li').textContent=t.btnLi; $('btn-re').textContent=t.btnRe;
+  $('n-ho').textContent=t.discover; $('n-pr').textContent=t.profile;
+  $('h1-t').innerHTML=t.h1; $('h-sub').textContent=t.hsub;
+  $('m-lbl').textContent=t.modLbl; $('disc-b').textContent=t.discBtn; $('ms').placeholder=t.ph;
   $('chips-row').innerHTML=t.chips.map((c,i)=>`<span class="chip" onclick="Q('${t.chipV[i].replace(/'/g,"\\'")}')"> ${c}</span>`).join('');
-  $('f1t').textContent=t.f1t;$('f1d').textContent=t.f1d;$('f2t').textContent=t.f2t;$('f2d').textContent=t.f2d;$('f3t').textContent=t.f3t;$('f3d').textContent=t.f3d;$('f4t').textContent=t.f4t;$('f4d').textContent=t.f4d;
-  $('lb-lk').textContent=t.lblLk;$('lb-sr').textContent=t.lblSr;$('lb-pr').textContent=t.lblPr;
-  $('s-title').textContent=t.stit;$('sc-prof').textContent=t.scProf;$('s-ln').textContent=t.sLblN;$('s-lc').textContent=t.sLblC;$('s-lb').textContent=t.sLblB;$('s-bio').placeholder=t.sBioPh;$('s-saveb').textContent=t.sav;
-  $('sc-app').textContent=t.scApp;$('s-dk-l').textContent=t.sDkL;$('s-dk-d').textContent=t.sDkD;$('s-lg-l').textContent=t.sLgL;$('s-lg-d').textContent=t.sLgD;
-  $('sc-api').textContent=t.scApi;$('s-kl').textContent=t.sKL;$('s-ml').textContent=t.sMdL;$('s-md').textContent=t.sMdD;
-  $('sc-acc').textContent=t.scAcc;$('s-el').textContent=t.sEL;$('s-tl').textContent=t.sTL;$('s-cl').textContent=t.sCL;$('s-lo').textContent=t.sLO;
-  $('stb-all-lbl').textContent=t.scopeAll;$('stb-global-lbl').textContent=t.scopeGlobal;$('stb-local-lbl').textContent=t.scopeLocal;
-  if($('bk-t'))$('bk-t').textContent=t.bkLbl;
-  if(S.user){$('s-tv').textContent=S.user.type==='registered'?t.regAcc:t.guestAcc}
+  $('f1t').textContent=t.f1t; $('f1d').textContent=t.f1d; $('f2t').textContent=t.f2t; $('f2d').textContent=t.f2d;
+  $('f3t').textContent=t.f3t; $('f3d').textContent=t.f3d; $('f4t').textContent=t.f4t; $('f4d').textContent=t.f4d;
+  $('lb-lk').textContent=t.lblLk; $('lb-sr').textContent=t.lblSr; $('lb-pr').textContent=t.lblPr;
+  $('stb-all-lbl').textContent=t.scopeAll; $('stb-global-lbl').textContent=t.scopeGlobal; $('stb-local-lbl').textContent=t.scopeLocal;
+  if($('bk-t')) $('bk-t').textContent=t.bkLbl;
+  if(S.user) $('s-tv').textContent=S.user.type==='registered'?t.regAcc:t.guestAcc;
   updateKeyStatus()
 }
 
-/* ── NAV ── */
+/* ══ NAV ══ */
 function goToPage(p){
   document.querySelectorAll('.page').forEach(e=>e.classList.remove('on'));
   $('page-'+p).classList.add('on');
   $('n-ho').classList.toggle('on',p==='home');
   $('n-pr').classList.toggle('on',p==='profile');
   $('n-se').classList.toggle('on',p==='settings');
-  if(p==='profile')renderProfile();
-  if(p==='settings'){$('s-name').value=S.user?.name||'';$('s-city').value=S.user?.city||'';$('s-bio').value=S.user?.bio||'';$('s-ev').textContent=S.user?.email||'—';$('model-sel').value=S.model;updateKeyStatus()}
+  if(p==='profile') renderProfile();
+  if(p==='settings'){ $('s-name').value=S.user?.name||''; $('s-city').value=S.user?.city||''; $('s-bio').value=S.user?.bio||''; $('s-ev').textContent=S.user?.email||'—'; if($('model-sel'))$('model-sel').value=S.model; updateModelDisplay(); updateKeyStatus() }
 }
-function goHome(){$('res-sec').style.display='none';$('hero-sec').style.display='';goToPage('home')}
-function Q(q){$('ms').value=q;doSearch()}
-function updateCity(v){if(S.user)S.user.city=v.split(',')[0].trim()}
+function goHome(){ $('res-sec').style.display='none'; $('hero-sec').style.display=''; goToPage('home') }
+function Q(q){ $('ms').value=q; doSearch() }
+function updateCity(v){ if(S.user) S.user.city=v.split(',')[0].trim() }
 
-/* ── SEARCH ── */
+/* ══ SEARCH ══ */
 async function doSearch(){
-  const q=$('ms').value.trim();if(!q){$('ms').focus();return}
+  const q=$('ms').value.trim(); if(!q){ $('ms').focus(); return }
   const t=T();
   if(!S.apiKey){
-    $('hero-sec').style.display='none';$('res-sec').style.display='block';
-    $('r-title').textContent=`${t.vibesFor} "${q.slice(0,45)}"`;
-    $('ttabs').innerHTML='';$('ctx-global').classList.remove('on');$('ctx-local').classList.remove('on');
-    $('cg').innerHTML=`<div class="em"><div class="ei">🔑</div><div class="et">${t.errNoKey}</div></div>`;
+    $('hero-sec').style.display='none'; $('res-sec').style.display='block';
+    $('ldbox').style.display='none'; $('ttabs').innerHTML='';
+    $('ctx-global').classList.remove('on'); $('ctx-local').classList.remove('on');
+    $('cg').innerHTML=`<div class="em"><div class="ei">🔑</div><div class="et">Clé API Groq manquante</div><div class="es">Cliquez sur 🔑 en haut à droite pour configurer votre clé.<br>Obtenez-en une gratuitement sur console.groq.com</div></div>`;
     return
   }
   S.searches.push({q,time:Date.now()});
   (q.toLowerCase().match(/[a-zàâäéèêëîïôöùûüç]+/g)||[]).forEach(w=>{if(w.length>=4)S.prefs.add(w)});
   updateStats();
-  $('hero-sec').style.display='none';$('res-sec').style.display='block';
+  $('hero-sec').style.display='none'; $('res-sec').style.display='block';
   $('r-title').textContent=`${t.vibesFor} "${q.slice(0,50)}${q.length>50?'…':''}"`;
-  $('ldbox').style.display='block';$('cg').innerHTML='';$('ttabs').innerHTML='';
-  $('ctx-global').classList.remove('on');$('ctx-local').classList.remove('on');
+  $('ldbox').style.display='block'; $('cg').innerHTML=''; $('ttabs').innerHTML='';
+  $('ctx-global').classList.remove('on'); $('ctx-local').classList.remove('on');
   $('ld-p').textContent=t.ldMsg;
-  S.typeFilter='all';S.scopeFilter='all';
-  document.querySelectorAll('.stb').forEach(e=>e.classList.remove('on'));$('stb-all').classList.add('on');
-
-  const city=S.user?.city||'Paris';
+  S.typeFilter='all'; S.scopeFilter='all';
+  document.querySelectorAll('.stb').forEach(e=>e.classList.remove('on')); $('stb-all').classList.add('on');
+  const city=S.user?.city||'Yaoundé';
   const msgs=S.lang==='fr'
-    ?[`Exploration mondiale en cours…`,`Recherche de pépites locales à ${city}…`,'Composition de votre sélection personnalisée…']
-    :[`Worldwide exploration…`,`Looking for local gems in ${city}…`,'Composing your personalised selection…'];
-  let mi=0;const iv=setInterval(()=>{$('ld-s').textContent=msgs[++mi%msgs.length]},900);
+    ?[`Exploration mondiale en cours…`,`Recherche de pépites locales à ${city}…`,'Composition de votre sélection…']
+    :[`Worldwide exploration…`,`Looking for local gems in ${city}…`,'Composing your selection…'];
+  let mi=0; const iv=setInterval(()=>{ $('ld-s').textContent=msgs[++mi%msgs.length] },900);
   try{
     const data=await callAI(q);
-    clearInterval(iv);$('ldbox').style.display='none';
+    clearInterval(iv); $('ldbox').style.display='none';
     S.cards=data.recommendations||[];
-    if(data.global_message){$('ctx-gm').textContent=data.global_message;$('ctx-global').classList.add('on')}
-    if(data.local_message){$('ctx-lm').textContent=data.local_message;$('ctx-local').classList.add('on')}
+    if(data.global_message){ $('ctx-gm').textContent=data.global_message; $('ctx-global').classList.add('on') }
+    if(data.local_message){  $('ctx-lm').textContent=data.local_message;  $('ctx-local').classList.add('on')  }
     $('r-count').textContent=`${S.cards.length} ${t.recs}`;
-    buildTypeTabs();renderCards();saveData()
+    buildTypeTabs(); renderCards(); saveData()
   }catch(err){
-    clearInterval(iv);$('ldbox').style.display='none';
-    $('cg').innerHTML=`<div class="em"><div class="ei">⚡</div><div class="et">${x(err.message)}</div><div class="es">Vérifiez votre clé API OpenRouter (openrouter.ai)</div></div>`
+    clearInterval(iv); $('ldbox').style.display='none';
+    $('cg').innerHTML=`<div class="em"><div class="ei">⚡</div><div class="et">${x(err.message)}</div><div class="es">Vérifiez votre clé API et votre connexion internet.</div></div>`
   }
 }
 
 async function callAI(q){
-  const t=T();const city=S.user?.city||'Paris';const country=S.user?.country||'';
+  const t=T(), city=S.user?.city||'Yaoundé', country=S.user?.country||'Cameroun';
   const r=await fetch(API,{
     method:'POST',
-    headers:{'Content-Type':'application/json','Authorization':'Bearer '+S.apiKey,'HTTP-Referer':location.href,'X-Title':'MyVibe'},
-    body:JSON.stringify({model:S.model,messages:[{role:'system',content:t.sys(city,country)},{role:'user',content:t.usr(q)}],max_tokens:2200})
+    headers:{'Content-Type':'application/json','Authorization':'Bearer '+S.apiKey},
+    body:JSON.stringify({
+      model:S.model, max_tokens:2200, temperature:0.7,
+      messages:[
+        {role:'system',content:t.sys(city,country)},
+        {role:'user',  content:t.usr(q)}
+      ]
+    })
   });
-  if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.error?.message||`HTTP ${r.status}`)}
+  if(!r.ok){ const e=await r.json().catch(()=>({})); throw new Error(e.error?.message||`Erreur HTTP ${r.status}`) }
   const d=await r.json();
   const txt=d.choices?.[0]?.message?.content||'';
   const clean=txt.replace(/```json|```/g,'').trim();
   const m=clean.match(/\{[\s\S]*\}/);
-  if(!m)throw new Error(T().errParse);
+  if(!m) throw new Error(T().errParse);
   return JSON.parse(m[0])
 }
 
-/* ── FILTERS ── */
+/* ══ FILTERS ══ */
 function buildTypeTabs(){
-  const t=T();
-  const types=['all',...new Set(S.cards.map(c=>c.type))];
+  const t=T(), types=['all',...new Set(S.cards.map(c=>c.type))];
   $('ttabs').innerHTML=types.map(tp=>`<div class="tt${tp==='all'?' on':''}" onclick="setTypeFilter('${tp}',this)">${tp==='all'?t.tabAll:(t['tl'+tp.charAt(0).toUpperCase()+tp.slice(1)]||tp)}</div>`).join('')
 }
-function setTypeFilter(type,el){S.typeFilter=type;document.querySelectorAll('.tt').forEach(e=>e.classList.remove('on'));el.classList.add('on');renderCards()}
-function setScopeFilter(scope,el){S.scopeFilter=scope;document.querySelectorAll('.stb').forEach(e=>e.classList.remove('on'));el.classList.add('on');renderCards()}
-
+function setTypeFilter(type,el){ S.typeFilter=type; document.querySelectorAll('.tt').forEach(e=>e.classList.remove('on')); el.classList.add('on'); renderCards() }
+function setScopeFilter(scope,el){ S.scopeFilter=scope; document.querySelectorAll('.stb').forEach(e=>e.classList.remove('on')); el.classList.add('on'); renderCards() }
 function getFilteredCards(){
   return S.cards.filter(c=>{
-    if(S.typeFilter!=='all'&&c.type!==S.typeFilter)return false;
-    if(S.scopeFilter!=='all'&&(c.scope||'global')!==S.scopeFilter)return false;
+    if(S.typeFilter!=='all'&&c.type!==S.typeFilter) return false;
+    if(S.scopeFilter!=='all'&&(c.scope||'global')!==S.scopeFilter) return false;
     return true
   })
 }
-
 function renderCards(){
   const cards=getFilteredCards();
-  if(!cards.length){$('cg').innerHTML=`<div class="em"><div class="ei">🔍</div><div class="et">${T().emptyT}</div></div>`;return}
+  if(!cards.length){ $('cg').innerHTML=`<div class="em"><div class="ei">🔍</div><div class="et">${T().emptyT}</div></div>`; return }
   $('cg').innerHTML=cards.map(buildCard).join('')
 }
-
 function buildCard(c){
-  const t=T();const lk=S.likes.has(c.id);
-  const isLocal=(c.scope||'global')==='local';
+  const t=T(), lk=S.likes.has(c.id), isLocal=(c.scope||'global')==='local';
   const lbl=t['t'+c.type.charAt(0).toUpperCase()+c.type.slice(1)]||c.type;
   const sub=x(c.subtitle||c.sub||'');
   return `<div class="rc${isLocal?' local-card':''}" id="c-${c.id}">
-    <div class="bdg ${BADGE[c.type]||'d1'}">${lbl}${isLocal?`<span class="local-dot" title="Local"></span>`:''}</div>
+    <div class="bdg ${BADGE[c.type]||'d1'}">${lbl}${isLocal?'<span class="local-dot" title="Local"></span>':''}</div>
     <div class="ct2">${x(c.title)}</div>
     ${sub?`<div class="csu">${sub}</div>`:''}
     <div class="cde">${x(c.description||c.desc||'')}</div>
@@ -823,30 +740,31 @@ function buildCard(c){
     </div>
   </div>`
 }
-
 function toggleLike(id){
-  const card=S.cards.find(c=>c.id===id)||S.likes.get(id);if(!card)return;
-  if(S.likes.has(id))S.likes.delete(id);else S.likes.set(id,card);
-  document.querySelectorAll(`#c-${id} .lbtn`).forEach(b=>{const l=S.likes.has(id);b.className='lbtn'+(l?' lk':'');b.innerHTML=l?'♥':'♡'});
-  updateStats();saveData()
+  const card=S.cards.find(c=>c.id===id)||S.likes.get(id); if(!card) return;
+  if(S.likes.has(id)) S.likes.delete(id); else S.likes.set(id,card);
+  document.querySelectorAll(`#c-${id} .lbtn`).forEach(b=>{ const l=S.likes.has(id); b.className='lbtn'+(l?' lk':''); b.innerHTML=l?'♥':'♡' });
+  updateStats(); saveData()
 }
 
-/* ── PROFILE ── */
+/* ══ PROFILE ══ */
 function renderProfile(){
-  const t=T();updateNavAv();updateStats();
-  $('pw2').innerHTML=S.prefs.size?[...S.prefs].map(p=>`<div class="ptag" onclick="removeP('${x(p)}')">${x(p)}<span class="rm">×</span></div>`).join(''):`<span style="color:var(--td);font-size:.8rem">${t.noPref}</span>`;
+  updateNavAv(); updateStats(); const t=T();
+  $('pw2').innerHTML=S.prefs.size
+    ?[...S.prefs].map(p=>`<div class="ptag" onclick="removeP('${x(p)}')">${x(p)}<span class="rm">×</span></div>`).join('')
+    :`<span style="color:var(--td);font-size:.8rem">${t.noPref}</span>`;
   const types=['all',...new Set([...S.likes.values()].map(c=>c.type))];
   $('ftabs').innerHTML=types.map(tp=>`<div class="ftab${S.favFilter===tp?' on':''}" onclick="setFavFilter('${tp}',this)">${tp==='all'?t.tabAll:(t['tl'+tp.charAt(0).toUpperCase()+tp.slice(1)]||tp)}</div>`).join('');
   renderFavs();
   $('hist-l').innerHTML=S.searches.length
-    ?[...S.searches].reverse().map(s=>{const m=Math.round((Date.now()-s.time)/60000);const ago=m<1?t.agoSec:`${t.agoMin} ${m} ${t.min}`;return`<div class="hi" onclick="replayS('${x(s.q)}')"><span style="color:var(--td)">✦</span><span class="hq">"${x(s.q)}"</span><span class="ht2">${ago}</span><span class="hpl">${t.replay}</span></div>`}).join('')
+    ?[...S.searches].reverse().map(s=>{ const m=Math.round((Date.now()-s.time)/60000); const ago=m<1?t.agoSec:`${t.agoMin} ${m} ${t.min}`; return`<div class="hi" onclick="replayS('${x(s.q)}')"><span style="color:var(--td)">✦</span><span class="hq">"${x(s.q)}"</span><span class="ht2">${ago}</span><span class="hpl">${t.replay}</span></div>` }).join('')
     :`<span style="color:var(--td);font-size:.8rem">${t.noHist}</span>`
 }
-function setFavFilter(tp,el){S.favFilter=tp;document.querySelectorAll('.ftab').forEach(e=>e.classList.remove('on'));el.classList.add('on');renderFavs()}
-function renderFavs(){const t=T();let favs=[...S.likes.values()];if(S.favFilter!=='all')favs=favs.filter(c=>c.type===S.favFilter);$('fav-cg').innerHTML=favs.length?favs.map(buildCard).join(''):`<div class="em" style="grid-column:1/-1"><div class="ei">♡</div><div class="et">${t.noFav}</div><div class="es">${t.noFavS}</div></div>`}
-function removeP(p){S.prefs.delete(p);saveData();renderProfile()}
-function replayS(q){$('ms').value=q;goHome();doSearch()}
-function saveProfile(){const n=$('s-name').value.trim();const c=$('s-city').value.trim();const b=$('s-bio').value.trim();if(n)S.user.name=n;if(c)S.user.city=c;S.user.bio=b;$('ci').value=S.user.city;saveData();updateNavAv();toast(T().tSaved)}
+function setFavFilter(tp,el){ S.favFilter=tp; document.querySelectorAll('.ftab').forEach(e=>e.classList.remove('on')); el.classList.add('on'); renderFavs() }
+function renderFavs(){ const t=T(); let favs=[...S.likes.values()]; if(S.favFilter!=='all')favs=favs.filter(c=>c.type===S.favFilter); $('fav-cg').innerHTML=favs.length?favs.map(buildCard).join(''):`<div class="em" style="grid-column:1/-1"><div class="ei">♡</div><div class="et">${t.noFav}</div><div class="es">${t.noFavS}</div></div>` }
+function removeP(p){ S.prefs.delete(p); saveData(); renderProfile() }
+function replayS(q){ $('ms').value=q; goHome(); doSearch() }
+function saveProfile(){ const n=$('s-name').value.trim(),c=$('s-city').value.trim(),b=$('s-bio').value.trim(); if(n)S.user.name=n; if(c)S.user.city=c; S.user.bio=b; $('ci').value=S.user.city; saveData(); updateNavAv(); toast('✅ Enregistré !') }
 </script>
 <script src="Voice.js"></script>
 </body>
