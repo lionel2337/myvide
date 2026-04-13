@@ -6,7 +6,6 @@
 <title>MyVibe – Discover Your Next Experience</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
-/* ══ TOKENS ══ */
 :root{
   --np:#b041ff;--nb:#00cfff;--nk:#ff2d87;--ng:#00ff9d;--na:#ffb020;
   --bg:#050810;--bg2:#0c1120;--bg3:#151e32;
@@ -27,7 +26,7 @@
 html{scroll-behavior:smooth}
 body{font-family:var(--fb);background:var(--bg);color:var(--tp);min-height:100vh;overflow-x:hidden;transition:background var(--tr),color var(--tr)}
 
-/* ── ORBS ── */
+/* ORBS */
 .orbs{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 [data-theme="light"] .orbs{opacity:.28}
 .orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:.13;animation:drift 26s ease-in-out infinite}
@@ -37,11 +36,11 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tp);min-height:100vh
 @keyframes drift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(55px,-45px) scale(1.07)}66%{transform:translate(-35px,55px) scale(.93)}}
 .app{position:relative;z-index:2}
 
-/* ══ NAV ══ */
+/* NAV */
 nav{position:sticky;top:0;z-index:300;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;background:color-mix(in srgb,var(--bg) 72%,transparent);backdrop-filter:blur(26px);border-bottom:.5px solid var(--gl);transition:background var(--tr)}
 .logo{font-family:var(--fh);font-size:1.42rem;font-weight:800;letter-spacing:-.03em;cursor:pointer;background:linear-gradient(90deg,var(--np),var(--nb));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .logo em{-webkit-text-fill-color:var(--nk);font-style:normal}
-.nav-r{display:flex;align-items:center;gap:1.3rem}
+.nav-r{display:flex;align-items:center;gap:1.1rem}
 .nl{font-size:.84rem;color:var(--tm);cursor:pointer;transition:color var(--tr)}
 .nl:hover,.nl.on{color:var(--tp)}
 .ib{width:34px;height:34px;border-radius:50%;border:.5px solid var(--gl);background:var(--bc);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;transition:all var(--tr)}
@@ -49,7 +48,7 @@ nav{position:sticky;top:0;z-index:300;height:62px;display:flex;align-items:cente
 .nav-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--np),var(--nb));display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:.82rem;font-weight:700;color:#fff;cursor:pointer;flex-shrink:0;transition:box-shadow var(--tr)}
 .nav-av:hover{box-shadow:0 0 0 3px rgba(176,65,255,.35)}
 
-/* ══ PAGES ══ */
+/* PAGES */
 .page{display:none}.page.on{display:block;animation:fu .35s ease}
 @keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
@@ -77,7 +76,7 @@ nav{position:sticky;top:0;z-index:300;height:62px;display:flex;align-items:cente
 .gb{width:100%;padding:11px;border-radius:10px;background:var(--bc);border:.5px solid var(--gl);color:var(--tm);font-family:var(--fb);font-size:.85rem;cursor:pointer;transition:all var(--tr)}
 .gb:hover{background:var(--bch);color:var(--tp)}
 
-/* ══ HERO ══ */
+/* HERO */
 .hero{min-height:calc(100vh - 62px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 1.5rem 3rem}
 .ey{display:inline-flex;align-items:center;gap:8px;padding:5px 16px;border-radius:var(--rp);background:rgba(0,207,255,.07);border:.5px solid rgba(0,207,255,.22);color:var(--nb);font-size:.74rem;letter-spacing:.12em;margin-bottom:2rem;animation:gp 3s ease infinite}
 @keyframes gp{0%,100%{box-shadow:0 0 0 0 rgba(0,207,255,.2)}50%{box-shadow:0 0 20px 3px rgba(0,207,255,.1)}}
@@ -91,72 +90,87 @@ h1{font-family:var(--fh);font-size:clamp(2.4rem,6.5vw,5rem);font-weight:800;line
 [data-theme="light"] .city-b{color:var(--ng)}
 .city-b:hover{background:rgba(0,255,157,.12)}
 .city-b input{background:none;border:none;outline:none;font-family:var(--fb);color:inherit;font-size:.82rem;width:185px}
+
+/* SEARCH BAR */
 .sw{width:100%;max-width:720px;margin-bottom:1.6rem}
 .sb{display:flex;align-items:center;background:var(--bc);border:.5px solid var(--gl);border-radius:18px;padding:5px 5px 5px 1.3rem;transition:all var(--tr);backdrop-filter:blur(10px)}
 .sb:focus-within{border-color:rgba(176,65,255,.5);box-shadow:0 0 0 3px rgba(176,65,255,.1)}
+.sb.recording{border-color:rgba(255,45,135,.6);box-shadow:0 0 0 3px rgba(255,45,135,.15),0 0 20px rgba(255,45,135,.2)}
 .sic{color:var(--td);font-size:1rem;margin-right:10px;flex-shrink:0}
 .inp{flex:1;background:none;border:none;outline:none;font-family:var(--fb);font-size:.96rem;color:var(--tp);font-weight:300}
 .inp::placeholder{color:var(--td)}
+.sb-actions{display:flex;align-items:center;gap:4px;flex-shrink:0}
+
+/* VOICE BUTTON */
+.voice-btn{width:40px;height:40px;border-radius:50%;border:.5px solid var(--gl);background:var(--bc);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.05rem;transition:all var(--tr);flex-shrink:0;position:relative}
+.voice-btn:hover{background:rgba(255,45,135,.12);border-color:rgba(255,45,135,.3)}
+.voice-btn.listening{background:rgba(255,45,135,.2);border-color:rgba(255,45,135,.6);animation:pulse-mic .8s ease infinite}
+.voice-btn.listening::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:1.5px solid rgba(255,45,135,.4);animation:ripple 1s ease infinite}
+@keyframes pulse-mic{0%,100%{box-shadow:0 0 0 0 rgba(255,45,135,.4)}50%{box-shadow:0 0 0 6px rgba(255,45,135,0)}}
+@keyframes ripple{from{transform:scale(1);opacity:1}to{transform:scale(1.5);opacity:0}}
+.voice-btn.not-supported{opacity:.3;cursor:not-allowed}
+
 .dbtn{padding:11px 22px;border-radius:13px;background:linear-gradient(135deg,var(--np),#7200cc);border:none;color:#fff;font-family:var(--fh);font-size:.85rem;font-weight:700;cursor:pointer;flex-shrink:0;transition:all var(--tr)}
 .dbtn:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(176,65,255,.4)}
 .dbtn:active{transform:none}
 
-/* chips */
+/* VOICE STATUS */
+.voice-status{display:none;align-items:center;gap:10px;padding:8px 16px;border-radius:var(--rp);background:rgba(255,45,135,.08);border:.5px solid rgba(255,45,135,.25);font-size:.8rem;color:rgba(255,45,135,.9);margin-bottom:.8rem;animation:fu .3s ease}
+.voice-status.on{display:inline-flex}
+.voice-waves{display:flex;align-items:center;gap:2px;height:16px}
+.wave-bar{width:3px;background:var(--nk);border-radius:2px;animation:wave 1s ease infinite}
+.wave-bar:nth-child(1){height:6px;animation-delay:0s}
+.wave-bar:nth-child(2){height:14px;animation-delay:.15s}
+.wave-bar:nth-child(3){height:10px;animation-delay:.3s}
+.wave-bar:nth-child(4){height:16px;animation-delay:.1s}
+.wave-bar:nth-child(5){height:8px;animation-delay:.25s}
+@keyframes wave{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.4)}}
+
+/* CHIPS */
 .chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-bottom:3rem}
 .chip{padding:6px 14px;border-radius:var(--rp);background:var(--bc);border:.5px solid var(--gl);font-size:.79rem;color:var(--tm);cursor:pointer;transition:all var(--tr)}
 .chip:hover{background:rgba(176,65,255,.12);border-color:rgba(176,65,255,.3);color:var(--tp)}
 
-/* feat grid */
+/* FEAT GRID */
 .fg2{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:.9rem;width:100%;max-width:860px}
 .fc{padding:1.3rem;border-radius:var(--r);background:var(--bc);border:.5px solid var(--gl);text-align:center;transition:all var(--tr)}
 .fc:hover{background:var(--bch);transform:translateY(-2px)}
-.fic{font-size:1.4rem;margin-bottom:7px}
-.ftt{font-family:var(--fh);font-size:.88rem;font-weight:700;margin-bottom:4px}
+.fic{font-size:1.4rem;margin-bottom:7px}.ftt{font-family:var(--fh);font-size:.88rem;font-weight:700;margin-bottom:4px}
 .fdd{font-size:.76rem;color:var(--tm);line-height:1.6;font-weight:300}
 
-/* ══ RESULTS ══ */
+/* RESULTS */
 .rsp{padding:2rem;max-width:1200px;margin:0 auto}
 .bk{display:inline-flex;align-items:center;gap:7px;padding:7px 15px;border-radius:var(--rp);background:var(--bc);border:.5px solid var(--gl);font-size:.82rem;color:var(--tm);cursor:pointer;transition:all var(--tr);margin-bottom:1.5rem}
 .bk:hover{background:var(--bch);color:var(--tp)}
 .ctx-wrap{display:flex;gap:10px;margin-bottom:1.5rem;flex-wrap:wrap}
 .ctx-a{display:none;align-items:center;gap:10px;padding:10px 16px;border-radius:var(--r);font-size:.83rem;line-height:1.5;flex:1;min-width:200px}
 .ctx-a.on{display:flex}
-.ctx-local{background:rgba(0,255,157,.07);border:.5px solid rgba(0,255,157,.2);color:rgba(0,255,157,.88)}
 .ctx-global{background:rgba(0,207,255,.07);border:.5px solid rgba(0,207,255,.2);color:rgba(0,207,255,.88)}
-[data-theme="light"] .ctx-local{color:var(--ng)}
-[data-theme="light"] .ctx-global{color:var(--nb)}
+.ctx-local{background:rgba(0,255,157,.07);border:.5px solid rgba(0,255,157,.2);color:rgba(0,255,157,.88)}
+[data-theme="light"] .ctx-global{color:var(--nb)}[data-theme="light"] .ctx-local{color:var(--ng)}
 .rh{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:.5px solid var(--gl)}
 .rh h2{font-family:var(--fh);font-size:1.45rem;font-weight:700}
 .rh small{font-size:.8rem;color:var(--tm)}
-.ttabs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:1.6rem}
+.filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.4rem;align-items:center}
+.scope-tabs{display:flex;gap:5px}
+.stb{padding:7px 16px;border-radius:var(--rp);font-size:.8rem;background:var(--bc);border:.5px solid var(--gl);color:var(--tm);cursor:pointer;transition:all var(--tr)}
+.stb.on{background:rgba(0,207,255,.12);border-color:rgba(0,207,255,.35);color:var(--tp)}
+.sep-dot{width:4px;height:4px;border-radius:50%;background:var(--gl);align-self:center}
+.ttabs{display:flex;gap:5px;flex-wrap:wrap}
 .tt{padding:6px 14px;border-radius:var(--rp);font-size:.79rem;background:var(--bc);border:.5px solid var(--gl);color:var(--tm);cursor:pointer;transition:all var(--tr)}
 .tt.on{background:rgba(176,65,255,.16);border-color:rgba(176,65,255,.42);color:var(--tp)}
-
-/* scope tabs */
-.scope-tabs{display:flex;gap:5px;margin-bottom:1.4rem}
-.stb{padding:7px 16px;border-radius:var(--rp);font-size:.8rem;background:var(--bc);border:.5px solid var(--gl);color:var(--tm);cursor:pointer;transition:all var(--tr);display:flex;align-items:center;gap:6px}
-.stb.on{background:rgba(0,207,255,.12);border-color:rgba(0,207,255,.35);color:var(--tp)}
-
-/* loading */
 .ldbox{text-align:center;padding:4rem 2rem}
 .lr{width:54px;height:54px;border-radius:50%;border:2px solid rgba(176,65,255,.15);border-top-color:var(--np);animation:sp 1s linear infinite;margin:0 auto 1.3rem}
 @keyframes sp{to{transform:rotate(360deg)}}
 .ldbox p{color:var(--tm);font-size:.9rem;font-weight:300}
 .ldbox small{color:var(--td);font-size:.77rem;display:block;margin-top:4px}
-
-/* card grid */
 .cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.3rem}
 .rc{background:var(--bc);border:.5px solid var(--gl);border-radius:20px;padding:1.3rem;transition:all var(--tr);position:relative;overflow:hidden}
 .rc::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(176,65,255,.05),transparent 60%);opacity:0;transition:opacity var(--tr)}
 .rc:hover{background:var(--bch);transform:translateY(-3px);border-color:rgba(176,65,255,.28)}
 .rc:hover::before{opacity:1}
-.rc.local-card{border-color:rgba(0,255,157,.2)}
-.rc.local-card:hover{border-color:rgba(0,255,157,.4)}
-.rc.local-card::before{background:linear-gradient(135deg,rgba(0,255,157,.04),transparent 60%)}
-
-/* local badge on card */
-.local-dot{display:inline-block;width:5px;height:5px;background:var(--ng);border-radius:50%;margin-left:5px;vertical-align:middle;opacity:.7}
-
+.rc.local-card{border-color:rgba(0,255,157,.2)}.rc.local-card:hover{border-color:rgba(0,255,157,.4)}
+.local-dot{display:inline-block;width:5px;height:5px;background:var(--ng);border-radius:50%;margin-left:5px;vertical-align:middle;opacity:.8}
 .bdg{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:var(--rp);font-size:.67rem;font-weight:600;letter-spacing:.07em;margin-bottom:.9rem;text-transform:uppercase}
 .d1{background:rgba(176,65,255,.14);color:var(--np);border:.5px solid rgba(176,65,255,.3)}
 .d2{background:rgba(255,45,135,.1);color:var(--nk);border:.5px solid rgba(255,45,135,.3)}
@@ -176,7 +190,7 @@ h1{font-family:var(--fh);font-size:clamp(2.4rem,6.5vw,5rem);font-weight:800;line
 .et{font-family:var(--fh);font-size:1.05rem;color:var(--tm);margin-bottom:.35rem}
 .es{font-size:.8rem;color:var(--td)}
 
-/* ══ PROFILE ══ */
+/* PROFILE */
 .pp{padding:2.5rem 2rem;max-width:1000px;margin:0 auto}
 .ph{display:flex;align-items:center;gap:2rem;padding:2rem;border-radius:22px;background:var(--bc);border:.5px solid var(--gl);margin-bottom:2.5rem;position:relative;overflow:hidden}
 .ph::after{content:'';position:absolute;top:0;right:0;width:300px;height:100%;background:linear-gradient(135deg,transparent,rgba(176,65,255,.06));pointer-events:none}
@@ -204,13 +218,12 @@ h1{font-family:var(--fh);font-size:clamp(2.4rem,6.5vw,5rem);font-weight:800;line
 .ht2{font-size:.69rem;color:var(--td);flex-shrink:0}
 .hpl{font-size:.73rem;color:var(--np);flex-shrink:0}
 
-/* ══ SETTINGS ══ */
+/* SETTINGS */
 .sp{padding:2.5rem 2rem;max-width:720px;margin:0 auto}
 .scard{background:var(--bc);border:.5px solid var(--gl);border-radius:20px;overflow:hidden;margin-bottom:1.5rem}
 .scard-t{padding:1rem 1.4rem;border-bottom:.5px solid var(--gl);font-family:var(--fh);font-size:.88rem;font-weight:700}
-.srow{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.4rem;border-bottom:.5px solid var(--gl);transition:background var(--tr)}
-.srow:last-child{border-bottom:none}
-.srow:hover{background:var(--bc)}
+.srow{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.4rem;border-bottom:.5px solid var(--gl);transition:background var(--tr);gap:1rem}
+.srow:last-child{border-bottom:none}.srow:hover{background:var(--bc)}
 .slbl{font-size:.88rem;font-weight:500;margin-bottom:2px}
 .sdsc{font-size:.74rem;color:var(--tm)}
 .tgl{position:relative;width:44px;height:24px;flex-shrink:0}
@@ -219,7 +232,7 @@ h1{font-family:var(--fh);font-size:clamp(2.4rem,6.5vw,5rem);font-weight:800;line
 .tgl input:checked+.ttrack{background:var(--np)}
 .tthumb{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform var(--tr);pointer-events:none}
 .tgl input:checked~.tthumb{transform:translateX(20px)}
-.sselect{padding:7px 12px;border-radius:10px;background:var(--bc);border:.5px solid var(--gl);color:var(--tp);font-family:var(--fb);font-size:.84rem;outline:none;cursor:pointer;transition:border-color var(--tr)}
+.sselect{padding:7px 12px;border-radius:10px;background:var(--bc);border:.5px solid var(--gl);color:var(--tp);font-family:var(--fb);font-size:.84rem;outline:none;cursor:pointer;transition:border-color var(--tr);max-width:200px}
 .sselect:focus{border-color:var(--np)}
 option{background:var(--bg2)}
 .edf{display:flex;flex-direction:column;gap:.9rem;padding:1.2rem 1.4rem}
@@ -229,42 +242,78 @@ option{background:var(--bg2)}
 .dgb:hover{background:rgba(255,60,60,.2)}
 .sact{display:flex;gap:9px;flex-wrap:wrap}
 
-/* ══ KEY MODAL ══ */
-.modal-ov{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.6);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:1rem}
+/* API key config card */
+.api-cfg{padding:1.2rem 1.4rem;display:flex;flex-direction:column;gap:.9rem}
+.api-provider-tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:.2rem}
+.prov-tab{padding:5px 12px;border-radius:var(--rp);font-size:.75rem;background:var(--bc);border:.5px solid var(--gl);color:var(--tm);cursor:pointer;transition:all var(--tr)}
+.prov-tab.on{background:rgba(176,65,255,.15);border-color:rgba(176,65,255,.4);color:var(--tp)}
+.key-row{display:flex;gap:8px;align-items:stretch}
+.key-row .fi2{flex:1;padding:9px 12px;font-size:.84rem}
+.key-row .svb{padding:9px 14px;font-size:.78rem;white-space:nowrap}
+.key-status-list{display:flex;flex-direction:column;gap:5px;margin-top:.2rem}
+.key-status-item{display:flex;align-items:center;justify-content:space-between;padding:7px 10px;border-radius:8px;background:var(--bc);border:.5px solid var(--gl);font-size:.77rem}
+.key-status-item .ks-name{color:var(--tm)}
+.key-status-item .ks-val{display:flex;align-items:center;gap:6px}
+.ks-dot{width:6px;height:6px;border-radius:50%}
+.ks-dot.ok{background:var(--ng)}
+.ks-dot.no{background:var(--td)}
+.ks-del{cursor:pointer;color:var(--td);font-size:.9rem;transition:color var(--tr);background:none;border:none;padding:0}
+.ks-del:hover{color:#ff5555}
+
+/* KEY MODAL */
+.modal-ov{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.65);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:1rem}
 .modal-ov.on{display:flex}
-.modal{background:var(--bg2);border:.5px solid var(--gl2);border-radius:22px;padding:2rem;width:100%;max-width:480px}
+.modal{background:var(--bg2);border:.5px solid var(--gl2);border-radius:22px;padding:2rem;width:100%;max-width:500px;max-height:90vh;overflow-y:auto}
 .modal h3{font-family:var(--fh);font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
 .modal p{font-size:.83rem;color:var(--tm);line-height:1.6;margin-bottom:1rem}
 .modal-warn{background:rgba(255,176,32,.08);border:.5px solid rgba(255,176,32,.25);border-radius:10px;padding:.8rem 1rem;font-size:.78rem;color:var(--na);margin-bottom:1.1rem;line-height:1.5}
-.modal-actions{display:flex;gap:8px;flex-wrap:wrap}
+.modal-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:.5rem}
+.provider-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:1.2rem}
+.prov-card{padding:.9rem;border-radius:12px;background:var(--bc);border:.5px solid var(--gl);cursor:pointer;transition:all var(--tr);text-align:center}
+.prov-card:hover{background:var(--bch)}
+.prov-card.on{border-color:var(--np);background:rgba(176,65,255,.1)}
+.prov-card .pc-name{font-family:var(--fh);font-size:.85rem;font-weight:700;margin-bottom:2px}
+.prov-card .pc-url{font-size:.7rem;color:var(--td)}
+.prov-card .pc-ico{font-size:1.3rem;margin-bottom:5px}
 
-/* ══ TOAST ══ */
+/* TOAST */
 .toast{position:fixed;bottom:1.5rem;right:1.5rem;z-index:999;padding:12px 20px;border-radius:var(--r);background:var(--bg3);border:.5px solid var(--gl2);font-size:.84rem;color:var(--tp);box-shadow:0 4px 24px rgba(0,0,0,.5);animation:ti .3s ease;pointer-events:none}
 @keyframes ti{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
-/* ══ RESPONSIVE ══ */
 @media(max-width:640px){
   nav{padding:0 1rem}h1{font-size:2.2rem}
   .rsp,.pp,.sp{padding:1.2rem}.cg{grid-template-columns:1fr}
   .ph{flex-direction:column;text-align:center}.pst{justify-content:center}
-  .nav-r{gap:.8rem}.fg2{grid-template-columns:1fr 1fr}
+  .nav-r{gap:.7rem}.fg2{grid-template-columns:1fr 1fr}
   .auth-box{padding:1.8rem}.ctx-wrap{flex-direction:column}
+  .filter-row{gap:5px}.provider-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 <div class="orbs"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
 
-<!-- KEY MODAL -->
+<!-- API KEY MODAL -->
 <div class="modal-ov" id="key-modal">
   <div class="modal">
-    <h3 id="mk-t">🔑 Clé API OpenRouter</h3>
-    <p id="mk-d">Entrez votre clé OpenRouter pour activer les recommandations IA. Elle est stockée localement dans votre navigateur.</p>
-    <div class="modal-warn" id="mk-w">⚠️ Ne partagez jamais votre clé. Obtenez-en une gratuitement sur openrouter.ai/keys</div>
-    <div class="fg" style="margin-bottom:1rem"><div class="fl" id="mk-l">CLÉ API</div><input class="fi2" type="password" id="key-inp" placeholder="sk-or-v1-…"></div>
+    <h3 id="mk-t">🔑 Configurer une clé API</h3>
+    <p id="mk-d">Choisissez votre fournisseur IA et entrez votre clé. Vous pouvez en configurer plusieurs.</p>
+    <div class="modal-warn" id="mk-w">⚠️ Vos clés sont stockées uniquement dans votre navigateur (localStorage). Ne les partagez jamais.</div>
+
+    <div class="provider-grid" id="prov-grid"></div>
+
+    <div class="fg" style="margin-bottom:.8rem">
+      <div class="fl" id="mk-l">CLÉ API</div>
+      <input class="fi2" type="password" id="key-inp" placeholder="sk-…">
+    </div>
+    <div class="fg" style="margin-bottom:1rem">
+      <div class="fl" id="mk-ml">MODÈLE PAR DÉFAUT</div>
+      <input class="fi2" type="text" id="model-inp" placeholder="ex: gpt-4o-mini">
+      <div style="font-size:.72rem;color:var(--td);margin-top:5px" id="mk-model-hint">Laissez vide pour utiliser le modèle recommandé du fournisseur.</div>
+    </div>
     <div class="a-err" id="mk-err"></div>
     <div class="modal-actions">
-      <button class="svb" onclick="saveKey()" id="mk-sv">Enregistrer</button>
+      <button class="svb" onclick="saveProviderKey()" id="mk-sv">Enregistrer</button>
       <button class="dgb" onclick="closeKeyModal()" id="mk-ca">Annuler</button>
     </div>
   </div>
@@ -312,24 +361,34 @@ option{background:var(--bg2)}
   </div>
 </nav>
 
-<!-- HOME PAGE -->
+<!-- HOME -->
 <div id="page-home" class="page on">
   <section class="hero" id="hero-sec">
     <div class="ey"><span class="ld"></span><span id="ey-t">DÉCOUVERTE MONDIALE · IA</span></div>
     <h1 id="h1-t">Votre prochaine expérience<br><span class="gr">vous attend quelque part.</span></h1>
-    <p class="hsub" id="h-sub">Dites-nous ce que vous aimez. Livres, musique, films, séries, lieux — des recommandations mondiales et des pépites locales près de chez vous.</p>
+    <p class="hsub" id="h-sub">Dites-nous ce que vous aimez, à l'écrit ou à la voix. Livres, musique, films, lieux — des recommandations mondiales et des pépites locales.</p>
     <div class="city-b">📍<input type="text" id="ci" placeholder="Votre ville…" onchange="updateCity(this.value)"><span style="opacity:.4;font-size:.76rem" id="m-lbl">modifier</span></div>
+
+    <!-- VOICE STATUS -->
+    <div class="voice-status" id="voice-status">
+      <div class="voice-waves"><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div></div>
+      <span id="voice-status-txt">En écoute…</span>
+    </div>
+
     <div class="sw">
-      <div class="sb">
+      <div class="sb" id="search-box">
         <span class="sic">✦</span>
         <input class="inp" id="ms" maxlength="320" onkeydown="if(event.key==='Enter')doSearch()">
-        <button class="dbtn" onclick="doSearch()" id="disc-b">Découvrir →</button>
+        <div class="sb-actions">
+          <div class="voice-btn" id="voice-btn" onclick="toggleVoice()" title="Recherche vocale">🎤</div>
+          <button class="dbtn" onclick="doSearch()" id="disc-b">Découvrir →</button>
+        </div>
       </div>
     </div>
     <div class="chips" id="chips-row"></div>
     <div class="fg2">
       <div class="fc"><div class="fic">🌍</div><div class="ftt" id="f1t">Mondial & Local</div><div class="fdd" id="f1d">Pop mondiale, jazz new-yorkais, littérature asiatique… et les trésors de votre ville.</div></div>
-      <div class="fc"><div class="fic">📚</div><div class="ftt" id="f2t">Tous les genres</div><div class="fdd" id="f2d">Science-fiction, thriller, romance, essais, manga, poésie africaine…</div></div>
+      <div class="fc"><div class="fic">🎤</div><div class="ftt" id="f2t">Recherche vocale</div><div class="fdd" id="f2d">Parlez directement — dites vos goûts à voix haute et laissez l'IA faire le reste.</div></div>
       <div class="fc"><div class="fic">🎵</div><div class="ftt" id="f3t">Toute la musique</div><div class="fdd" id="f3d">K-pop, afrobeats, jazz, métal, classique, électro, folk — sans limites.</div></div>
       <div class="fc"><div class="fic">📍</div><div class="ftt" id="f4t">Lieux & Sorties</div><div class="fdd" id="f4d">Concerts, restaurants, musées, parcs — adaptés à votre ville.</div></div>
     </div>
@@ -337,43 +396,34 @@ option{background:var(--bg2)}
 
   <section class="rsp" id="res-sec" style="display:none">
     <div class="bk" onclick="goHome()">← <span id="bk-t">Nouvelle recherche</span></div>
-
-    <!-- dual context banners -->
     <div class="ctx-wrap">
-      <div class="ctx-a ctx-global" id="ctx-global">
-        <span style="font-size:1.1rem">🌍</span><span id="ctx-gm"></span>
-      </div>
-      <div class="ctx-a ctx-local" id="ctx-local">
-        <span style="font-size:1.1rem">📍</span><span id="ctx-lm"></span>
-      </div>
+      <div class="ctx-a ctx-global" id="ctx-global"><span style="font-size:1.1rem">🌍</span><span id="ctx-gm"></span></div>
+      <div class="ctx-a ctx-local" id="ctx-local"><span style="font-size:1.1rem">📍</span><span id="ctx-lm"></span></div>
     </div>
-
     <div class="rh"><h2 id="r-title">Vos recommandations</h2><small id="r-count"></small></div>
-
-    <!-- scope filter -->
-    <div class="scope-tabs" id="scope-tabs">
-      <div class="stb on" id="stb-all" onclick="setScopeFilter('all',this)">✦ <span id="stb-all-lbl">Tout</span></div>
-      <div class="stb" id="stb-global" onclick="setScopeFilter('global',this)">🌍 <span id="stb-global-lbl">Mondial</span></div>
-      <div class="stb" id="stb-local" onclick="setScopeFilter('local',this)">📍 <span id="stb-local-lbl">Local</span></div>
+    <div class="filter-row">
+      <div class="scope-tabs">
+        <div class="stb on" id="stb-all" onclick="setScopeFilter('all',this)"><span id="stb-all-l">Tout</span></div>
+        <div class="stb" id="stb-global" onclick="setScopeFilter('global',this)">🌍 <span id="stb-gl-l">Mondial</span></div>
+        <div class="stb" id="stb-local" onclick="setScopeFilter('local',this)">📍 <span id="stb-lo-l">Local</span></div>
+      </div>
+      <div class="sep-dot"></div>
+      <div class="ttabs" id="ttabs"></div>
     </div>
-
-    <div class="ttabs" id="ttabs"></div>
     <div class="ldbox" id="ldbox" style="display:none">
-      <div class="lr"></div><p id="ld-p">Analyse en cours…</p><small id="ld-s"></small>
+      <div class="lr"></div><p id="ld-p">Exploration en cours…</p><small id="ld-s"></small>
     </div>
     <div class="cg" id="cg"></div>
   </section>
 </div>
 
-<!-- PROFILE PAGE -->
+<!-- PROFILE -->
 <div id="page-profile" class="page">
   <div class="pp">
     <div class="ph">
       <div class="bav" id="bav">?<div class="av-ed">✏️</div></div>
       <div class="pi">
-        <h2 id="pr-name">—</h2>
-        <p id="pr-email">—</p>
-        <p class="pbio" id="pr-bio"></p>
+        <h2 id="pr-name">—</h2><p id="pr-email">—</p><p class="pbio" id="pr-bio"></p>
         <div class="pst">
           <div><div class="sn" id="st-lk">0</div><div class="sl2" id="lb-lk">Coups de cœur</div></div>
           <div><div class="sn" id="st-sr">0</div><div class="sl2" id="lb-sr">Recherches</div></div>
@@ -391,7 +441,7 @@ option{background:var(--bg2)}
   </div>
 </div>
 
-<!-- SETTINGS PAGE -->
+<!-- SETTINGS -->
 <div id="page-settings" class="page">
   <div class="sp">
     <div style="font-family:var(--fh);font-size:1.4rem;font-weight:800;margin-bottom:1.8rem" id="s-title">Paramètres</div>
@@ -422,19 +472,31 @@ option{background:var(--bg2)}
     </div>
 
     <div class="scard">
-      <div class="scard-t" id="sc-api">🔑 API &amp; Modèle IA</div>
+      <div class="scard-t" id="sc-api">🔑 Clés API &amp; Fournisseurs IA</div>
+      <div class="api-cfg">
+        <div style="font-size:.8rem;color:var(--tm);line-height:1.6" id="sc-api-desc">Configurez une ou plusieurs clés. MyVibe utilisera automatiquement la première disponible.</div>
+        <div class="key-status-list" id="key-status-list"></div>
+        <button class="svb" style="align-self:flex-start;padding:8px 16px;font-size:.8rem" onclick="openKeyModal()" id="s-add-key">+ Ajouter une clé</button>
+      </div>
+    </div>
+
+    <div class="scard">
+      <div class="scard-t" id="sc-voice">🎤 Recherche vocale</div>
       <div class="srow">
-        <div><div class="slbl" id="s-kl">Clé OpenRouter</div><div class="sdsc" id="s-ks">Non configurée</div></div>
-        <button class="svb" style="padding:7px 14px;font-size:.78rem" onclick="openKeyModal()" id="s-kb">Modifier</button>
+        <div><div class="slbl" id="s-vl">Langue de reconnaissance</div><div class="sdsc" id="s-vd">Langue utilisée pour la dictée vocale</div></div>
+        <select class="sselect" id="voice-lang-sel" onchange="S.voiceLang=this.value;saveData()">
+          <option value="fr-FR">🇫🇷 Français</option>
+          <option value="en-US">🇺🇸 English (US)</option>
+          <option value="en-GB">🇬🇧 English (UK)</option>
+          <option value="es-ES">🇪🇸 Español</option>
+          <option value="de-DE">🇩🇪 Deutsch</option>
+          <option value="pt-BR">🇧🇷 Português</option>
+          <option value="ar-SA">🇸🇦 العربية</option>
+        </select>
       </div>
       <div class="srow">
-        <div><div class="slbl" id="s-ml">Modèle IA</div><div class="sdsc" id="s-md">Modèle utilisé pour les recommandations</div></div>
-        <select class="sselect" id="model-sel" onchange="S.model=this.value;saveData()">
-          <option value="google/gemini-2.0-flash-001">Gemini 2.0 Flash ⚡</option>
-          <option value="openai/gpt-4o-mini">GPT-4o Mini</option>
-          <option value="anthropic/claude-3-5-haiku">Claude 3.5 Haiku</option>
-          <option value="meta-llama/llama-3.3-70b-instruct">Llama 3.3 70B</option>
-        </select>
+        <div><div class="slbl" id="s-vauto">Lancer automatiquement</div><div class="sdsc" id="s-vauto-d">Déclencher la recherche dès que vous arrêtez de parler</div></div>
+        <label class="tgl"><input type="checkbox" id="voice-auto-tog" onchange="S.voiceAutoSearch=this.checked;saveData()" checked><div class="ttrack"></div><div class="tthumb"></div></label>
       </div>
     </div>
 
@@ -454,7 +516,99 @@ option{background:var(--bg2)}
 </div>
 
 <script>
-/* ══════════════ i18n ══════════════ */
+/* ══ IMMEDIATE localStorage CLEANUP ══ */
+(function(){
+  try{
+    const k=JSON.parse(localStorage.getItem('mv_api_keys')||'{}');
+    let changed=false;
+    if(k.gemini&&k.gemini.model){
+      // Strip -latest suffix (not valid in v1 API)
+      const m=k.gemini.model.replace(/-latest$/,'');
+      // Replace deprecated names
+      const fixes={'gemini-pro':'gemini-1.5-pro','gemini-flash':'gemini-2.0-flash','gemini-2.0-flash-exp':'gemini-2.0-flash','gemini-2.0-flash-lite':'gemini-2.0-flash'};
+      const clean=fixes[m]||m||'gemini-2.0-flash';
+      if(clean!==k.gemini.model){k.gemini.model=clean;changed=true;}
+    }
+    if(changed)localStorage.setItem('mv_api_keys',JSON.stringify(k));
+  }catch(e){}
+})();
+
+/* ══════════════════════════════════════
+   PROVIDERS CONFIG
+══════════════════════════════════════ */
+const PROVIDERS = {
+  openrouter: {
+    name:'OpenRouter', icon:'🔀', url:'https://openrouter.ai/api/v1/chat/completions',
+    keyPrefix:'sk-or', keyHint:'sk-or-v1-…', site:'openrouter.ai/keys',
+    defaultModel:'google/gemini-2.0-flash-001',
+    models:['google/gemini-2.0-flash-001','openai/gpt-4o-mini','anthropic/claude-3-5-haiku','meta-llama/llama-3.3-70b-instruct'],
+    buildReq:(key,model,msgs)=>({method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key,'HTTP-Referer':location.href,'X-Title':'MyVibe'},body:JSON.stringify({model,messages:msgs,max_tokens:2200})}),
+    parseRes:d=>d.choices?.[0]?.message?.content||''
+  },
+  openai: {
+    name:'OpenAI', icon:'🤖', url:'https://api.openai.com/v1/chat/completions',
+    keyPrefix:'sk-', keyHint:'sk-…', site:'platform.openai.com/api-keys',
+    defaultModel:'gpt-4o-mini',
+    models:['gpt-4o-mini','gpt-4o','gpt-3.5-turbo'],
+    buildReq:(key,model,msgs)=>({method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},body:JSON.stringify({model,messages:msgs,max_tokens:2200})}),
+    parseRes:d=>d.choices?.[0]?.message?.content||''
+  },
+  gemini: {
+    name:'Google Gemini', icon:'♊', url:'https://generativelanguage.googleapis.com/v1/models/{model}:generateContent',
+    keyPrefix:'AIza', keyHint:'AIza…', site:'aistudio.google.com/app/apikey',
+    defaultModel:'gemini-2.0-flash',
+    models:['gemini-2.0-flash','gemini-2.0-flash-lite','gemini-1.5-flash','gemini-1.5-pro'],
+    modelHint:'⚡ Modèles recommandés : gemini-2.0-flash  |  gemini-1.5-flash',
+    buildReq:(key,model,msgs)=>{
+      // Normalize model name: strip -latest, fix deprecated aliases
+      const fixes={'gemini-1.5-flash-latest':'gemini-1.5-flash','gemini-1.5-pro-latest':'gemini-1.5-pro','gemini-pro':'gemini-1.5-pro','gemini-flash':'gemini-2.0-flash','gemini-2.0-flash-exp':'gemini-2.0-flash','gemini-2.0-flash-lite':'gemini-2.0-flash'};
+      const raw=(model||'gemini-2.0-flash').replace(/-latest$/,'');
+      const safeModel=fixes[raw]||raw;
+      // v1 API does NOT support system_instruction field — merge system prompt into first user message
+      const sys=msgs.find(m=>m.role==='system');
+      const userMsgs=msgs.filter(m=>m.role!=='system');
+      if(sys&&userMsgs.length>0){userMsgs[0]={role:'user',content:sys.content+'\n\n'+userMsgs[0].content};}
+      const contents=userMsgs.map(m=>({role:m.role==='assistant'?'model':'user',parts:[{text:m.content}]}));
+      const url=`https://generativelanguage.googleapis.com/v1/models/${safeModel}:generateContent?key=${key}`;
+      const body={contents,generationConfig:{maxOutputTokens:2200}};
+      return {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),_url:url}
+    },
+    parseRes:d=>d.candidates?.[0]?.content?.parts?.[0]?.text||''
+  },
+  anthropic: {
+    name:'Anthropic (Claude)', icon:'🧠', url:'https://api.anthropic.com/v1/messages',
+    keyPrefix:'sk-ant', keyHint:'sk-ant-…', site:'console.anthropic.com/settings/keys',
+    defaultModel:'claude-3-5-haiku-20241022',
+    models:['claude-3-5-haiku-20241022','claude-3-5-sonnet-20241022','claude-3-opus-20240229'],
+    corsBlocked:true,
+    buildReq:(key,model,msgs)=>{
+      const sys=msgs.find(m=>m.role==='system');
+      const userMsgs=msgs.filter(m=>m.role!=='system');
+      return {method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01'},body:JSON.stringify({model,messages:userMsgs,system:sys?.content,max_tokens:2200})}
+    },
+    parseRes:d=>d.content?.[0]?.text||''
+  },
+  mistral: {
+    name:'Mistral AI', icon:'💨', url:'https://api.mistral.ai/v1/chat/completions',
+    keyPrefix:'', keyHint:'clé Mistral…', site:'console.mistral.ai/api-keys',
+    defaultModel:'mistral-small-latest',
+    models:['mistral-small-latest','mistral-large-latest','open-mistral-7b'],
+    buildReq:(key,model,msgs)=>({method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},body:JSON.stringify({model,messages:msgs,max_tokens:2200})}),
+    parseRes:d=>d.choices?.[0]?.message?.content||''
+  },
+  custom: {
+    name:'Custom / Autre', icon:'⚡', url:'',
+    keyPrefix:'', keyHint:'Votre clé API…', site:'',
+    defaultModel:'',
+    models:[],
+    buildReq:(key,model,msgs,customUrl)=>({method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},body:JSON.stringify({model,messages:msgs,max_tokens:2200}),_url:customUrl}),
+    parseRes:d=>d.choices?.[0]?.message?.content||d.content?.[0]?.text||''
+  }
+};
+
+/* ══════════════════════════════════════
+   i18n (abbreviated — key parts only)
+══════════════════════════════════════ */
 const I18N={
 fr:{
   login:'Connexion',register:'Inscription',guestBtn:"Continuer en tant qu'invité",orLbl:'ou continuer sans compte',
@@ -462,21 +616,20 @@ fr:{
   discover:'Découvrir',profile:'Profil',
   eyeT:'DÉCOUVERTE MONDIALE · IA',
   h1:'Votre prochaine expérience<br><span class="gr">vous attend quelque part.</span>',
-  hsub:'Dites-nous ce que vous aimez. Livres, musique, films, séries, lieux — des recommandations mondiales et des pépites locales près de chez vous.',
+  hsub:'Dites-nous ce que vous aimez, à l\'écrit ou à la voix. Livres, musique, films, lieux — des recommandations mondiales et des pépites locales.',
   modLbl:'modifier',discBtn:'Découvrir →',bkLbl:'Nouvelle recherche',
-  ph:'Pop coréenne, thrillers scandinaves, jazz, manga, restaurants… à vous !',
-  chips:['🎵 Pop & R&B','🎬 Séries & Films','📚 Sci-fi & Fantasy','🎸 Rock & Métal','🎹 Jazz & Soul','🌿 Nature & Randonnée','🍜 Gastronomie','🕺 Danse & Nightlife'],
-  chipV:['musique pop et R&B','séries télévisées et films','science-fiction et fantasy','rock et métal','jazz et soul','randonnée et nature','gastronomie et cuisine du monde','danse et nightlife'],
+  ph:'Pop coréenne, thriller scandinave, jazz, manga… dites-le ou écrivez-le !',
+  chips:['🎵 Pop & R&B','🎬 Séries & Films','📚 Sci-fi & Fantasy','🎸 Rock & Métal','🎹 Jazz & Soul','🌿 Nature & Rando','🍜 Gastronomie','🕺 Dance & Nightlife'],
+  chipV:['musique pop et R&B','séries et films','science-fiction et fantasy','rock et métal','jazz et soul','randonnée et nature','gastronomie et cuisine du monde','danse et nightlife'],
   f1t:'Mondial & Local',f1d:'Pop mondiale, jazz new-yorkais, littérature asiatique… et les trésors de votre ville.',
-  f2t:'Tous les genres',f2d:'Science-fiction, thriller, romance, essais, manga, poésie africaine…',
+  f2t:'Recherche vocale',f2d:'Parlez directement — dites vos goûts à voix haute et laissez l\'IA faire le reste.',
   f3t:'Toute la musique',f3d:'K-pop, afrobeats, jazz, métal, classique, électro, folk — sans limites.',
   f4t:'Lieux & Sorties',f4d:'Concerts, restaurants, musées, parcs — adaptés à votre ville.',
   lblLk:'Coups de cœur',lblSr:'Recherches',lblPr:'Préférences',
   lblPrSec:'Préférences détectées',lblFavs:'Tous mes favoris ❤️',lblHist:'Historique',
   tBook:'📚 Livre',tMusic:'🎵 Musique',tFilm:'🎬 Film / Série',tPlace:'📍 Lieu',tActivity:'🏃 Activité',
   tlBook:'📚 Livres',tlMusic:'🎵 Musique',tlFilm:'🎬 Films & Séries',tlPlace:'📍 Lieux',tlActivity:'🏃 Activités',
-  tabAll:'✦ Tout',ldMsg:'Exploration en cours…',
-  scopeAll:'Tout',scopeGlobal:'Mondial',scopeLocal:'Local',
+  tabAll:'✦ Tout',ldMsg:'Exploration en cours…',scopeAll:'Tout',scopeGlobal:'Mondial',scopeLocal:'Local',
   vibesFor:'Résultats pour',recs:'recommandations',
   noFav:'Aucun favori pour l\'instant',noFavS:'Likez des recommandations pour les retrouver ici.',
   noPref:'Aucune préférence — explorez !',noHist:'Aucune recherche encore.',emptyT:'Aucune recommandation ici',
@@ -484,31 +637,37 @@ fr:{
   guest:'Invité',guestAcc:'Compte invité',regAcc:'Compte enregistré',
   stit:'Paramètres',scProf:'✏️ Modifier le profil',sLblN:'PRÉNOM',sLblC:'VILLE',sLblB:'BIO',sBioPh:'Vos passions…',sav:'Enregistrer',
   scApp:'🎨 Apparence',sDkL:'Mode sombre',sDkD:'Fond noir / accents néon',sLgL:'Langue',sLgD:'Interface et recommandations',
-  scApi:'🔑 API & Modèle IA',sKL:'Clé OpenRouter',sMdL:'Modèle IA',sMdD:'Modèle utilisé pour les recommandations',
+  scApi:'🔑 Clés API & Fournisseurs IA',scApiDesc:'Configurez une ou plusieurs clés. MyVibe utilisera automatiquement la première disponible.',
+  scVoice:'🎤 Recherche vocale',sVL:'Langue de reconnaissance',sVD:'Langue utilisée pour la dictée vocale',
+  sVAuto:'Lancer automatiquement',sVAutoD:'Déclencher la recherche dès que vous arrêtez de parler',
   scAcc:'🔐 Compte',sEL:'Email',sTL:'Type',sCL:'🗑 Effacer mes données',sLO:'Déconnexion',
   tSaved:'✅ Enregistré !',tCleared:'🗑 Données effacées',tLogout:'À bientôt !',tKeySaved:'🔑 Clé API sauvegardée !',
-  mkT:'🔑 Clé API OpenRouter',mkD:'Entrez votre clé pour activer les recommandations IA. Stockée localement.',
-  mkW:'⚠️ Ne partagez jamais votre clé. Obtenez-en une sur openrouter.ai/keys',mkL:'CLÉ API',mkSv:'Enregistrer',mkCa:'Annuler',
-  errNoKey:'Aucune clé API. Cliquez sur 🔑 pour en configurer une.',errParse:'Erreur de réponse. Réessayez.',
+  mkT:'🔑 Configurer une clé API',mkD:'Choisissez votre fournisseur IA et entrez votre clé. Vous pouvez en configurer plusieurs.',
+  mkW:'⚠️ Vos clés sont stockées uniquement dans votre navigateur. Ne les partagez jamais.',
+  mkL:'CLÉ API',mkML:'MODÈLE PAR DÉFAUT (optionnel)',mkMH:'Laissez vide pour utiliser le modèle recommandé.',
+  mkSv:'Enregistrer',mkCa:'Annuler',addKey:'+ Ajouter une clé',
+  errNoKey:'Aucune clé API configurée. Cliquez sur 🔑 pour en ajouter une.',
+  errParse:'Erreur de réponse. Réessayez.',
+  errCors:'Cette API bloque les appels depuis le navigateur (CORS). Utilisez OpenRouter, Gemini ou Mistral à la place.',
   noKeySet:'Non configurée',keySet:'Configurée ✓',
-  /* ── THE SMART PROMPT ── */
+  voiceListening:'En écoute… parlez maintenant',voiceProcessing:'Traitement…',
+  voiceNoSupport:'Votre navigateur ne supporte pas la reconnaissance vocale. Utilisez Chrome.',
+  voiceError:'Erreur de reconnaissance vocale. Réessayez.',
   sys:(city,country)=>`Tu es MyVibe, une IA de recommandation culturelle mondiale.
 
 RÈGLE PRINCIPALE : Tu recommandes du contenu MONDIAL en priorité, adapté aux goûts exprimés.
-- Si l'utilisateur dit "pop" → artistes pop mondiaux (Taylor Swift, BTS, Dua Lipa, etc.)
+- Si l'utilisateur dit "pop" → artistes pop mondiaux (Taylor Swift, BTS, Dua Lipa, The Weeknd, etc.)
 - Si l'utilisateur dit "jazz" → Miles Davis, Coltrane, jazz clubs célèbres, etc.
 - Si l'utilisateur dit "sci-fi" → Isaac Asimov, Philip K. Dick, Dune, etc.
 - Si l'utilisateur dit "thriller" → Gillian Flynn, Stieg Larsson, etc.
+- Si l'utilisateur dit "K-pop" → BTS, BLACKPINK, Stray Kids, etc.
 - Ne force JAMAIS du contenu local si ce n'est pas pertinent avec les goûts exprimés.
 
 RÈGLE SECONDAIRE — LOCAL CONTEXTUEL :
-- Ville de l'utilisateur : ${city} (${country})
+- Ville de l'utilisateur : ${city}${country?', '+country:''}
 - Ajoute 2 à 3 recommandations locales UNIQUEMENT pour les types "place" et "activity", quand c'est naturel.
 - Exemple : si l'utilisateur aime la natation → mentionne une piscine ou plage locale.
-- Exemple : si l'utilisateur aime les concerts → mentionne une salle de concert locale.
-- Pour les livres et musique, ne force PAS le local sauf si l'utilisateur mentionne explicitement son pays/région.
-
-CHAMP "scope" : chaque recommandation doit avoir scope="global" ou scope="local".
+- Pour les livres et musique, ne force PAS le local sauf si l'utilisateur le demande explicitement.
 
 Réponds UNIQUEMENT en JSON valide sans backticks :
 {
@@ -526,8 +685,7 @@ Réponds UNIQUEMENT en JSON valide sans backticks :
     }
   ]
 }
-
-Génère 9 à 12 recommandations variées. Privilégie la qualité et la pertinence par rapport aux goûts exprimés.`,
+Génère 9 à 12 recommandations variées. Priorité qualité et pertinence.`,
   usr:(q)=>`Mes goûts : ${q}`
 },
 en:{
@@ -536,21 +694,20 @@ en:{
   discover:'Discover',profile:'Profile',
   eyeT:'WORLDWIDE DISCOVERY · AI',
   h1:'Your next experience<br><span class="gr">is waiting somewhere.</span>',
-  hsub:'Tell us what you love. Books, music, films, series, places — worldwide picks and local gems near you.',
+  hsub:'Tell us what you love, by text or by voice. Books, music, films, places — worldwide picks and local gems near you.',
   modLbl:'change',discBtn:'Discover →',bkLbl:'New search',
-  ph:'K-pop, Scandinavian thrillers, jazz, manga, local restaurants… anything!',
-  chips:['🎵 Pop & R&B','🎬 Series & Films','📚 Sci-fi & Fantasy','🎸 Rock & Metal','🎹 Jazz & Soul','🌿 Nature & Hiking','🍜 Food & Gastronomy','🕺 Dance & Nightlife'],
+  ph:'K-pop, Scandinavian thrillers, jazz, manga… say it or type it!',
+  chips:['🎵 Pop & R&B','🎬 Series & Films','📚 Sci-fi & Fantasy','🎸 Rock & Metal','🎹 Jazz & Soul','🌿 Nature & Hiking','🍜 Gastronomy','🕺 Dance & Nightlife'],
   chipV:['pop music and R&B','TV series and films','science fiction and fantasy','rock and metal','jazz and soul','hiking and nature','gastronomy and world cuisine','dance and nightlife'],
   f1t:'Worldwide & Local',f1d:'World pop, New York jazz, Asian literature… and hidden gems in your city.',
-  f2t:'Every genre',f2d:'Sci-fi, thriller, romance, essays, manga, African poetry…',
-  f3t:'All music',f3d:'K-pop, afrobeats, jazz, metal, classical, electronic, folk — no limits.',
+  f2t:'Voice Search',f2d:'Speak directly — say your tastes out loud and let the AI do the rest.',
+  f3t:'All Music',f3d:'K-pop, afrobeats, jazz, metal, classical, electronic, folk — no limits.',
   f4t:'Places & Events',f4d:'Concerts, restaurants, museums, parks — tailored to your city.',
   lblLk:'Favourites',lblSr:'Searches',lblPr:'Preferences',
   lblPrSec:'Detected preferences',lblFavs:'All my favourites ❤️',lblHist:'History',
   tBook:'📚 Book',tMusic:'🎵 Music',tFilm:'🎬 Film / Series',tPlace:'📍 Place',tActivity:'🏃 Activity',
   tlBook:'📚 Books',tlMusic:'🎵 Music',tlFilm:'🎬 Films & Series',tlPlace:'📍 Places',tlActivity:'🏃 Activities',
-  tabAll:'✦ All',ldMsg:'Exploring…',
-  scopeAll:'All',scopeGlobal:'Worldwide',scopeLocal:'Local',
+  tabAll:'✦ All',ldMsg:'Exploring…',scopeAll:'All',scopeGlobal:'Worldwide',scopeLocal:'Local',
   vibesFor:'Results for',recs:'recommendations',
   noFav:'No favourites yet',noFavS:'Like recommendations to find them here.',
   noPref:'No preferences yet — start exploring!',noHist:'No searches yet.',emptyT:'No recommendations here',
@@ -558,30 +715,35 @@ en:{
   guest:'Guest',guestAcc:'Guest account',regAcc:'Registered account',
   stit:'Settings',scProf:'✏️ Edit Profile',sLblN:'FIRST NAME',sLblC:'CITY',sLblB:'BIO',sBioPh:'Your passions…',sav:'Save',
   scApp:'🎨 Appearance',sDkL:'Dark mode',sDkD:'Black background / neon accents',sLgL:'Language',sLgD:'Interface and recommendations',
-  scApi:'🔑 API & AI Model',sKL:'OpenRouter Key',sMdL:'AI Model',sMdD:'Model used for recommendations',
+  scApi:'🔑 API Keys & AI Providers',scApiDesc:'Configure one or more keys. MyVibe will automatically use the first available one.',
+  scVoice:'🎤 Voice Search',sVL:'Recognition language',sVD:'Language used for voice dictation',
+  sVAuto:'Auto-search',sVAutoD:'Trigger search automatically when you stop speaking',
   scAcc:'🔐 Account',sEL:'Email',sTL:'Type',sCL:'🗑 Clear my data',sLO:'Sign Out',
   tSaved:'✅ Saved!',tCleared:'🗑 Data cleared',tLogout:'See you soon!',tKeySaved:'🔑 API Key saved!',
-  mkT:'🔑 OpenRouter API Key',mkD:'Enter your key to enable AI recommendations. Stored locally in your browser.',
-  mkW:'⚠️ Never share your API key. Get one free at openrouter.ai/keys',mkL:'API KEY',mkSv:'Save',mkCa:'Cancel',
-  errNoKey:'No API key configured. Click 🔑 to add one.',errParse:'Parse error. Please try again.',
+  mkT:'🔑 Configure API Key',mkD:'Choose your AI provider and enter your key. You can configure multiple providers.',
+  mkW:'⚠️ Your keys are stored only in your browser. Never share them publicly.',
+  mkL:'API KEY',mkML:'DEFAULT MODEL (optional)',mkMH:'Leave empty to use the provider\'s recommended model.',
+  mkSv:'Save',mkCa:'Cancel',addKey:'+ Add a key',
+  errNoKey:'No API key configured. Click 🔑 to add one.',errParse:'Parse error. Try again.',
+  errCors:'This API blocks browser requests (CORS). Use OpenRouter, Gemini or Mistral instead.',
   noKeySet:'Not configured',keySet:'Configured ✓',
+  voiceListening:'Listening… speak now',voiceProcessing:'Processing…',
+  voiceNoSupport:'Your browser does not support voice recognition. Use Chrome.',
+  voiceError:'Voice recognition error. Please try again.',
   sys:(city,country)=>`You are MyVibe, a worldwide cultural recommendation AI.
 
 PRIMARY RULE: Recommend GLOBAL content first, matched to the user's expressed tastes.
-- If user says "pop" → global pop artists (Taylor Swift, BTS, Dua Lipa, etc.)
-- If user says "jazz" → Miles Davis, Coltrane, famous jazz clubs, etc.
-- If user says "sci-fi" → Isaac Asimov, Philip K. Dick, Dune, etc.
-- If user says "thriller" → Gillian Flynn, Stieg Larsson, etc.
-- NEVER force local content if it's not relevant to the expressed tastes.
+- "pop" → Taylor Swift, BTS, Dua Lipa, The Weeknd, etc.
+- "jazz" → Miles Davis, Coltrane, famous jazz clubs, etc.
+- "sci-fi" → Isaac Asimov, Philip K. Dick, Dune, etc.
+- "thriller" → Gillian Flynn, Stieg Larsson, etc.
+- "K-pop" → BTS, BLACKPINK, Stray Kids, etc.
+- NEVER force local content if not relevant to expressed tastes.
 
 SECONDARY RULE — CONTEXTUAL LOCAL:
-- User's city: ${city} (${country})
-- Add 2 to 3 local recommendations ONLY for "place" and "activity" types, when it's natural.
-- Example: user likes swimming → mention a local pool or beach.
-- Example: user likes concerts → mention a local venue.
-- For books and music, do NOT force local unless the user explicitly mentions their country/region.
-
-"scope" field: each recommendation must have scope="global" or scope="local".
+- User's city: ${city}${country?', '+country:''}
+- Add 2-3 local recommendations ONLY for "place" and "activity" types, when natural.
+- For books and music, do NOT force local unless the user explicitly requests it.
 
 Reply ONLY in valid JSON without backticks:
 {
@@ -599,60 +761,260 @@ Reply ONLY in valid JSON without backticks:
     }
   ]
 }
-
-Generate 9 to 12 varied recommendations. Prioritise quality and relevance to the expressed tastes.`,
+Generate 9-12 varied recommendations. Prioritise quality and relevance.`,
   usr:(q)=>`My tastes: ${q}`
 }};
 
-/* ══════════════ STATE ══════════════ */
-const S={user:null,theme:'dark',lang:'fr',model:'google/gemini-2.0-flash-001',apiKey:'',
-  likes:new Map(),searches:[],prefs:new Set(),cards:[],
-  typeFilter:'all',scopeFilter:'all',favFilter:'all'};
+/* ══════════════════════════════════════
+   STATE
+══════════════════════════════════════ */
+const S={
+  user:null,theme:'dark',lang:'fr',
+  apiKeys:{},        // { providerID: { key, model } }
+  activeProvider:null,
+  likes:new Map(),searches:[],prefs:new Set(),
+  cards:[],typeFilter:'all',scopeFilter:'all',favFilter:'all',
+  voiceLang:'fr-FR',voiceAutoSearch:true
+};
 const T=()=>I18N[S.lang];
-const API='https://openrouter.ai/api/v1/chat/completions';
 const BADGE={book:'d1',music:'d2',film:'d3',place:'d4',activity:'d5'};
 const $=id=>document.getElementById(id);
 const x=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-
 let toastT;
 function toast(msg){clearTimeout(toastT);let el=document.querySelector('.toast');if(el)el.remove();el=document.createElement('div');el.className='toast';el.textContent=msg;document.body.appendChild(el);toastT=setTimeout(()=>el.remove(),3200)}
 
-/* ── KEY MODAL ── */
+/* ══ PROVIDER MODAL ══ */
+let selectedProvider='openrouter';
 function openKeyModal(){
-  const t=T();$('key-modal').classList.add('on');
-  $('mk-t').textContent=t.mkT;$('mk-d').textContent=t.mkD;$('mk-w').innerHTML='⚠️ '+t.mkW;
-  $('mk-l').textContent=t.mkL;$('mk-sv').textContent=t.mkSv;$('mk-ca').textContent=t.mkCa;
-  $('key-inp').value=S.apiKey||'';$('mk-err').textContent='';
+  const t=T();
+  $('key-modal').classList.add('on');
+  $('mk-t').textContent=t.mkT;$('mk-d').textContent=t.mkD;
+  $('mk-w').innerHTML='⚠️ '+t.mkW;$('mk-l').textContent=t.mkL;
+  $('mk-ml').textContent=t.mkML;$('mk-model-hint').textContent=t.mkMH;
+  $('mk-sv').textContent=t.mkSv;$('mk-ca').textContent=t.mkCa;
+  $('mk-err').textContent='';$('key-inp').value='';$('model-inp').value='';
+  renderProviderGrid();
+  selectProvider('openrouter');
 }
 function closeKeyModal(){$('key-modal').classList.remove('on')}
-function saveKey(){const k=$('key-inp').value.trim();if(!k){$('mk-err').textContent='Clé vide.';return}S.apiKey=k;localStorage.setItem('mv_api_key',k);closeKeyModal();toast(T().tKeySaved);updateKeyStatus()}
-function updateKeyStatus(){const t=T();const s=$('s-ks');if(s)s.textContent=S.apiKey?t.keySet:t.noKeySet}
 
-/* ── AUTH ── */
+function renderProviderGrid(){
+  $('prov-grid').innerHTML=Object.entries(PROVIDERS).map(([id,p])=>{
+    const hasKey=!!S.apiKeys[id];
+    return `<div class="prov-card${id===selectedProvider?' on':''}" id="pc-${id}" onclick="selectProvider('${id}')">
+      <div class="pc-ico">${p.icon}</div>
+      <div class="pc-name">${p.name}</div>
+      <div class="pc-url">${p.site||'Custom endpoint'}${hasKey?' ✓':''}</div>
+    </div>`
+  }).join('')
+}
+
+// Model name normalization maps (handles deprecated names)
+const MODEL_ALIASES={
+  'gemini-1.5-flash-latest':'gemini-1.5-flash',
+  'gemini-1.5-pro-latest':'gemini-1.5-pro',
+  'gemini-pro':'gemini-1.5-pro',
+  'gemini-2.0-flash-exp':'gemini-2.0-flash',
+  'gemini-2.0-flash-lite':'gemini-2.0-flash',
+  'gemini-flash':'gemini-2.0-flash',
+};
+
+function normalizeModel(id, model){
+  if(!model)return PROVIDERS[id]?.defaultModel||'';
+  // For Gemini, apply alias map
+  if(id==='gemini')return MODEL_ALIASES[model]||model;
+  return model;
+}
+
+function selectProvider(id){
+  selectedProvider=id;
+  renderProviderGrid();
+  const p=PROVIDERS[id];
+  const saved=S.apiKeys[id];
+  $('key-inp').value=saved?.key?'••••••••••••':'';
+  $('key-inp').placeholder=p.keyHint||'Votre clé API…';
+  // Show normalized model (or empty so placeholder shows default)
+  const savedModel=saved?.model||'';
+  $('model-inp').value=savedModel===p.defaultModel?'':savedModel;
+  $('model-inp').placeholder=p.defaultModel||'modèle par défaut';
+  // Show model hint specific to provider
+  const hint=$('mk-model-hint');
+  if(p.modelHint){hint.innerHTML=p.modelHint;hint.style.color='rgba(255,176,32,.85)';hint.style.fontWeight='500'}
+  else if(p.models?.length){hint.textContent='Modèles : '+p.models.join(' · ');hint.style.color='';hint.style.fontWeight=''}
+  else{hint.textContent='Laissez vide pour le modèle recommandé.';hint.style.color='';hint.style.fontWeight=''}
+  // For gemini: auto-set model field to default if current value is invalid
+  if(id==='gemini'){
+    const cur=$('model-inp').value.trim();
+    const invalidGemini=['gemini-1.5-flash-latest','gemini-1.5-pro-latest','gemini-2.0-flash-lite','gemini-2.0-flash-exp','gemini-flash','gemini-pro'];
+    if(invalidGemini.includes(cur)||cur.endsWith('-latest')){$('model-inp').value='';}}
+  // CORS warning
+  const corsWarn=$('mk-w');
+  if(p.corsBlocked){corsWarn.innerHTML='🚫 '+T().errCors;corsWarn.style.background='rgba(255,60,60,.08)';corsWarn.style.borderColor='rgba(255,60,60,.28)';corsWarn.style.color='#ff5555'}
+  else{corsWarn.innerHTML='⚠️ '+T().mkW;corsWarn.style.background='';corsWarn.style.borderColor='';corsWarn.style.color=''}
+  // Custom URL field
+  let customRow=$('custom-url-row');
+  if(id==='custom'){
+    if(!customRow){
+      const div=document.createElement('div');div.className='fg';div.id='custom-url-row';div.style.margin='0 0 .8rem';
+      div.innerHTML=`<div class="fl">URL DE L'API</div><input class="fi2" id="custom-url-inp" type="url" placeholder="https://api.exemple.com/v1/chat/completions">`;
+      $('key-inp').closest('.fg').before(div);
+    }
+    customRow=$('custom-url-row');customRow.style.display='';
+    if(saved?.customUrl)$('custom-url-inp').value=saved.customUrl;
+  }else{if(customRow)customRow.style.display='none'}
+}
+
+function saveProviderKey(){
+  const p=PROVIDERS[selectedProvider];
+  let key=$('key-inp').value.trim();
+  if(!key||key==='••••••••••••'){
+    const existing=S.apiKeys[selectedProvider];
+    if(existing?.key)key=existing.key;
+    else{$('mk-err').textContent='Entrez votre clé API.';return}
+  }
+  // Normalize and validate model name
+  const rawModel=$('model-inp').value.trim();
+  const model=normalizeModel(selectedProvider, rawModel)||p.defaultModel;
+  const customUrl=selectedProvider==='custom'?($('custom-url-inp')?.value.trim()||''):'';
+  S.apiKeys[selectedProvider]={key,model,customUrl};
+  // Persist
+  const keysStore={};
+  Object.entries(S.apiKeys).forEach(([pid,v])=>{keysStore[pid]=v});
+  localStorage.setItem('mv_api_keys',JSON.stringify(keysStore));
+  // Also clear any stale localStorage entry with bad model for gemini
+  try{
+    const raw=JSON.parse(localStorage.getItem('mv_api_keys')||'{}');
+    if(raw.gemini?.model&&MODEL_ALIASES[raw.gemini.model]){
+      raw.gemini.model=MODEL_ALIASES[raw.gemini.model];
+      localStorage.setItem('mv_api_keys',JSON.stringify(raw));
+    }
+  }catch(e){}
+  closeKeyModal();toast(T().tKeySaved+' Modèle : '+model);renderKeyStatusList()
+}
+
+function deleteProviderKey(id){
+  delete S.apiKeys[id];
+  const keysStore={};
+  Object.entries(S.apiKeys).forEach(([pid,v])=>{keysStore[pid]=v});
+  localStorage.setItem('mv_api_keys',JSON.stringify(keysStore));
+  renderKeyStatusList()
+}
+
+function renderKeyStatusList(){
+  const list=$('key-status-list');if(!list)return;
+  const entries=Object.entries(PROVIDERS);
+  const configured=entries.filter(([id])=>S.apiKeys[id]);
+  list.innerHTML=configured.length===0
+    ?`<div style="font-size:.78rem;color:var(--td);padding:.4rem 0">${T().errNoKey}</div>`
+    :configured.map(([id,p])=>`<div class="key-status-item">
+        <span class="ks-name">${p.icon} ${p.name}</span>
+        <span class="ks-val">
+          <span class="ks-dot ok"></span>
+          <span style="color:var(--tm)">${S.apiKeys[id].model||p.defaultModel}</span>
+          <button class="ks-del" onclick="deleteProviderKey('${id}')" title="Supprimer">✕</button>
+        </span>
+      </div>`).join('')
+}
+
+function getActiveProviderAndKey(){
+  // Priority order: openrouter, gemini, mistral, openai, custom, anthropic
+  const order=['openrouter','gemini','mistral','openai','custom','anthropic'];
+  for(const id of order){if(S.apiKeys[id]?.key)return{id,cfg:S.apiKeys[id],prov:PROVIDERS[id]}}
+  // fallback: any configured
+  for(const[id,v]of Object.entries(S.apiKeys)){if(v?.key)return{id,cfg:v,prov:PROVIDERS[id]}}
+  return null
+}
+
+/* ══ VOICE SEARCH ══ */
+let recognition=null;let isListening=false;
+
+function initVoice(){
+  const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SpeechRecognition){$('voice-btn').classList.add('not-supported');$('voice-btn').title=T().voiceNoSupport;return}
+  recognition=new SpeechRecognition();
+  recognition.continuous=false;
+  recognition.interimResults=true;
+  recognition.onstart=()=>{
+    isListening=true;
+    $('voice-btn').classList.add('listening');
+    $('search-box').classList.add('recording');
+    showVoiceStatus(T().voiceListening);
+    $('ms').placeholder=T().voiceListening;
+  };
+  recognition.onresult=(e)=>{
+    let interim='',final='';
+    for(let i=e.resultIndex;i<e.results.length;i++){
+      if(e.results[i].isFinal)final+=e.results[i][0].transcript;
+      else interim+=e.results[i][0].transcript;
+    }
+    $('ms').value=final||interim;
+  };
+  recognition.onend=()=>{
+    isListening=false;
+    $('voice-btn').classList.remove('listening');
+    $('search-box').classList.remove('recording');
+    hideVoiceStatus();
+    $('ms').placeholder=T().ph;
+    const q=$('ms').value.trim();
+    if(q&&S.voiceAutoSearch)setTimeout(()=>doSearch(),400);
+  };
+  recognition.onerror=(e)=>{
+    isListening=false;
+    $('voice-btn').classList.remove('listening');
+    $('search-box').classList.remove('recording');
+    hideVoiceStatus();
+    $('ms').placeholder=T().ph;
+    if(e.error!=='no-speech'&&e.error!=='aborted')toast(T().voiceError);
+  };
+}
+
+function toggleVoice(){
+  if($('voice-btn').classList.contains('not-supported')){toast(T().voiceNoSupport);return}
+  if(!recognition)initVoice();
+  if(!recognition){toast(T().voiceNoSupport);return}
+  if(isListening){recognition.stop()}
+  else{
+    recognition.lang=S.voiceLang||'fr-FR';
+    $('ms').value='';
+    try{recognition.start()}catch(e){toast(T().voiceError)}
+  }
+}
+
+function showVoiceStatus(msg){
+  $('voice-status').classList.add('on');$('voice-status-txt').textContent=msg
+}
+function hideVoiceStatus(){$('voice-status').classList.remove('on')}
+
+/* ══ AUTH ══ */
 let aMode='li';
 function swAuth(m){aMode=m;$('f-li').style.display=m==='li'?'':'none';$('f-re').style.display=m==='re'?'':'none';$('t-li').classList.toggle('on',m==='li');$('t-re').classList.toggle('on',m==='re')}
 function doLogin(){
   const e=$('li-e').value.trim(),p=$('li-p').value,err=$('li-err');
   if(!e||!p){err.textContent='Remplissez tous les champs.';return}
   const users=JSON.parse(localStorage.getItem('mv_users')||'{}');
-  const u=users[e];
-  if(!u||u.pw!==btoa(p)){err.textContent=S.lang==='fr'?'Email ou mot de passe incorrect.':'Incorrect email or password.';return}
-  bootUser({name:u.name,email:e,city:u.city||'Paris',country:u.country||'France',bio:u.bio||'',type:'registered'})
+  const u=users[e];if(!u||u.pw!==btoa(p)){err.textContent='Email ou mot de passe incorrect.';return}
+  bootUser({name:u.name,email:e,city:u.city||'Paris',country:u.country||'',bio:u.bio||'',type:'registered'})
 }
 function doRegister(){
   const n=$('re-n').value.trim(),e=$('re-e').value.trim(),p=$('re-p').value,c=$('re-c').value.trim()||'Paris',err=$('re-err');
   if(!n||!e||!p){err.textContent='Remplissez tous les champs.';return}
-  if(p.length<6){err.textContent=S.lang==='fr'?'Mot de passe trop court (min 6).':'Password too short.';return}
+  if(p.length<6){err.textContent='Mot de passe trop court (min 6).';return}
   const users=JSON.parse(localStorage.getItem('mv_users')||'{}');
-  if(users[e]){err.textContent=S.lang==='fr'?'Email déjà utilisé.':'Email already in use.';return}
+  if(users[e]){err.textContent='Email déjà utilisé.';return}
   users[e]={name:n,pw:btoa(p),city:c,country:'',bio:''};
   localStorage.setItem('mv_users',JSON.stringify(users));
   bootUser({name:n,email:e,city:c,country:'',bio:'',type:'registered'})
 }
-function guestLogin(){bootUser({name:T().guest,email:'',city:'Paris',country:'France',bio:'',type:'guest'})}
+function guestLogin(){bootUser({name:T().guest,email:'',city:'Paris',country:'',bio:'',type:'guest'})}
 
 function bootUser(u){
   S.user=u;
+  // Load keys from localStorage (shared across accounts)
+  const savedKeys=JSON.parse(localStorage.getItem('mv_api_keys')||'{}');
+  // Auto-migrate deprecated Gemini model names
+  const _mAlias={'gemini-1.5-flash-latest':'gemini-1.5-flash','gemini-1.5-pro-latest':'gemini-1.5-pro','gemini-pro':'gemini-1.5-pro','gemini-2.0-flash-exp':'gemini-2.0-flash','gemini-2.0-flash-lite':'gemini-2.0-flash','gemini-flash':'gemini-2.0-flash'};
+  if(savedKeys.gemini?.model&&_mAlias[savedKeys.gemini.model]){savedKeys.gemini.model=_mAlias[savedKeys.gemini.model];localStorage.setItem('mv_api_keys',JSON.stringify(savedKeys));}
+  Object.assign(S.apiKeys,savedKeys);
   if(u.type==='registered'){
     const d=JSON.parse(localStorage.getItem('mv_d_'+u.email)||'{}');
     if(d.likes)S.likes=new Map(d.likes);
@@ -660,10 +1022,9 @@ function bootUser(u){
     if(d.prefs)S.prefs=new Set(d.prefs);
     if(d.theme){S.theme=d.theme;applyTheme(d.theme)}
     if(d.lang){S.lang=d.lang;$('lang-sel').value=d.lang}
-    if(d.model){S.model=d.model;$('model-sel').value=d.model}
+    if(d.voiceLang){S.voiceLang=d.voiceLang;$('voice-lang-sel').value=d.voiceLang}
+    if(d.voiceAutoSearch!==undefined){S.voiceAutoSearch=d.voiceAutoSearch;$('voice-auto-tog').checked=d.voiceAutoSearch}
   }
-  const savedKey=localStorage.getItem('mv_api_key')||'';
-  if(savedKey)S.apiKey=savedKey;
   $('auth-ov').style.display='none';$('main-app').style.display='';
   initApp()
 }
@@ -672,28 +1033,44 @@ function saveData(){
   if(!S.user||S.user.type!=='registered')return;
   localStorage.setItem('mv_d_'+S.user.email,JSON.stringify({
     likes:[...S.likes.entries()],searches:S.searches.slice(-80),
-    prefs:[...S.prefs],theme:S.theme,lang:S.lang,model:S.model
+    prefs:[...S.prefs],theme:S.theme,lang:S.lang,
+    voiceLang:S.voiceLang,voiceAutoSearch:S.voiceAutoSearch
   }));
   const users=JSON.parse(localStorage.getItem('mv_users')||'{}');
-  if(users[S.user.email])Object.assign(users[S.user.email],{city:S.user.city,bio:S.user.bio,name:S.user.name,country:S.user.country||''});
+  if(users[S.user.email])Object.assign(users[S.user.email],{city:S.user.city,bio:S.user.bio,name:S.user.name});
   localStorage.setItem('mv_users',JSON.stringify(users))
 }
 
-function logout(){saveData();Object.assign(S,{user:null,likes:new Map(),searches:[],prefs:new Set(),cards:[]});$('main-app').style.display='none';$('auth-ov').style.display='';toast(T().tLogout);$('li-e').value='';$('li-p').value='';$('li-err').textContent='';swAuth('li');goHome()}
+function logout(){
+  saveData();
+  Object.assign(S,{user:null,likes:new Map(),searches:[],prefs:new Set(),cards:[],apiKeys:{}});
+  $('main-app').style.display='none';$('auth-ov').style.display='';
+  toast(T().tLogout);$('li-e').value='';$('li-p').value='';$('li-err').textContent='';swAuth('li');goHome()
+}
 function clearData(){S.likes=new Map();S.searches=[];S.prefs=new Set();saveData();toast(T().tCleared);updateStats()}
 
-/* ── INIT ── */
-function initApp(){updateNavAv();applyLang();$('ci').value=S.user.city||'Paris';$('s-name').value=S.user.name;$('s-city').value=S.user.city;$('s-bio').value=S.user.bio||'';$('s-ev').textContent=S.user.email||'—';$('s-tv').textContent=S.user.type==='registered'?T().regAcc:T().guestAcc;$('dk-tog').checked=S.theme==='dark';$('model-sel').value=S.model;updateStats();updateKeyStatus()}
+/* ══ INIT ══ */
+function initApp(){
+  updateNavAv();applyLang();initVoice();
+  $('ci').value=S.user.city||'Paris';
+  $('s-name').value=S.user.name;$('s-city').value=S.user.city;$('s-bio').value=S.user.bio||'';
+  $('s-ev').textContent=S.user.email||'—';$('s-tv').textContent=S.user.type==='registered'?T().regAcc:T().guestAcc;
+  $('dk-tog').checked=S.theme==='dark';
+  $('voice-lang-sel').value=S.voiceLang||'fr-FR';
+  $('voice-auto-tog').checked=S.voiceAutoSearch!==false;
+  updateStats();renderKeyStatusList()
+}
 function updateStats(){$('st-lk').textContent=S.likes.size;$('st-sr').textContent=S.searches.length;$('st-pr').textContent=S.prefs.size}
 function updateNavAv(){if(!S.user)return;const i=(S.user.name||'?').slice(0,2).toUpperCase();$('nav-av').textContent=i;$('bav').innerHTML=i+'<div class="av-ed">✏️</div>';$('pr-name').textContent=S.user.name||'—';$('pr-email').textContent=S.user.email||T().guestAcc;$('pr-bio').textContent=S.user.bio||''}
 
-/* ── THEME / LANG ── */
+/* ══ THEME / LANG ══ */
 function toggleTheme(){setTheme(S.theme==='dark'?'light':'dark')}
 function setTheme(t){S.theme=t;document.documentElement.setAttribute('data-theme',t);$('theme-ib').textContent=t==='dark'?'🌙':'☀️';$('dk-tog').checked=t==='dark';saveData()}
 function applyTheme(t){setTheme(t)}
 function setLang(l){S.lang=l;applyLang();saveData()}
 function applyLang(){
   const t=T();document.documentElement.lang=S.lang;
+  // auth
   $('t-li').textContent=t.login;$('t-re').textContent=t.register;$('btn-gu').textContent=t.guestBtn;$('a-or').textContent=t.orLbl;
   $('a-le').textContent=t.lblE;$('a-lp').textContent=t.lblP;$('a-ln').textContent=t.lblN;$('a-lre').textContent=t.lblE;$('a-lrp').textContent=t.lblP;$('a-lrc').textContent=t.lblC;
   $('btn-li').textContent=t.btnLi;$('btn-re').textContent=t.btnRe;
@@ -701,19 +1078,23 @@ function applyLang(){
   $('ey-t').textContent=t.eyeT;$('h1-t').innerHTML=t.h1;$('h-sub').textContent=t.hsub;
   $('m-lbl').textContent=t.modLbl;$('disc-b').textContent=t.discBtn;$('ms').placeholder=t.ph;
   $('chips-row').innerHTML=t.chips.map((c,i)=>`<span class="chip" onclick="Q('${t.chipV[i].replace(/'/g,"\\'")}')"> ${c}</span>`).join('');
-  $('f1t').textContent=t.f1t;$('f1d').textContent=t.f1d;$('f2t').textContent=t.f2t;$('f2d').textContent=t.f2d;$('f3t').textContent=t.f3t;$('f3d').textContent=t.f3d;$('f4t').textContent=t.f4t;$('f4d').textContent=t.f4d;
+  $('f1t').textContent=t.f1t;$('f1d').textContent=t.f1d;$('f2t').textContent=t.f2t;$('f2d').textContent=t.f2d;
+  $('f3t').textContent=t.f3t;$('f3d').textContent=t.f3d;$('f4t').textContent=t.f4t;$('f4d').textContent=t.f4d;
   $('lb-lk').textContent=t.lblLk;$('lb-sr').textContent=t.lblSr;$('lb-pr').textContent=t.lblPr;
   $('s-title').textContent=t.stit;$('sc-prof').textContent=t.scProf;$('s-ln').textContent=t.sLblN;$('s-lc').textContent=t.sLblC;$('s-lb').textContent=t.sLblB;$('s-bio').placeholder=t.sBioPh;$('s-saveb').textContent=t.sav;
   $('sc-app').textContent=t.scApp;$('s-dk-l').textContent=t.sDkL;$('s-dk-d').textContent=t.sDkD;$('s-lg-l').textContent=t.sLgL;$('s-lg-d').textContent=t.sLgD;
-  $('sc-api').textContent=t.scApi;$('s-kl').textContent=t.sKL;$('s-ml').textContent=t.sMdL;$('s-md').textContent=t.sMdD;
+  $('sc-api').textContent=t.scApi;$('sc-api-desc').textContent=t.scApiDesc;$('s-add-key').textContent=t.addKey;
+  $('sc-voice').textContent=t.scVoice;$('s-vl').textContent=t.sVL;$('s-vd').textContent=t.sVD;$('s-vauto').textContent=t.sVAuto;$('s-vauto-d').textContent=t.sVAutoD;
   $('sc-acc').textContent=t.scAcc;$('s-el').textContent=t.sEL;$('s-tl').textContent=t.sTL;$('s-cl').textContent=t.sCL;$('s-lo').textContent=t.sLO;
-  $('stb-all-lbl').textContent=t.scopeAll;$('stb-global-lbl').textContent=t.scopeGlobal;$('stb-local-lbl').textContent=t.scopeLocal;
+  $('stb-all-l').textContent=t.scopeAll;$('stb-gl-l').textContent=t.scopeGlobal;$('stb-lo-l').textContent=t.scopeLocal;
   if($('bk-t'))$('bk-t').textContent=t.bkLbl;
-  if(S.user){$('s-tv').textContent=S.user.type==='registered'?t.regAcc:t.guestAcc}
-  updateKeyStatus()
+  if(S.user)$('s-tv').textContent=S.user.type==='registered'?t.regAcc:t.guestAcc;
+  // voice btn title
+  if($('voice-btn'))$('voice-btn').title=T().voiceListening;
+  renderKeyStatusList()
 }
 
-/* ── NAV ── */
+/* ══ NAV ══ */
 function goToPage(p){
   document.querySelectorAll('.page').forEach(e=>e.classList.remove('on'));
   $('page-'+p).classList.add('on');
@@ -721,22 +1102,22 @@ function goToPage(p){
   $('n-pr').classList.toggle('on',p==='profile');
   $('n-se').classList.toggle('on',p==='settings');
   if(p==='profile')renderProfile();
-  if(p==='settings'){$('s-name').value=S.user?.name||'';$('s-city').value=S.user?.city||'';$('s-bio').value=S.user?.bio||'';$('s-ev').textContent=S.user?.email||'—';$('model-sel').value=S.model;updateKeyStatus()}
+  if(p==='settings'){$('s-name').value=S.user?.name||'';$('s-city').value=S.user?.city||'';$('s-bio').value=S.user?.bio||'';$('s-ev').textContent=S.user?.email||'—';renderKeyStatusList()}
 }
 function goHome(){$('res-sec').style.display='none';$('hero-sec').style.display='';goToPage('home')}
 function Q(q){$('ms').value=q;doSearch()}
 function updateCity(v){if(S.user)S.user.city=v.split(',')[0].trim()}
 
-/* ── SEARCH ── */
+/* ══ SEARCH ══ */
 async function doSearch(){
   const q=$('ms').value.trim();if(!q){$('ms').focus();return}
   const t=T();
-  if(!S.apiKey){
+  const active=getActiveProviderAndKey();
+  if(!active){
     $('hero-sec').style.display='none';$('res-sec').style.display='block';
     $('r-title').textContent=`${t.vibesFor} "${q.slice(0,45)}"`;
     $('ttabs').innerHTML='';$('ctx-global').classList.remove('on');$('ctx-local').classList.remove('on');
-    $('cg').innerHTML=`<div class="em"><div class="ei">🔑</div><div class="et">${t.errNoKey}</div></div>`;
-    return
+    $('cg').innerHTML=`<div class="em"><div class="ei">🔑</div><div class="et">${t.errNoKey}</div></div>`;return
   }
   S.searches.push({q,time:Date.now()});
   (q.toLowerCase().match(/[a-zàâäéèêëîïôöùûüç]+/g)||[]).forEach(w=>{if(w.length>=4)S.prefs.add(w)});
@@ -745,17 +1126,15 @@ async function doSearch(){
   $('r-title').textContent=`${t.vibesFor} "${q.slice(0,50)}${q.length>50?'…':''}"`;
   $('ldbox').style.display='block';$('cg').innerHTML='';$('ttabs').innerHTML='';
   $('ctx-global').classList.remove('on');$('ctx-local').classList.remove('on');
-  $('ld-p').textContent=t.ldMsg;
-  S.typeFilter='all';S.scopeFilter='all';
+  $('ld-p').textContent=t.ldMsg;S.typeFilter='all';S.scopeFilter='all';
   document.querySelectorAll('.stb').forEach(e=>e.classList.remove('on'));$('stb-all').classList.add('on');
-
   const city=S.user?.city||'Paris';
   const msgs=S.lang==='fr'
-    ?[`Exploration mondiale en cours…`,`Recherche de pépites locales à ${city}…`,'Composition de votre sélection personnalisée…']
-    :[`Worldwide exploration…`,`Looking for local gems in ${city}…`,'Composing your personalised selection…'];
+    ?[`Exploration mondiale…`,`Recherche locale à ${city}…`,'Composition de votre sélection…']
+    :[`Worldwide exploration…`,`Looking for local gems in ${city}…`,'Composing your selection…'];
   let mi=0;const iv=setInterval(()=>{$('ld-s').textContent=msgs[++mi%msgs.length]},900);
   try{
-    const data=await callAI(q);
+    const data=await callAI(q,active);
     clearInterval(iv);$('ldbox').style.display='none';
     S.cards=data.recommendations||[];
     if(data.global_message){$('ctx-gm').textContent=data.global_message;$('ctx-global').classList.add('on')}
@@ -764,74 +1143,67 @@ async function doSearch(){
     buildTypeTabs();renderCards();saveData()
   }catch(err){
     clearInterval(iv);$('ldbox').style.display='none';
-    $('cg').innerHTML=`<div class="em"><div class="ei">⚡</div><div class="et">${x(err.message)}</div><div class="es">Vérifiez votre clé API OpenRouter (openrouter.ai)</div></div>`
+    $('cg').innerHTML=`<div class="em"><div class="ei">⚡</div><div class="et">${x(err.message)}</div><div class="es">${active.prov.corsBlocked?t.errCors:'Vérifiez votre clé API et votre connexion.'}</div></div>`
   }
 }
 
-async function callAI(q){
+async function callAI(q,{id,cfg,prov}){
   const t=T();const city=S.user?.city||'Paris';const country=S.user?.country||'';
-  const r=await fetch(API,{
-    method:'POST',
-    headers:{'Content-Type':'application/json','Authorization':'Bearer '+S.apiKey,'HTTP-Referer':location.href,'X-Title':'MyVibe'},
-    body:JSON.stringify({model:S.model,messages:[{role:'system',content:t.sys(city,country)},{role:'user',content:t.usr(q)}],max_tokens:2200})
-  });
-  if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.error?.message||`HTTP ${r.status}`)}
+  const msgs=[{role:'system',content:t.sys(city,country)},{role:'user',content:t.usr(q)}];
+  const model=normalizeModel(id, cfg.model)||prov.defaultModel;
+  const key=cfg.key||'';
+  // For Gemini, always build URL directly to guarantee key is included
+  let url;
+  let reqOpts;
+  if(id==='gemini'){
+    const fixes={'gemini-1.5-flash-latest':'gemini-1.5-flash','gemini-1.5-pro-latest':'gemini-1.5-pro','gemini-pro':'gemini-1.5-pro','gemini-flash':'gemini-2.0-flash','gemini-2.0-flash-exp':'gemini-2.0-flash','gemini-2.0-flash-lite':'gemini-2.0-flash'};
+    const safeModel=fixes[model]||model||'gemini-2.0-flash';
+    url=`https://generativelanguage.googleapis.com/v1/models/${safeModel}:generateContent?key=${key}`;
+    const sys=msgs.find(m=>m.role==='system');
+    const userMsgs=msgs.filter(m=>m.role!=='system');
+    if(sys&&userMsgs.length>0){userMsgs[0]={role:'user',content:sys.content+'\n\n'+userMsgs[0].content};}
+    const contents=userMsgs.map(m=>({role:m.role==='assistant'?'model':'user',parts:[{text:m.content}]}));
+    reqOpts={method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents,generationConfig:{maxOutputTokens:2200}})};
+  } else {
+    reqOpts=prov.buildReq(key,model,msgs,cfg.customUrl);
+    url=reqOpts._url||(id==='custom'&&cfg.customUrl?cfg.customUrl:prov.url);
+    delete reqOpts._url;
+  }
+  const r=await fetch(url,reqOpts);
+  if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.error?.message||e.message||`HTTP ${r.status}`)}
   const d=await r.json();
-  const txt=d.choices?.[0]?.message?.content||'';
+  const txt=prov.parseRes(d)||'';
   const clean=txt.replace(/```json|```/g,'').trim();
   const m=clean.match(/\{[\s\S]*\}/);
   if(!m)throw new Error(T().errParse);
   return JSON.parse(m[0])
 }
 
-/* ── FILTERS ── */
+/* ══ FILTERS ══ */
 function buildTypeTabs(){
-  const t=T();
-  const types=['all',...new Set(S.cards.map(c=>c.type))];
+  const t=T();const types=['all',...new Set(S.cards.map(c=>c.type))];
   $('ttabs').innerHTML=types.map(tp=>`<div class="tt${tp==='all'?' on':''}" onclick="setTypeFilter('${tp}',this)">${tp==='all'?t.tabAll:(t['tl'+tp.charAt(0).toUpperCase()+tp.slice(1)]||tp)}</div>`).join('')
 }
 function setTypeFilter(type,el){S.typeFilter=type;document.querySelectorAll('.tt').forEach(e=>e.classList.remove('on'));el.classList.add('on');renderCards()}
 function setScopeFilter(scope,el){S.scopeFilter=scope;document.querySelectorAll('.stb').forEach(e=>e.classList.remove('on'));el.classList.add('on');renderCards()}
-
-function getFilteredCards(){
-  return S.cards.filter(c=>{
-    if(S.typeFilter!=='all'&&c.type!==S.typeFilter)return false;
-    if(S.scopeFilter!=='all'&&(c.scope||'global')!==S.scopeFilter)return false;
-    return true
-  })
-}
-
-function renderCards(){
-  const cards=getFilteredCards();
-  if(!cards.length){$('cg').innerHTML=`<div class="em"><div class="ei">🔍</div><div class="et">${T().emptyT}</div></div>`;return}
-  $('cg').innerHTML=cards.map(buildCard).join('')
-}
+function getFilteredCards(){return S.cards.filter(c=>{if(S.typeFilter!=='all'&&c.type!==S.typeFilter)return false;if(S.scopeFilter!=='all'&&(c.scope||'global')!==S.scopeFilter)return false;return true})}
+function renderCards(){const cards=getFilteredCards();if(!cards.length){$('cg').innerHTML=`<div class="em"><div class="ei">🔍</div><div class="et">${T().emptyT}</div></div>`;return}$('cg').innerHTML=cards.map(buildCard).join('')}
 
 function buildCard(c){
-  const t=T();const lk=S.likes.has(c.id);
-  const isLocal=(c.scope||'global')==='local';
-  const lbl=t['t'+c.type.charAt(0).toUpperCase()+c.type.slice(1)]||c.type;
-  const sub=x(c.subtitle||c.sub||'');
+  const t=T();const lk=S.likes.has(c.id);const isLocal=(c.scope||'global')==='local';
+  const lbl=t['t'+c.type.charAt(0).toUpperCase()+c.type.slice(1)]||c.type;const sub=x(c.subtitle||c.sub||'');
   return `<div class="rc${isLocal?' local-card':''}" id="c-${c.id}">
-    <div class="bdg ${BADGE[c.type]||'d1'}">${lbl}${isLocal?`<span class="local-dot" title="Local"></span>`:''}</div>
+    <div class="bdg ${BADGE[c.type]||'d1'}">${lbl}${isLocal?'<span class="local-dot"></span>':''}</div>
     <div class="ct2">${x(c.title)}</div>
     ${sub?`<div class="csu">${sub}</div>`:''}
     <div class="cde">${x(c.description||c.desc||'')}</div>
-    <div class="cf">
-      <span class="ctg">${x(c.tag||'')}</span>
-      <div class="lbtn${lk?' lk':''}" onclick="toggleLike('${c.id}')">${lk?'♥':'♡'}</div>
-    </div>
+    <div class="cf"><span class="ctg">${x(c.tag||'')}</span>
+    <div class="lbtn${lk?' lk':''}" onclick="toggleLike('${c.id}')">${lk?'♥':'♡'}</div></div>
   </div>`
 }
+function toggleLike(id){const card=S.cards.find(c=>c.id===id)||S.likes.get(id);if(!card)return;if(S.likes.has(id))S.likes.delete(id);else S.likes.set(id,card);document.querySelectorAll(`#c-${id} .lbtn`).forEach(b=>{const l=S.likes.has(id);b.className='lbtn'+(l?' lk':'');b.innerHTML=l?'♥':'♡'});updateStats();saveData()}
 
-function toggleLike(id){
-  const card=S.cards.find(c=>c.id===id)||S.likes.get(id);if(!card)return;
-  if(S.likes.has(id))S.likes.delete(id);else S.likes.set(id,card);
-  document.querySelectorAll(`#c-${id} .lbtn`).forEach(b=>{const l=S.likes.has(id);b.className='lbtn'+(l?' lk':'');b.innerHTML=l?'♥':'♡'});
-  updateStats();saveData()
-}
-
-/* ── PROFILE ── */
+/* ══ PROFILE ══ */
 function renderProfile(){
   const t=T();updateNavAv();updateStats();
   $('pw2').innerHTML=S.prefs.size?[...S.prefs].map(p=>`<div class="ptag" onclick="removeP('${x(p)}')">${x(p)}<span class="rm">×</span></div>`).join(''):`<span style="color:var(--td);font-size:.8rem">${t.noPref}</span>`;
