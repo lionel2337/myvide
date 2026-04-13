@@ -203,8 +203,22 @@ option{background:var(--bg2)}
 .modal{background:var(--bg2);border:.5px solid var(--gl2);border-radius:22px;padding:2rem;width:100%;max-width:480px}
 .modal h3{font-family:var(--fh);font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
 .modal p{font-size:.83rem;color:var(--tm);line-height:1.6;margin-bottom:1rem}
+<<<<<<< HEAD
 .modal-warn{border-radius:10px;padding:.8rem 1rem;font-size:.78rem;margin-bottom:1.1rem;line-height:1.5}
 .modal-actions{display:flex;gap:8px;flex-wrap:wrap}
+=======
+.modal-warn{background:rgba(255,176,32,.08);border:.5px solid rgba(255,176,32,.25);border-radius:10px;padding:.8rem 1rem;font-size:.78rem;color:var(--na);margin-bottom:1.1rem;line-height:1.5}
+.modal-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:.5rem}
+.provider-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:1.2rem}
+.prov-card{padding:.9rem;border-radius:12px;background:var(--bc);border:.5px solid var(--gl);cursor:pointer;transition:all var(--tr);text-align:center}
+.prov-card:hover{background:var(--bch)}
+.prov-card.on{border-color:var(--np);background:rgba(176,65,255,.1)}
+.prov-card .pc-name{font-family:var(--fh);font-size:.85rem;font-weight:700;margin-bottom:2px}
+.prov-card .pc-url{font-size:.7rem;color:var(--td)}
+.prov-card .pc-ico{font-size:1.3rem;margin-bottom:5px}
+
+/* TOAST */
+>>>>>>> 504a4162f11e5973a07b7364ab8567e100ee0bde
 .toast{position:fixed;bottom:1.5rem;right:1.5rem;z-index:999;padding:12px 20px;border-radius:var(--r);background:var(--bg3);border:.5px solid var(--gl2);font-size:.84rem;color:var(--tp);box-shadow:0 4px 24px rgba(0,0,0,.5);animation:ti .3s ease;pointer-events:none}
 @keyframes ti{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:640px){
@@ -242,9 +256,16 @@ option{background:var(--bg2)}
     </div>
     <div class="a-err" id="mk-err"></div>
     <div class="modal-actions">
+<<<<<<< HEAD
       <button class="svb" onclick="saveGroqKey()">Enregistrer</button>
       <button class="dgb" onclick="closeKeyModal()">Annuler</button>
+=======
+      <button class="svb" onclick="saveProviderKey()" id="mk-sv">Enregistrer</button>
+      <button class="svb" onclick="testProviderKey()" id="mk-test" style="background:rgba(0,207,255,.18);color:var(--nb);border:.5px solid rgba(0,207,255,.3)">🧪 Tester</button>
+      <button class="dgb" onclick="closeKeyModal()" id="mk-ca">Annuler</button>
+>>>>>>> 504a4162f11e5973a07b7364ab8567e100ee0bde
     </div>
+    <div id="mk-test-result" style="margin-top:.8rem;font-size:.78rem;min-height:1rem;line-height:1.5"></div>
   </div>
 </div>
 
@@ -419,7 +440,95 @@ const BADGE = {book:'d1',music:'d2',film:'d3',place:'d4',activity:'d5'};
 const $     = id => document.getElementById(id);
 const x     = s  => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
+<<<<<<< HEAD
 /* ══ i18n ══ */
+=======
+/* ══════════════════════════════════════
+   PROVIDERS CONFIG
+══════════════════════════════════════ */
+const PROVIDERS = {
+  openrouter: {
+    name:'OpenRouter', icon:'🔀', url:'https://openrouter.ai/api/v1/chat/completions',
+    keyPrefix:'sk-or', keyHint:'sk-or-v1-…', site:'openrouter.ai/keys',
+    defaultModel:'google/gemini-2.0-flash-001',
+    models:['google/gemini-2.0-flash-001','openai/gpt-4o-mini','anthropic/claude-3-5-haiku','meta-llama/llama-3.3-70b-instruct'],
+    buildReq:(key,model,msgs)=>({method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key,'HTTP-Referer':location.href,'X-Title':'MyVibe'},body:JSON.stringify({model,messages:msgs,max_tokens:2200})}),
+    parseRes:d=>d.choices?.[0]?.message?.content||''
+  },
+  openai: {
+    name:'OpenAI', icon:'🤖', url:'https://api.openai.com/v1/chat/completions',
+    keyPrefix:'sk-', keyHint:'sk-…', site:'platform.openai.com/api-keys',
+    defaultModel:'gpt-4o-mini',
+    models:['gpt-4o-mini','gpt-4o','gpt-3.5-turbo'],
+    buildReq:(key,model,msgs)=>({method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},body:JSON.stringify({model,messages:msgs,max_tokens:2200})}),
+    parseRes:d=>d.choices?.[0]?.message?.content||''
+  },
+  gemini: {
+    name:'Google Gemini', icon:'♊', url:'https://generativelanguage.googleapis.com/v1/models/{model}:generateContent',
+    keyPrefix:'AIza', keyHint:'AIza…', site:'aistudio.google.com/app/apikey',
+    defaultModel:'gemini-2.0-flash',
+    models:['gemini-2.0-flash','gemini-2.0-flash-lite','gemini-1.5-flash','gemini-1.5-pro'],
+    modelHint:'⚡ Modèles recommandés : gemini-2.0-flash  |  gemini-1.5-flash',
+    buildReq:(key,model,msgs)=>{
+      // Normalize model name: strip -latest, fix deprecated aliases
+      const fixes={'gemini-1.5-flash-latest':'gemini-1.5-flash','gemini-1.5-pro-latest':'gemini-1.5-pro','gemini-pro':'gemini-1.5-pro','gemini-flash':'gemini-2.0-flash','gemini-2.0-flash-exp':'gemini-2.0-flash','gemini-2.0-flash-lite':'gemini-2.0-flash'};
+      const raw=(model||'gemini-2.0-flash').replace(/-latest$/,'');
+      const safeModel=fixes[raw]||raw;
+      // v1 API does NOT support system_instruction field — merge system prompt into first user message
+      const sys=msgs.find(m=>m.role==='system');
+      const userMsgs=msgs.filter(m=>m.role!=='system');
+      if(sys&&userMsgs.length>0){userMsgs[0]={role:'user',content:sys.content+'\n\n'+userMsgs[0].content};}
+      const contents=userMsgs.map(m=>({role:m.role==='assistant'?'model':'user',parts:[{text:m.content}]}));
+      const url=`https://generativelanguage.googleapis.com/v1/models/${safeModel}:generateContent?key=${key}`;
+      const body={contents,generationConfig:{maxOutputTokens:2200}};
+      return {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),_url:url}
+    },
+    parseRes:d=>d.candidates?.[0]?.content?.parts?.[0]?.text||''
+  },
+  anthropic: {
+    name:'Anthropic (Claude)', icon:'🧠', url:'https://api.anthropic.com/v1/messages',
+    keyPrefix:'sk-ant', keyHint:'sk-ant-…', site:'console.anthropic.com/settings/keys',
+    defaultModel:'claude-3-5-haiku-20241022',
+    models:['claude-3-5-haiku-20241022','claude-3-5-sonnet-20241022','claude-3-opus-20240229'],
+    corsBlocked:true,
+    buildReq:(key,model,msgs)=>{
+      const sys=msgs.find(m=>m.role==='system');
+      const userMsgs=msgs.filter(m=>m.role!=='system');
+      return {method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01'},body:JSON.stringify({model,messages:userMsgs,system:sys?.content,max_tokens:2200})}
+    },
+    parseRes:d=>d.content?.[0]?.text||''
+  },
+  groq: {
+    name:'Groq', icon:'⚡', url:'https://api.groq.com/openai/v1/chat/completions',
+    keyPrefix:'gsk_', keyHint:'gsk_…', site:'console.groq.com/keys',
+    defaultModel:'llama-3.3-70b-versatile',
+    models:['llama-3.3-70b-versatile','llama-3.1-8b-instant','mixtral-8x7b-32768','gemma2-9b-it'],
+    modelHint:'⚡ Ultra-rapide & gratuit · Modèles : llama-3.3-70b-versatile, llama-3.1-8b-instant, mixtral-8x7b-32768',
+    buildReq:(key,model,msgs)=>({method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},body:JSON.stringify({model,messages:msgs,max_tokens:2200})}),
+    parseRes:d=>d.choices?.[0]?.message?.content||''
+  },
+  mistral: {
+    name:'Mistral AI', icon:'💨', url:'https://api.mistral.ai/v1/chat/completions',
+    keyPrefix:'', keyHint:'clé Mistral…', site:'console.mistral.ai/api-keys',
+    defaultModel:'mistral-small-latest',
+    models:['mistral-small-latest','mistral-large-latest','open-mistral-7b'],
+    buildReq:(key,model,msgs)=>({method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},body:JSON.stringify({model,messages:msgs,max_tokens:2200})}),
+    parseRes:d=>d.choices?.[0]?.message?.content||''
+  },
+  custom: {
+    name:'Custom / Autre', icon:'⚡', url:'',
+    keyPrefix:'', keyHint:'Votre clé API…', site:'',
+    defaultModel:'',
+    models:[],
+    buildReq:(key,model,msgs,customUrl)=>({method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},body:JSON.stringify({model,messages:msgs,max_tokens:2200}),_url:customUrl}),
+    parseRes:d=>d.choices?.[0]?.message?.content||d.content?.[0]?.text||''
+  }
+};
+
+/* ══════════════════════════════════════
+   i18n (abbreviated — key parts only)
+══════════════════════════════════════ */
+>>>>>>> 504a4162f11e5973a07b7364ab8567e100ee0bde
 const I18N={
 fr:{
   login:'Connexion',register:'Inscription',guestBtn:"Continuer en tant qu'invité",orLbl:'ou continuer sans compte',
@@ -532,6 +641,158 @@ function updateModelDisplay(){
   if($('s-model-display')) $('s-model-display').textContent = S.model;
 }
 
+<<<<<<< HEAD
+=======
+async function testProviderKey(){
+  const p=PROVIDERS[selectedProvider];
+  const key=$('key-inp').value.trim();
+  const useKey=(key&&key!=='••••••••••••')?key:(S.apiKeys[selectedProvider]?.key||'');
+  if(!useKey){$('mk-test-result').innerHTML='<span style="color:#ff5555">Entrez d'abord votre clé.</span>';return}
+  const model=$('model-inp').value.trim()||p.defaultModel;
+  const res=$('mk-test-result');
+  res.innerHTML='<span style="color:var(--nb)">⏳ Test en cours…</span>';
+  const testMsgs=[{role:'user',content:'Reply with exactly: {"ok":true}'}];
+  // For Gemini, no system message
+  const reqOpts=p.buildReq(useKey,model,testMsgs,'');
+  const url=reqOpts._url||p.url;delete reqOpts._url;
+  try{
+    const r=await fetch(url,reqOpts);
+    const d=await r.json();
+    if(!r.ok){
+      const msg=d.error?.message||d.message||('HTTP '+r.status);
+      if(r.status===401)res.innerHTML='<span style="color:#ff5555">❌ Clé invalide — vérifiez sur '+p.site+'</span>';
+      else if(r.status===404)res.innerHTML='<span style="color:#ff5555">❌ Modèle "'+model+'" introuvable. Laissez le champ vide.</span>';
+      else res.innerHTML='<span style="color:#ff5555">❌ '+msg+'</span>';
+      return;
+    }
+    const txt=p.parseRes(d)||'';
+    if(txt)res.innerHTML='<span style="color:var(--ng)">✅ Connexion réussie avec '+p.name+' · Modèle : '+model+'</span>';
+    else res.innerHTML='<span style="color:var(--na)">⚠️ Connexion OK mais réponse vide — essayez un autre modèle</span>';
+  }catch(e){res.innerHTML='<span style="color:#ff5555">❌ Erreur réseau : '+e.message+'</span>';}
+}
+
+function saveProviderKey(){
+  const p=PROVIDERS[selectedProvider];
+  let key=$('key-inp').value.trim();
+  if(!key||key==='••••••••••••'){
+    const existing=S.apiKeys[selectedProvider];
+    if(existing?.key)key=existing.key;
+    else{$('mk-err').textContent='Entrez votre clé API.';return}
+  }
+  // Normalize and validate model name
+  const rawModel=$('model-inp').value.trim();
+  const model=normalizeModel(selectedProvider, rawModel)||p.defaultModel;
+  const customUrl=selectedProvider==='custom'?($('custom-url-inp')?.value.trim()||''):'';
+  S.apiKeys[selectedProvider]={key,model,customUrl};
+  // Persist
+  const keysStore={};
+  Object.entries(S.apiKeys).forEach(([pid,v])=>{keysStore[pid]=v});
+  localStorage.setItem('mv_api_keys',JSON.stringify(keysStore));
+  // Also clear any stale localStorage entry with bad model for gemini
+  try{
+    const raw=JSON.parse(localStorage.getItem('mv_api_keys')||'{}');
+    if(raw.gemini?.model&&MODEL_ALIASES[raw.gemini.model]){
+      raw.gemini.model=MODEL_ALIASES[raw.gemini.model];
+      localStorage.setItem('mv_api_keys',JSON.stringify(raw));
+    }
+  }catch(e){}
+  closeKeyModal();toast(T().tKeySaved+' Modèle : '+model);renderKeyStatusList()
+}
+
+function deleteProviderKey(id){
+  delete S.apiKeys[id];
+  const keysStore={};
+  Object.entries(S.apiKeys).forEach(([pid,v])=>{keysStore[pid]=v});
+  localStorage.setItem('mv_api_keys',JSON.stringify(keysStore));
+  renderKeyStatusList()
+}
+
+function renderKeyStatusList(){
+  const list=$('key-status-list');if(!list)return;
+  const entries=Object.entries(PROVIDERS);
+  const configured=entries.filter(([id])=>S.apiKeys[id]);
+  list.innerHTML=configured.length===0
+    ?`<div style="font-size:.78rem;color:var(--td);padding:.4rem 0">${T().errNoKey}</div>`
+    :configured.map(([id,p])=>`<div class="key-status-item">
+        <span class="ks-name">${p.icon} ${p.name}</span>
+        <span class="ks-val">
+          <span class="ks-dot ok"></span>
+          <span style="color:var(--tm)">${S.apiKeys[id].model||p.defaultModel}</span>
+          <button class="ks-del" onclick="deleteProviderKey('${id}')" title="Supprimer">✕</button>
+        </span>
+      </div>`).join('')
+}
+
+function getActiveProviderAndKey(){
+  // Priority order: openrouter, gemini, mistral, openai, custom, anthropic
+  const order=['openrouter','groq','gemini','mistral','openai','custom','anthropic'];
+  for(const id of order){if(S.apiKeys[id]?.key)return{id,cfg:S.apiKeys[id],prov:PROVIDERS[id]}}
+  // fallback: any configured
+  for(const[id,v]of Object.entries(S.apiKeys)){if(v?.key)return{id,cfg:v,prov:PROVIDERS[id]}}
+  return null
+}
+
+/* ══ VOICE SEARCH ══ */
+let recognition=null;let isListening=false;
+
+function initVoice(){
+  const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SpeechRecognition){$('voice-btn').classList.add('not-supported');$('voice-btn').title=T().voiceNoSupport;return}
+  recognition=new SpeechRecognition();
+  recognition.continuous=false;
+  recognition.interimResults=true;
+  recognition.onstart=()=>{
+    isListening=true;
+    $('voice-btn').classList.add('listening');
+    $('search-box').classList.add('recording');
+    showVoiceStatus(T().voiceListening);
+    $('ms').placeholder=T().voiceListening;
+  };
+  recognition.onresult=(e)=>{
+    let interim='',final='';
+    for(let i=e.resultIndex;i<e.results.length;i++){
+      if(e.results[i].isFinal)final+=e.results[i][0].transcript;
+      else interim+=e.results[i][0].transcript;
+    }
+    $('ms').value=final||interim;
+  };
+  recognition.onend=()=>{
+    isListening=false;
+    $('voice-btn').classList.remove('listening');
+    $('search-box').classList.remove('recording');
+    hideVoiceStatus();
+    $('ms').placeholder=T().ph;
+    const q=$('ms').value.trim();
+    if(q&&S.voiceAutoSearch)setTimeout(()=>doSearch(),400);
+  };
+  recognition.onerror=(e)=>{
+    isListening=false;
+    $('voice-btn').classList.remove('listening');
+    $('search-box').classList.remove('recording');
+    hideVoiceStatus();
+    $('ms').placeholder=T().ph;
+    if(e.error!=='no-speech'&&e.error!=='aborted')toast(T().voiceError);
+  };
+}
+
+function toggleVoice(){
+  if($('voice-btn').classList.contains('not-supported')){toast(T().voiceNoSupport);return}
+  if(!recognition)initVoice();
+  if(!recognition){toast(T().voiceNoSupport);return}
+  if(isListening){recognition.stop()}
+  else{
+    recognition.lang=S.voiceLang||'fr-FR';
+    $('ms').value='';
+    try{recognition.start()}catch(e){toast(T().voiceError)}
+  }
+}
+
+function showVoiceStatus(msg){
+  $('voice-status').classList.add('on');$('voice-status-txt').textContent=msg
+}
+function hideVoiceStatus(){$('voice-status').classList.remove('on')}
+
+>>>>>>> 504a4162f11e5973a07b7364ab8567e100ee0bde
 /* ══ AUTH ══ */
 let aMode = 'li';
 function swAuth(m){aMode=m;$('f-li').style.display=m==='li'?'':'none';$('f-re').style.display=m==='re'?'':'none';$('t-li').classList.toggle('on',m==='li');$('t-re').classList.toggle('on',m==='re')}
@@ -679,6 +940,7 @@ async function doSearch(){
     $('r-count').textContent=`${S.cards.length} ${t.recs}`;
     buildTypeTabs(); renderCards(); saveData()
   }catch(err){
+<<<<<<< HEAD
     clearInterval(iv); $('ldbox').style.display='none';
     $('cg').innerHTML=`<div class="em"><div class="ei">⚡</div><div class="et">${x(err.message)}</div><div class="es">Vérifiez votre clé API et votre connexion internet.</div></div>`
   }
@@ -704,6 +966,42 @@ async function callAI(q){
   const m=clean.match(/\{[\s\S]*\}/);
   if(!m) throw new Error(T().errParse);
   return JSON.parse(m[0])
+=======
+    clearInterval(iv);$('ldbox').style.display='none';
+    const suggestion=active.prov.corsBlocked?t.errCors:(err.message.includes('404')||err.message.includes('introuvable'))?'Ouvrez 🔑, sélectionnez le fournisseur et laissez le champ Modèle VIDE.':'Utilisez le bouton 🧪 Tester dans le modal 🔑 pour diagnostiquer.';
+    $('cg').innerHTML=`<div class="em"><div class="ei">⚡</div><div class="et">${x(err.message)}</div><div class="es" style="max-width:480px;margin:0 auto;line-height:1.6">${suggestion}</div><div style="margin-top:1.2rem"><button onclick="openKeyModal()" style="padding:9px 18px;border-radius:100px;background:rgba(176,65,255,.15);border:.5px solid rgba(176,65,255,.4);color:var(--np);font-family:var(--fb);font-size:.82rem;cursor:pointer">🔑 Configurer la clé</button></div></div>`
+  }
+}
+
+async function callAI(q,{id,cfg,prov}){
+  const t=T();const city=S.user?.city||'Paris';const country=S.user?.country||'';
+  const msgs=[{role:'system',content:t.sys(city,country)},{role:'user',content:t.usr(q)}];
+  const model=normalizeModel(id,cfg.model)||prov.defaultModel;
+  const reqOpts=prov.buildReq(cfg.key,model,msgs,cfg.customUrl);
+  const url=reqOpts._url||(id==='custom'&&cfg.customUrl?cfg.customUrl:prov.url);
+  delete reqOpts._url;
+  let r;
+  try{r=await fetch(url,reqOpts);}
+  catch(netErr){throw new Error(`Erreur réseau (${id}) : ${netErr.message}. Vérifiez votre connexion.`)}
+  if(!r.ok){
+    let errMsg=`HTTP ${r.status}`;
+    try{const e=await r.json();errMsg=e.error?.message||e.message||e.error||errMsg;}catch(_){}
+    // Friendly messages per provider
+    if(r.status===401)throw new Error(`❌ Clé API invalide pour ${prov.name}. Vérifiez votre clé sur ${prov.site}`);
+    if(r.status===429)throw new Error(`⏱ Limite de requêtes atteinte (${prov.name}). Attendez quelques secondes.`);
+    if(r.status===404)throw new Error(`❌ Modèle "${model}" introuvable sur ${prov.name}. Ouvrez 🔑 et laissez le champ modèle vide.`);
+    if(r.status===400)throw new Error(`❌ Requête invalide (${prov.name}) : ${errMsg}`);
+    throw new Error(`${prov.name} — ${errMsg}`);
+  }
+  const d=await r.json();
+  const txt=prov.parseRes(d)||'';
+  if(!txt)throw new Error(`${prov.name} n'a retourné aucun texte. Essayez un autre modèle.`);
+  const clean=txt.replace(/\`\`\`json|\`\`\`/g,'').trim();
+  const m=clean.match(/\{[\s\S]*\}/);
+  if(!m)throw new Error(T().errParse+' ('+id+')');
+  try{return JSON.parse(m[0]);}
+  catch(e){throw new Error('JSON invalide reçu de '+prov.name+'. Réessayez.')}
+>>>>>>> 504a4162f11e5973a07b7364ab8567e100ee0bde
 }
 
 /* ══ FILTERS ══ */
@@ -766,6 +1064,11 @@ function removeP(p){ S.prefs.delete(p); saveData(); renderProfile() }
 function replayS(q){ $('ms').value=q; goHome(); doSearch() }
 function saveProfile(){ const n=$('s-name').value.trim(),c=$('s-city').value.trim(),b=$('s-bio').value.trim(); if(n)S.user.name=n; if(c)S.user.city=c; S.user.bio=b; $('ci').value=S.user.city; saveData(); updateNavAv(); toast('✅ Enregistré !') }
 </script>
+<<<<<<< HEAD
 <script src="Voice.js"></script>
 </body>
 </html>
+=======
+</body>
+</html>
+>>>>>>> 504a4162f11e5973a07b7364ab8567e100ee0bde
