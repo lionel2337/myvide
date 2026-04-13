@@ -268,7 +268,7 @@ option{background:var(--bg2)}
 .modal p{font-size:.83rem;color:var(--tm);line-height:1.6;margin-bottom:1rem}
 .modal-warn{background:rgba(255,176,32,.08);border:.5px solid rgba(255,176,32,.25);border-radius:10px;padding:.8rem 1rem;font-size:.78rem;color:var(--na);margin-bottom:1.1rem;line-height:1.5}
 .modal-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:.5rem}
-.provider-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:1.2rem}
+.provider-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:1.2rem}
 .prov-card{padding:.9rem;border-radius:12px;background:var(--bc);border:.5px solid var(--gl);cursor:pointer;transition:all var(--tr);text-align:center}
 .prov-card:hover{background:var(--bch)}
 .prov-card.on{border-color:var(--np);background:rgba(176,65,255,.1)}
@@ -314,8 +314,10 @@ option{background:var(--bg2)}
     <div class="a-err" id="mk-err"></div>
     <div class="modal-actions">
       <button class="svb" onclick="saveProviderKey()" id="mk-sv">Enregistrer</button>
+      <button class="svb" onclick="testProviderKey()" id="mk-test" style="background:rgba(0,207,255,.18);color:var(--nb);border:.5px solid rgba(0,207,255,.3)">🧪 Tester</button>
       <button class="dgb" onclick="closeKeyModal()" id="mk-ca">Annuler</button>
     </div>
+    <div id="mk-test-result" style="margin-top:.8rem;font-size:.78rem;min-height:1rem;line-height:1.5"></div>
   </div>
 </div>
 
@@ -587,6 +589,15 @@ const PROVIDERS = {
       return {method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01'},body:JSON.stringify({model,messages:userMsgs,system:sys?.content,max_tokens:2200})}
     },
     parseRes:d=>d.content?.[0]?.text||''
+  },
+  groq: {
+    name:'Groq', icon:'⚡', url:'https://api.groq.com/openai/v1/chat/completions',
+    keyPrefix:'gsk_', keyHint:'gsk_…', site:'console.groq.com/keys',
+    defaultModel:'llama-3.3-70b-versatile',
+    models:['llama-3.3-70b-versatile','llama-3.1-8b-instant','mixtral-8x7b-32768','gemma2-9b-it'],
+    modelHint:'⚡ Ultra-rapide & gratuit · Modèles : llama-3.3-70b-versatile, llama-3.1-8b-instant, mixtral-8x7b-32768',
+    buildReq:(key,model,msgs)=>({method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},body:JSON.stringify({model,messages:msgs,max_tokens:2200})}),
+    parseRes:d=>d.choices?.[0]?.message?.content||''
   },
   mistral: {
     name:'Mistral AI', icon:'💨', url:'https://api.mistral.ai/v1/chat/completions',
@@ -864,6 +875,34 @@ function selectProvider(id){
   }else{if(customRow)customRow.style.display='none'}
 }
 
+async function testProviderKey(){
+  const p=PROVIDERS[selectedProvider];
+  const key=$('key-inp').value.trim();
+  const useKey=(key&&key!=='••••••••••••')?key:(S.apiKeys[selectedProvider]?.key||'');
+  if(!useKey){$('mk-test-result').innerHTML='<span style="color:#ff5555">Entrez d'abord votre clé.</span>';return}
+  const model=$('model-inp').value.trim()||p.defaultModel;
+  const res=$('mk-test-result');
+  res.innerHTML='<span style="color:var(--nb)">⏳ Test en cours…</span>';
+  const testMsgs=[{role:'user',content:'Reply with exactly: {"ok":true}'}];
+  // For Gemini, no system message
+  const reqOpts=p.buildReq(useKey,model,testMsgs,'');
+  const url=reqOpts._url||p.url;delete reqOpts._url;
+  try{
+    const r=await fetch(url,reqOpts);
+    const d=await r.json();
+    if(!r.ok){
+      const msg=d.error?.message||d.message||('HTTP '+r.status);
+      if(r.status===401)res.innerHTML='<span style="color:#ff5555">❌ Clé invalide — vérifiez sur '+p.site+'</span>';
+      else if(r.status===404)res.innerHTML='<span style="color:#ff5555">❌ Modèle "'+model+'" introuvable. Laissez le champ vide.</span>';
+      else res.innerHTML='<span style="color:#ff5555">❌ '+msg+'</span>';
+      return;
+    }
+    const txt=p.parseRes(d)||'';
+    if(txt)res.innerHTML='<span style="color:var(--ng)">✅ Connexion réussie avec '+p.name+' · Modèle : '+model+'</span>';
+    else res.innerHTML='<span style="color:var(--na)">⚠️ Connexion OK mais réponse vide — essayez un autre modèle</span>';
+  }catch(e){res.innerHTML='<span style="color:#ff5555">❌ Erreur réseau : '+e.message+'</span>';}
+}
+
 function saveProviderKey(){
   const p=PROVIDERS[selectedProvider];
   let key=$('key-inp').value.trim();
@@ -918,7 +957,7 @@ function renderKeyStatusList(){
 
 function getActiveProviderAndKey(){
   // Priority order: openrouter, gemini, mistral, openai, custom, anthropic
-  const order=['openrouter','gemini','mistral','openai','custom','anthropic'];
+  const order=['openrouter','groq','gemini','mistral','openai','custom','anthropic'];
   for(const id of order){if(S.apiKeys[id]?.key)return{id,cfg:S.apiKeys[id],prov:PROVIDERS[id]}}
   // fallback: any configured
   for(const[id,v]of Object.entries(S.apiKeys)){if(v?.key)return{id,cfg:v,prov:PROVIDERS[id]}}
@@ -1143,40 +1182,39 @@ async function doSearch(){
     buildTypeTabs();renderCards();saveData()
   }catch(err){
     clearInterval(iv);$('ldbox').style.display='none';
-    $('cg').innerHTML=`<div class="em"><div class="ei">⚡</div><div class="et">${x(err.message)}</div><div class="es">${active.prov.corsBlocked?t.errCors:'Vérifiez votre clé API et votre connexion.'}</div></div>`
+    const suggestion=active.prov.corsBlocked?t.errCors:(err.message.includes('404')||err.message.includes('introuvable'))?'Ouvrez 🔑, sélectionnez le fournisseur et laissez le champ Modèle VIDE.':'Utilisez le bouton 🧪 Tester dans le modal 🔑 pour diagnostiquer.';
+    $('cg').innerHTML=`<div class="em"><div class="ei">⚡</div><div class="et">${x(err.message)}</div><div class="es" style="max-width:480px;margin:0 auto;line-height:1.6">${suggestion}</div><div style="margin-top:1.2rem"><button onclick="openKeyModal()" style="padding:9px 18px;border-radius:100px;background:rgba(176,65,255,.15);border:.5px solid rgba(176,65,255,.4);color:var(--np);font-family:var(--fb);font-size:.82rem;cursor:pointer">🔑 Configurer la clé</button></div></div>`
   }
 }
 
 async function callAI(q,{id,cfg,prov}){
   const t=T();const city=S.user?.city||'Paris';const country=S.user?.country||'';
   const msgs=[{role:'system',content:t.sys(city,country)},{role:'user',content:t.usr(q)}];
-  const model=normalizeModel(id, cfg.model)||prov.defaultModel;
-  const key=cfg.key||'';
-  // For Gemini, always build URL directly to guarantee key is included
-  let url;
-  let reqOpts;
-  if(id==='gemini'){
-    const fixes={'gemini-1.5-flash-latest':'gemini-1.5-flash','gemini-1.5-pro-latest':'gemini-1.5-pro','gemini-pro':'gemini-1.5-pro','gemini-flash':'gemini-2.0-flash','gemini-2.0-flash-exp':'gemini-2.0-flash','gemini-2.0-flash-lite':'gemini-2.0-flash'};
-    const safeModel=fixes[model]||model||'gemini-2.0-flash';
-    url=`https://generativelanguage.googleapis.com/v1/models/${safeModel}:generateContent?key=${key}`;
-    const sys=msgs.find(m=>m.role==='system');
-    const userMsgs=msgs.filter(m=>m.role!=='system');
-    if(sys&&userMsgs.length>0){userMsgs[0]={role:'user',content:sys.content+'\n\n'+userMsgs[0].content};}
-    const contents=userMsgs.map(m=>({role:m.role==='assistant'?'model':'user',parts:[{text:m.content}]}));
-    reqOpts={method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents,generationConfig:{maxOutputTokens:2200}})};
-  } else {
-    reqOpts=prov.buildReq(key,model,msgs,cfg.customUrl);
-    url=reqOpts._url||(id==='custom'&&cfg.customUrl?cfg.customUrl:prov.url);
-    delete reqOpts._url;
+  const model=normalizeModel(id,cfg.model)||prov.defaultModel;
+  const reqOpts=prov.buildReq(cfg.key,model,msgs,cfg.customUrl);
+  const url=reqOpts._url||(id==='custom'&&cfg.customUrl?cfg.customUrl:prov.url);
+  delete reqOpts._url;
+  let r;
+  try{r=await fetch(url,reqOpts);}
+  catch(netErr){throw new Error(`Erreur réseau (${id}) : ${netErr.message}. Vérifiez votre connexion.`)}
+  if(!r.ok){
+    let errMsg=`HTTP ${r.status}`;
+    try{const e=await r.json();errMsg=e.error?.message||e.message||e.error||errMsg;}catch(_){}
+    // Friendly messages per provider
+    if(r.status===401)throw new Error(`❌ Clé API invalide pour ${prov.name}. Vérifiez votre clé sur ${prov.site}`);
+    if(r.status===429)throw new Error(`⏱ Limite de requêtes atteinte (${prov.name}). Attendez quelques secondes.`);
+    if(r.status===404)throw new Error(`❌ Modèle "${model}" introuvable sur ${prov.name}. Ouvrez 🔑 et laissez le champ modèle vide.`);
+    if(r.status===400)throw new Error(`❌ Requête invalide (${prov.name}) : ${errMsg}`);
+    throw new Error(`${prov.name} — ${errMsg}`);
   }
-  const r=await fetch(url,reqOpts);
-  if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.error?.message||e.message||`HTTP ${r.status}`)}
   const d=await r.json();
   const txt=prov.parseRes(d)||'';
-  const clean=txt.replace(/```json|```/g,'').trim();
+  if(!txt)throw new Error(`${prov.name} n'a retourné aucun texte. Essayez un autre modèle.`);
+  const clean=txt.replace(/\`\`\`json|\`\`\`/g,'').trim();
   const m=clean.match(/\{[\s\S]*\}/);
-  if(!m)throw new Error(T().errParse);
-  return JSON.parse(m[0])
+  if(!m)throw new Error(T().errParse+' ('+id+')');
+  try{return JSON.parse(m[0]);}
+  catch(e){throw new Error('JSON invalide reçu de '+prov.name+'. Réessayez.')}
 }
 
 /* ══ FILTERS ══ */
@@ -1220,7 +1258,5 @@ function removeP(p){S.prefs.delete(p);saveData();renderProfile()}
 function replayS(q){$('ms').value=q;goHome();doSearch()}
 function saveProfile(){const n=$('s-name').value.trim();const c=$('s-city').value.trim();const b=$('s-bio').value.trim();if(n)S.user.name=n;if(c)S.user.city=c;S.user.bio=b;$('ci').value=S.user.city;saveData();updateNavAv();toast(T().tSaved)}
 </script>
-<script src="Voice.js"></script>
-</body>
 </body>
 </html>
