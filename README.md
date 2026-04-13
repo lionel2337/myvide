@@ -14,7 +14,7 @@ MyVibe est une plateforme web qui recommande des films, livres et lieux à Yaoun
 
 - HTML5
 - CSS3
-- JavaScript
+- JavaScript Vanilla
 - PHP
 - JSON
 - Git & GitHub
