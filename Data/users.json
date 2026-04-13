@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "jean.dupont@gmail.com",
+      "password": "$2y$10$e0MYzXyjpJS7Pd0RVvHwHe1Hl7Z9...",
+      "nom": "Jean Dupont",
+      "preferences": ["action", "soirée"]
+    }
+  ]
+}
