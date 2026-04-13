@@ -1,26 +1,73 @@
-# Fichiers système
-.DS_Store
-Thumbs.db
-desktop.ini
-*.log
-*.tmp
-*.bak
+# ============================================
+# 🔐 SÉCURITÉ - DONNÉES UTILISATEURS (CRUCIAL)
+# ============================================
 
-# Fichiers sensibles
+# Fichier contenant les vrais utilisateurs (mots de passe hashés)
+data/users.json
+data/users_real.json
+data/profils.json
+
+# Fichiers de configuration avec mots de passe BDD
 config.php
 .env
-*.key
-*.pem
+*.env
+includes/config.php
+api/config.php
 
-# Dossiers temporaires
-/cache/
-/tmp/
-/logs/
+# Fichiers de logs (peuvent contenir des emails)
+*.log
+logs/
+error_log
+debug.log
 
-# Fichiers IDE
-.vscode/settings.json
-.idea/
+# ============================================
+# 📁 FICHIERS DE CACHE TEMPORAIRES
+# ============================================
+cache/
+*.cache
+*.tmp
+temp/
+tmp/
 
-# Dépendances (si jamais utilisées)
+# ============================================
+# 💻 FICHIERS SYSTÈME
+# ============================================
+.DS_Store        # Mac
+Thumbs.db        # Windows
+desktop.ini      # Windows
+*.swp            # Vim
+*.swo            # Vim
+*.bak           # Sauvegardes
+
+# ============================================
+# 📦 DÉPENDANCES (si vous en utilisez)
+# ============================================
 node_modules/
 vendor/
+composer.lock
+package-lock.json
+
+# ============================================
+# 🖥️ IDE / ÉDITEURS
+# ============================================
+.vscode/
+.idea/
+*.sublime-*
+
+# ============================================
+# 🗜️ ARCHIVES ET FICHIERS VOLUMINEUX
+# ============================================
+*.zip
+*.tar.gz
+*.rar
+*.7z
+uploads/
+images/uploads/
+
+# ============================================
+# 🧪 FICHIERS DE TEST
+# ============================================
+test.php
+test.html
+dump.sql
+backup.sql

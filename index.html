@@ -1220,5 +1220,7 @@ function removeP(p){S.prefs.delete(p);saveData();renderProfile()}
 function replayS(q){$('ms').value=q;goHome();doSearch()}
 function saveProfile(){const n=$('s-name').value.trim();const c=$('s-city').value.trim();const b=$('s-bio').value.trim();if(n)S.user.name=n;if(c)S.user.city=c;S.user.bio=b;$('ci').value=S.user.city;saveData();updateNavAv();toast(T().tSaved)}
 </script>
+<script src="Voice.js"></script>
+</body>
 </body>
 </html>
